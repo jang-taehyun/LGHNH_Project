@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: "Assets/Scenes/\uD558\uB298\uD5A5 \uC218\uC6D0\uC9C0.unity"
     guid: dc14cb76b4d58104c98b010e52ced5eb
+  - enabled: 1
+    path: Assets/Scenes/TestScene_1_TH.unity
+    guid: 1d348512c7389cb41837b38ea4153f8e
+  - enabled: 1
+    path: Assets/Scenes/SleepingMonster_scene.unity
+    guid: f0e59a65b0266624d9b06939cbcf0646
   m_configObjects: {}
