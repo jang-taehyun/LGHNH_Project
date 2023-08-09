@@ -7,22 +7,20 @@ using UnityEngine;
 public class NPCManager : MonoBehaviour
 {
     public GameObject quest;                            //이 NPC가 전달해야 하는 퀘스트
-    public GameObject speechBubble;                     //NPC가 할 말이 있을 때 우측 상단에 떠야 하는 말풍선
-    private ConversationManager conversationManager;    //얘는 구현을 다시 생각해 봐야 겠다.
+    private GameObject speechBubble;                    //NPC가 할 말이 있을 때 우측 상단에 떠야 하는 말풍선
+    private DialogSystem dialogSystem;
+    private bool isActive;                              //NPC 활성화 여부, 즉 대화하고 싶은 상태인지
+    private int npcState;                               //NPC의 상태에 관한 변수, 0은 퀘스트 수락, 1은 퀘스트 완료
 
-    private bool isFirst;                               //첫 대화인가?
-    private bool isQuestCleared;                        //퀘스트가 완료된 상태에서의 대화인가?
-    private bool isActive;                              //활성화가 되었나?
 
     private float npcPositionX,npcPositionY;            //카메라한테 넘겨주어야 하는 NPC의 위치 정보
     private Vector3 npcPositionForCamera;
 
     void Start()
     {
-        conversationManager = GameObject.Find("Conversation Manager").GetComponent<ConversationManager>();
-
-        isFirst = true;
-        isQuestCleared = false;
+        speechBubble = transform.Find("Speech Bubble").gameObject; speechBubble.SetActive(false);
+        Debug.Log("잘 꺼졌습니다");
+        dialogSystem = GameObject.Find("DialogSystem").GetComponent<DialogSystem>();
 
         npcPositionX = transform.position.x;
         npcPositionY = transform.position.y;
@@ -39,25 +37,15 @@ public class NPCManager : MonoBehaviour
     {
         if (isActive)
         {
-            if (isFirst)
+            if (npcState == 0)
             {
                 speechBubble.SetActive(false);
-                conversationManager.StartConversationSetting(npcPositionForCamera, gameObject.name);
-                conversationManager.SetScript("안녕하세요. 피카츄입니다. 여기에 대사가 출력됩니다. 퀘스트도 드립니다.");
+                dialogSystem.StartConversationSetting(npcPositionForCamera, gameObject.name);
             }
-            else
+            else if (npcState == 1)
             {
-                if (!isQuestCleared)
-                {
-                    conversationManager.StartConversationSetting(npcPositionForCamera, gameObject.name);
-                    conversationManager.SetScript("현재 퀘스트 진행중입니다.");
-                }
-                else
-                {
-                    speechBubble.SetActive(false);
-                    conversationManager.StartConversationSetting(npcPositionForCamera, gameObject.name);
-                    conversationManager.SetScript("퀘스트 완료 메세지가 출력됩니다. 이 메세지는 한 번만 출력됩니다.");
-                }
+                speechBubble.SetActive(false);
+                dialogSystem.StartConversationSetting(npcPositionForCamera, gameObject.name);
             }
             
         }
@@ -70,14 +58,28 @@ public class NPCManager : MonoBehaviour
      
     public void EndConversation( )
     {
-        if (isFirst) 
+        if (npcState == 0) 
         {
             quest.GetComponent<QuestManager>().ActivateThisQuest();
-            
-            isFirst = false; 
+            isActive = false;
+        }
+        else if (npcState == 1)
+        {
+            isActive = false;
+            GameObject.Find("Process Manager").GetComponent<ProcessManager>().DestroyOngoingObstacle();
         }
     }
 
-    public void QuestCleared( ) { isQuestCleared = true; }
-    public void ActiveThisNPC( ) { isActive = true; }
+    public void QuestCleared( ) 
+    {
+        isActive = true; 
+        npcState = 1; 
+        speechBubble.SetActive(true); 
+    }
+
+    public void ActiveThisNPC( ) 
+    { 
+        isActive = true; 
+        speechBubble.SetActive(true); 
+    }
 }

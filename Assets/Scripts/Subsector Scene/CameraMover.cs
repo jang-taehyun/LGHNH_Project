@@ -9,13 +9,13 @@ public class CameraMover : MonoBehaviour
 
     private Vector2 nowPos, prePos;
     private Vector3 movePos;
-    private GameObject camera;
+    private GameObject cam;
 
 
 
     void Start()
     {
-        camera = GameObject.Find("Main Camera");
+        cam = GameObject.Find("Main Camera");
     }
 
     // Update is called once per frame
@@ -32,7 +32,7 @@ public class CameraMover : MonoBehaviour
             {
                 nowPos = touch.position - touch.deltaPosition;
                 movePos = (Vector3)(prePos - nowPos) * Time.deltaTime * speed;
-                camera.transform.Translate(movePos);
+                cam.transform.Translate(movePos);
                 prePos = touch.position - touch.deltaPosition;
             }
         }

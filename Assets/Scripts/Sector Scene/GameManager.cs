@@ -25,11 +25,7 @@ namespace GameManager
             }
         }
         public bool isHaveItem(uint index) { return CurrentHaveItemNum[index]; }
-        public void AddItem(uint index) {
-            CurrentHaveItemNum[index] = true;
-            DataManager.Inst.data.CurrentHaveItem[index] = true;
-            DataManager.Inst.SaveGameData();
-        }
+        public void AddItem(uint index) { CurrentHaveItemNum[index] = true; }
 
         // method //
         private void Awake()
@@ -49,12 +45,13 @@ namespace GameManager
             for (int index = 0; index < ItemVariableNum; index++)
                 CurrentHaveItemNum[index] = false;
 
-            // load data
-            DataManager.Inst.LoadGameData();
-
-            // debug code //
-            DataManager.Inst.SaveGameData();
-            DataManager.Inst.DebugData();
+            //if (null == inst)
+            //{
+            //    inst = this;
+            //    DontDestroyOnLoad(this.gameObject);
+            //}
+            //else
+            //    Destroy(this.gameObject);
         }
     }
 }

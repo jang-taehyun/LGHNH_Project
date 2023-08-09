@@ -7,7 +7,7 @@ using TMPro;
 
 public class ConversationManager : MonoBehaviour
 {
-    private GameObject camera;                  //카메라
+    private GameObject cam;                     //카메라
 
     private GameObject conversationUI;          //대화 UI
     private GameObject npcNameUI;               //NPC 이름의 UI
@@ -23,9 +23,12 @@ public class ConversationManager : MonoBehaviour
     private float characterImage_PosY;
 
     private Vector3 calledNPCPosition;
+    private Vector3 correctedPosition;
     private string calledNPCName;
 
     private bool trig_CamMoveToNPC;              //NPC 위치로 카메라를 이동시키는 작업의 트리거.
+    private bool trig_CamMoveForCorrection;      //NPC 위치로 이동한 카메라가 줌 아웃할 때 경계에 위치한 NPC 때문에 카메라 흔들림 현상을 해결하기 위함
+
 
     private float questUIWidth;                  //퀘스트UI의 Width와 Height 값. 점점 커지는 이펙트를 위해서 존재한다.
     private float questUIHeight;
@@ -34,10 +37,10 @@ public class ConversationManager : MonoBehaviour
 
     void Start()
     {
-        camera = GameObject.Find("Main Camera");
+        cam = GameObject.Find("Main Camera");
         conversationUI = GameObject.Find("Conversation UI");        conversationUI.SetActive(false);
-        conversation = GameObject.Find("Conversation");             conversation.SetActive(false);
-        npcNameUI = GameObject.Find("NPC Name");                    npcNameUI.SetActive(false);
+        conversation = GameObject.Find("Conversation");             //conversation.SetActive(false);
+        npcNameUI = GameObject.Find("NPC Name");                    //npcNameUI.SetActive(false);
         nextButton = GameObject.Find("Next Button");                nextButton.SetActive(false);
         characterImage = GameObject.Find("Character Image");        characterImage.SetActive(false);
 
@@ -56,23 +59,24 @@ public class ConversationManager : MonoBehaviour
     void Update()
     {
         if (trig_CamMoveToNPC) { CameraMoveToNPC(calledNPCPosition); }
+        if (trig_CamMoveForCorrection) { CameraMoveForCorrection(); }
     }
 
     public void StartConversationSetting(Vector3 _npcPositionForCamera, string _npcName)
     {
-        if (GameObject.Find("Subsector Scene Manager").GetComponent<SubsectorManager>().IsActiveOngoingQuest()) 
+        if (GameObject.Find("Process Manager").GetComponent<ProcessManager>().IsActiveOngoingQuest()) 
         { forQuest.SetActive(false); }
         
         calledNPCPosition = _npcPositionForCamera;
         calledNPCName = _npcName;
         trig_CamMoveToNPC = true;
-        camera.GetComponent<CameraMover_Test>().FocusCamera();
+        cam.GetComponent<CameraMover_Test>().FocusCamera();
 
         StartCoroutine(CameraZoomIn());
     }
 
 
-    public void EndConversationSetting()
+    public void EndConversationSetting()    //Next Button을 통해서 호출되는 함수
     {
         characterImage.SetActive(false);
         conversationUI.SetActive(false);
@@ -80,25 +84,46 @@ public class ConversationManager : MonoBehaviour
         conversation.SetActive(false);
         nextButton.SetActive(false);
 
-        if (GameObject.Find("Subsector Scene Manager").GetComponent<SubsectorManager>().IsActiveOngoingQuest()) { forQuest.SetActive(true); }
+        if (GameObject.Find("Process Manager").GetComponent<ProcessManager>().IsActiveOngoingQuest()) { forQuest.SetActive(true); }
 
         trig_CamMoveToNPC = false; 
-        camera.GetComponent<CameraMover_Test>().FreeCamera();
-        GameObject.Find(calledNPCName).GetComponent<NPCManager>().EndConversation();
+        cam.GetComponent<CameraMover_Test>().FreeCamera();
         StartCoroutine(CameraZoomOut());
+        GameObject.Find(calledNPCName).GetComponent<NPCManager>().EndConversation();
+        Debug.Log("대화 종료 함수가 호출되었습니다.");
+        
     }
 
     public void CameraMoveToNPC(Vector3 _npcPosition_Camera)
     {
-        camera.transform.position = Vector3.SmoothDamp(camera.transform.position, _npcPosition_Camera, ref vel, 0.5f);
+        cam.transform.position = Vector3.SmoothDamp(cam.transform.position, _npcPosition_Camera, ref vel, 0.5f);
+        if (Vector2.Distance(cam.transform.position, _npcPosition_Camera) <= 0.1f) 
+        { 
+            trig_CamMoveToNPC = false;
+            Debug.Log("성공적으로 trig_CamMoveToNPC 값이 false로 할당되었습니다."); 
+        }
     }
 
+    public void CameraMoveForCorrection()
+    {
+        cam.transform.position = Vector3.SmoothDamp(cam.transform.position, correctedPosition, ref vel, 0.25f);
+        Debug.Log("카메라 보정을 위해 열심히 이동중.");
+        if (Vector2.Distance(cam.transform.position, correctedPosition) <= 0.1f)
+        {
+            trig_CamMoveForCorrection = false;
+            Debug.Log("성공적으로 trig_CamMoveForCorrection 값이 false로 할당되었습니다.");
+        }
+    }
+    
+
+ 
     IEnumerator CameraZoomIn()
     {
         
         for (int i = 100; i >= 50; i--)
         {
-            camera.GetComponent<Camera>().orthographicSize = i * 0.1f;
+            cam.GetComponent<Camera>().orthographicSize = i * 0.1f;
+            cam.GetComponent<BoxCollider2D>().size = new Vector2(i * 0.1f, i * 0.2f);
 
             if (i == 70) 
             { 
@@ -111,16 +136,45 @@ public class ConversationManager : MonoBehaviour
         }
     }
     IEnumerator CameraZoomOut()
-    { 
+    {
+        //NPC가 경계에 위치해 있어서, 위치 보정이 필요한 경우
+        {
+            if (cam.transform.position.x < -12.5f)
+            {
+                correctedPosition = cam.transform.position;
+                correctedPosition.x = -12.45f;
+                trig_CamMoveForCorrection = true;
+            }
+            if (cam.transform.position.x > 12.5f)
+            {
+                correctedPosition = cam.transform.position;
+                correctedPosition.x = 12.45f;
+                trig_CamMoveForCorrection = true;
+            }
+
+            if (cam.transform.position.y < -5.5f)
+            {
+                correctedPosition = cam.transform.position;
+                correctedPosition.y = -5.45f;
+                trig_CamMoveForCorrection = true;
+            }
+            if (cam.transform.position.y > 5.5f)
+            {
+                correctedPosition = cam.transform.position;
+                correctedPosition.y = 5.45f;
+                trig_CamMoveForCorrection = true;
+            }
+        }
+        
 
         for (int i = 50; i <= 100; i++)
         {
-            camera.GetComponent<Camera>().orthographicSize = i * 0.1f;
+            cam.GetComponent<Camera>().orthographicSize = i * 0.1f;
+            cam.GetComponent<BoxCollider2D>().size = new Vector2(i * 0.1f, i * 0.2f);
 
             yield return new WaitForSeconds(0.01f);
         }
     }
-
     IEnumerator ConversWindowPop()
     {
         for (int i = 0; i <= 100; i++)
@@ -142,16 +196,16 @@ public class ConversationManager : MonoBehaviour
             yield return new WaitForSecondsRealtime(0.001f);
         }
     }
-
     IEnumerator NameFadeIn()
     {
+        npcNameUI.GetComponent<TextMeshProUGUI>().text = calledNPCName;
+
         for (float a = 0; a <= 1; a += 0.01f)
         {
             npcNameUI.GetComponent<TMP_Text>().color = new Color(0, 0, 0, a);
             yield return new WaitForSeconds(0.001f);
         }
     }
-
     IEnumerator CharacterImageUp()
     {
         for (int i = 0; i <= 140; i++)
@@ -163,15 +217,9 @@ public class ConversationManager : MonoBehaviour
             {
                 conversation.SetActive(true);
                 nextButton.SetActive(true);
+                GameObject.Find("DialogSystem").GetComponent<DialogSystem>().UpdateDialog();
             }
             yield return new WaitForSeconds(0.001f);
         }
     }
-
-    public void SetScript(string input)
-    {
-        conversation.GetComponent<TextMeshProUGUI>().text = input;
-    }
-
-
 }

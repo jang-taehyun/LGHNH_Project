@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 8
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d1a515abcd0a524e9eff28acc89949f, type: 3}
+  m_Name: DialogDB
+  m_EditorClassIdentifier: 
+  Entities:
+  - branch: 1
+    name: "\uD53C\uCE74\uCE04"
+    expression: "\uAE30\uBCF8"
+    dialog: "\uC548\uB155\uD558\uC138\uC694. \uD53C\uCE74\uCE04\uC785\uB2C8\uB2E4."
+  - branch: 1
+    name: "\uD53C\uCE74\uCE04"
+    expression: "\uAE30\uBCF8"
+    dialog: "\uD018\uC2A4\uD2B8\uB97C \uB4DC\uB9AC\uACA0\uC2B5\uB2C8\uB2E4."
+  - branch: 1
+    name: "\uD53C\uCE74\uCE04"
+    expression: "\uAE30\uBCF8"
+    dialog: "\uD30C\uC774\uD305!"
+  - branch: 2
+    name: "\uD53C\uCE74\uCE04"
+    expression: "\uAE30\uBCF8"
+    dialog: "\uD018\uC2A4\uD2B8\uB97C \uC644\uB8CC\uD558\uC168\uAD70\uC694."
+  - branch: 2
+    name: "\uD53C\uCE74\uCE04"
+    expression: "\uAE30\uBCF8"
+    dialog: "\uC9F1\uC9F1!"
+  - branch: 3
+    name: "\uBCF4\uB178\uBCF4\uB178"
+    expression: "\uAE30\uBCF8"
+    dialog: "\uC548\uB155\uD558\uC138\uC694. \uBCF4\uB178\uBCF4\uB178\uC785\uB2C8\uB2E4."
+  - branch: 3
+    name: "\uBCF4\uB178\uBCF4\uB178"
+    expression: "\uAE30\uBCF8"
+    dialog: "\uD018\uC2A4\uD2B8\uB97C \uB4DC\uB9AC\uACA0\uC2B5\uB2C8\uB2E4."
+  - branch: 4
+    name: "\uBCF4\uB178\uBCF4\uB178"
+    expression: "\uAE30\uBCF8"
+    dialog: "\uC815\uB9D0 \uB300\uB2E8\uD574\uC694."
+  - branch: 5
+    name: "\uB2CC\uC790\uBCF4\uC774"
+    expression: "\uAE30\uBCF8"
+    dialog: "\uD018\uC2A4\uD2B8."
+  - branch: 6
+    name: "\uB2CC\uC790\uBCF4\uC774"
+    expression: "\uAE30\uBCF8"
+    dialog: "\uB300\uB2E8."

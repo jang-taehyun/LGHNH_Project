@@ -18,17 +18,6 @@ namespace ObstacleManager_SubSectorScene
         public bool GetIsActive() { return isActive; }
         public void SetIsActive() { isActive = !isActive; }
 
-        // method //
-        bool JudgeEliminationThisObs()
-        {
-            return isActive;
-        }
-
-        void SetObsGlowEffect(bool _param)
-        {
-            GlowEffect.SetActive(_param);
-        }
-
         void Start()
         {
             isActive = true;
@@ -46,6 +35,17 @@ namespace ObstacleManager_SubSectorScene
                 // ------------------
                 Destroy(this);
             }
+        }
+
+        // method //
+        bool JudgeEliminationThisObs()
+        {
+            return isActive;
+        }
+
+        void SetObsGlowEffect(bool _param)
+        {
+            GlowEffect.SetActive(_param);
         }
     }
 }
