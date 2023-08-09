@@ -44,7 +44,7 @@ public class CollectionManager : MonoBehaviour
 
     IEnumerator PlayerShow( )               
     {
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.0f);
         playerCollectEffect.SetActive(false);
         gameObject.SetActive(false);
 
