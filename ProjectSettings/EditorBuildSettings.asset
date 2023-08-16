@@ -17,4 +17,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SleepingMonster_scene.unity
     guid: f0e59a65b0266624d9b06939cbcf0646
-  m_configObjects: {}
+  - enabled: 1
+    path: "Assets/Scenes/\uC194\uB77C \uB125\uD0C0\uB974 \uD638\uC218.unity"
+    guid: 161bafb774687604981f45bc3b49b13d
+  - enabled: 1
+    path: "Assets/Scenes/\uD38C\uD551\uD3ED\uD3EC.unity"
+    guid: 5148e2e88b2b2cb40ac427ed8c9552a9
+  m_configObjects:
+    com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 741b118f3008c1b439291aeb363166fc, type: 2}
