@@ -11,76 +11,121 @@ namespace SubSectorManager
     {
         // member variable //
         bool IsClear;
-        private GameObject Camera;
+        private GameObject camera;
         public int ClearNum;
         public string SubSector;
+        bool isActivateUI = false;
 
         // inspector setting //
-        public GameObject SubSectorEnterButton;
-        public GameObject SubSectorExplanationUI;
+        public GameObject SubSectorUI;
         public string SubSectorTitle;
         public string SubSectorExplanation;
         public GameObject CantEnterMessage;
-        public GameObject GlowEffect;
+        public Material DefaultMaterial;
+        public Material GlowEffectMaterial;
 
         // method //
-        void ClickSubSector()
-        {
-            SetSubSectorGlowEffect(true);
-            SubSectorExplanationUI.SetActive(true);
-            SubSectorEnterButton.SetActive(true);
-
-            // UI    ?     touch    ' ??   ' execute
-        }
-
         bool JudgeSectorActivation()
         {
-            if (GameManager.GameManager.Inst.ReadClearNum() <= ClearNum)
+            if (GameManager.GameManager.Inst.ReadClearNum() >= ClearNum)
+            {
+                Debug.Log(GameManager.GameManager.Inst.ReadClearNum());
+                Debug.Log(ClearNum);
+
                 return true;
+            }
+                
 
             CantEnterMessage.SetActive(true);
             return false;
         }
-
-        void SetSubSectorGlowEffect(bool _param)
-        {
-            GlowEffect.SetActive(_param);
-        }
         void Start()
         {
             IsClear = false;
-            Camera = GameObject.Find("Main Camera");
+            isActivateUI = false;
+            camera = GameObject.Find("Main Camera");
+
+            SubSectorUI.SetActive(false);
+            SetCantEnterMessageDeactive();
+
+            GetComponentInParent<SpriteRenderer>().material = DefaultMaterial;
         }
 
         void Update()
         {
-            // touch position, direction debug
-            Debug.Log(Input.GetTouch(0).position);
-            Debug.Log(Input.GetTouch(0).deltaPosition);
+            //// Only Execution when touchCount is 1
+            //if (Input.touchCount > 0 && Input.touchCount <= 1)
+            //{
+            //    Debug.Log("-------------");
+            //    // touch position, direction debug
+            //    Debug.Log(Input.GetTouch(0).position);
+            //    Debug.Log(Input.GetTouch(0).deltaPosition);
 
-            // Only Execution when touchCount is 1
-            if (Input.touchCount > 0 && Input.touchCount <= 1)
+            //    // get touch state
+            //    Touch touch = Input.GetTouch(0);
+
+
+            //    Debug.Log(touch.position);
+            //    Debug.Log((Vector2)this.transform.position);
+            //    Debug.Log(Vector2.Distance(touch.position, (Vector2)this.transform.localPosition));
+            //    Debug.Log("-------------");
+
+            //    if (touch.phase == TouchPhase.Began &&
+            //        (Vector2.Distance(touch.position, (Vector2)this.transform.position) <= GetComponentInParent<CircleCollider2D>().radius))
+            //    {
+
+            //        ClickSubSector();
+            //    }
+            //}
+
+            if(!isActivateUI)
             {
-                // get touch state
-                Touch touch = Input.GetTouch(0);
-
-                if (touch.phase == TouchPhase.Began && (touch.position == (Vector2)this.transform.localPosition))
+                // raycast를 이용한 부분
+                // start -----------------
+                if (Input.GetMouseButton(0))
                 {
-                    ClickSubSector();
+                    isActivateUI = true;
+                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                    RaycastHit hit;
+                    if (Physics.Raycast(ray, out hit))
+                    {
+                        // 원하는 code 넣는 부분
+                        // Debug.Log(hit.transform.gameObject.name);
+                        hit.transform.gameObject.GetComponent<SubSectorManager>().ClickSubSector();
+                    }
                 }
+                // end -----------------------------------
             }
+            
+
         }
 
         // interface //
+        public void ClickSubSector()
+        {
+            SubSectorUI.SetActive(true);
+            camera.GetComponent<CameraMover_Test>().FocusCamera();
+
+            GetComponentInParent<SpriteRenderer>().material = GlowEffectMaterial;
+            
+        }
         public void EnterSubSector()
         {
-            SubSectorExplanationUI.SetActive(false);
-            SubSectorEnterButton.SetActive(false);
-            SetSubSectorGlowEffect(false);
+            if (!JudgeSectorActivation())
+                return;
 
-            // write 'enter SubSector Scene' code
+            SubSectorUI.SetActive(false);
+            GetComponentInParent<SpriteRenderer>().material = DefaultMaterial;
+            camera.GetComponent<CameraMover_Test>().FreeCamera();
             SceneManager.LoadScene(SubSector);
         }
         public void SetIsClear(bool _param) { IsClear = _param; }
+        public void SetCantEnterMessageDeactive() { CantEnterMessage.SetActive(false); }
+        public void DeactiveUI()
+        {
+            SubSectorUI.SetActive(false);
+            isActivateUI = false;
+            GetComponentInParent<SpriteRenderer>().material = DefaultMaterial;
+        }
     }
 }

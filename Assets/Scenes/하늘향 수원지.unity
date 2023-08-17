@@ -5561,7 +5561,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3852954721331335980, guid: 4b980799e1a41a5478a2c7478758ef16, type: 3}
       propertyPath: autoStartBranch.Array.data[0]
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7829911100417555762, guid: 4b980799e1a41a5478a2c7478758ef16, type: 3}
       propertyPath: m_RootOrder

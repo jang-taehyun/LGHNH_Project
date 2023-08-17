@@ -7,21 +7,23 @@ public class ProcessManager : MonoBehaviour
 {
     private GameObject ongoingQuest;
     private int phase;
-    private bool isFirst;
+    // private bool isFirst;
     private DialogSystem dialogSystem;
 
-    
+
 
     [SerializeField] private int maxPhase;
     [SerializeField] private int subsectorNum;
 
-    public NPCManager[] npcs;
+    public GameObject[] npcs;
     public GameObject[] quests;
     public GameObject[] obstacles;
 
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("Process Manager start");
+
         if (GameManager.GameManager.Inst.ReadClearNum() >= maxPhase)
         {
             GameObject.Find("DialogSystem").SetActive(false);
@@ -30,7 +32,7 @@ public class ProcessManager : MonoBehaviour
 
         }
         ongoingQuest = null;
-        isFirst = true;
+        // isFirst = true;
         phase = 0;
 
         dialogSystem = GameObject.Find("DialogSystem").GetComponent<DialogSystem>();
@@ -38,35 +40,38 @@ public class ProcessManager : MonoBehaviour
         if (GameObject.Find("DialogSystem").GetComponent<DialogSystem>().autoStartBranch[0] == false)
         {
             Debug.Log("나 실행됩니다!");
-            npcs[phase].ActiveThisNPC();
+            npcs[phase].GetComponent<NPCManager>().ActiveThisNPC();
+            //npcs[phase].ActiveThisNPC();
         }
 
+        Debug.Log("Process Manager end");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isFirst && GameObject.Find("DialogSystem").GetComponent<DialogSystem>().autoStartBranch[0] == false)
-        {
-            isFirst = false;
-            npcs[phase].ActiveThisNPC();
-            
-        }
+        //if (isFirst && GameObject.Find("DialogSystem").GetComponent<DialogSystem>().autoStartBranch[0] == false)
+        //{
+        //    isFirst = false;
+        //    npcs[phase].ActiveThisNPC();
+
+        //}
     }
 
     public void SetOngoingQuest(GameObject _quest) { ongoingQuest = _quest; }
 
-    public GameObject GetOngoingQuest( ) { return ongoingQuest; }
+    public GameObject GetOngoingQuest() { return ongoingQuest; }
 
-    public bool IsActiveOngoingQuest( ) 
+    public bool IsActiveOngoingQuest()
     {
-        if ( ongoingQuest != null ) { return true; }
+        if (ongoingQuest != null) { return true; }
         else { return false; }
     }
 
     public void ClearOngoingQuest()
     {
-        npcs[phase].QuestCleared();
+        // npcs[phase].QuestCleared();
+        npcs[phase].GetComponent<NPCManager>().ActiveThisNPC();
     }
     public void DestroyOngoingObstacle()
     {

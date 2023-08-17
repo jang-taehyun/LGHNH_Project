@@ -323,9 +323,9 @@ MonoBehaviour:
   maxPhase: 6
   subsectorNum: 4
   npcs:
-  - {fileID: 1055661087}
-  - {fileID: 2022545120}
-  - {fileID: 1456745604}
+  - {fileID: 1055661084}
+  - {fileID: 2022545117}
+  - {fileID: 1456745601}
   quests:
   - {fileID: 2007440909}
   - {fileID: 766030891}
