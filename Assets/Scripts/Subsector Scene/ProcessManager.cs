@@ -6,22 +6,52 @@ using GameManager;
 public class ProcessManager : MonoBehaviour
 {
     private GameObject ongoingQuest;
-    private int ongoingIndex;
-    public GameObject[] npcs;
+    private int phase;
+    private bool isFirst;
+    private DialogSystem dialogSystem;
+
+    
+
+    [SerializeField] private int maxPhase;
+    [SerializeField] private int subsectorNum;
+
+    public NPCManager[] npcs;
+    public GameObject[] quests;
     public GameObject[] obstacles;
 
     // Start is called before the first frame update
     void Start()
     {
+        if (GameManager.GameManager.Inst.ReadClearNum() >= maxPhase)
+        {
+            GameObject.Find("DialogSystem").SetActive(false);
+            GameObject.Find("Collections").SetActive(false);
+            GameObject.Find("Obstacles").SetActive(false);
+
+        }
         ongoingQuest = null;
-        ongoingIndex = 0;
-        npcs[ongoingIndex].GetComponent<NPCManager>().ActiveThisNPC();
+        isFirst = true;
+        phase = 0;
+
+        dialogSystem = GameObject.Find("DialogSystem").GetComponent<DialogSystem>();
+
+        if (GameObject.Find("DialogSystem").GetComponent<DialogSystem>().autoStartBranch[0] == false)
+        {
+            Debug.Log("나 실행됩니다!");
+            npcs[phase].ActiveThisNPC();
+        }
+
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (isFirst && GameObject.Find("DialogSystem").GetComponent<DialogSystem>().autoStartBranch[0] == false)
+        {
+            isFirst = false;
+            npcs[phase].ActiveThisNPC();
+            
+        }
     }
 
     public void SetOngoingQuest(GameObject _quest) { ongoingQuest = _quest; }
@@ -36,19 +66,20 @@ public class ProcessManager : MonoBehaviour
 
     public void ClearOngoingQuest()
     {
-        npcs[ongoingIndex].GetComponent<NPCManager>().QuestCleared();
+        npcs[phase].QuestCleared();
     }
     public void DestroyOngoingObstacle()
     {
-        obstacles[ongoingIndex].GetComponent<ObstacleManager>().DestroyThisObs();
+        obstacles[phase].GetComponent<ObstacleManager>().DestroyThisObs();
     }
 
     public void increaseOngoingIndex()
     {
-        if (ongoingIndex < npcs.Length - 1)
+        if (phase < quests.Length - 1)
         {
-            ongoingIndex++;
-            npcs[ongoingIndex].GetComponent<NPCManager>().ActiveThisNPC();
+            phase++;
+            if (dialogSystem.autoStartBranch[phase * 2] == false) { npcs[phase].GetComponent<NPCManager>().ActiveThisNPC(); }
+            if (dialogSystem.autoStartBranch[phase * 2] == true) { SetOngoingQuest(quests[phase]); }
         }
         else
         {
@@ -56,7 +87,15 @@ public class ProcessManager : MonoBehaviour
             Debug.Log("서브 섹터 내의 모든 퀘스트를 완료했습니다.");
             GameObject.Find("Canvas").GetComponent<UIManager>().OnClearUI();
         }
-        
     }
+
+    public void ActivateQuest()     //NPC에게 받는 퀘스트가 아닌, 자동으로 실행된 스크립트에 의해서 활성화될 퀘스트
+    {
+        quests[phase].GetComponent<QuestManager>().ActivateThisQuest();
+    }
+
+
+    public int ReadPhase() { return phase; }
+    public int ReadSubsectorNum() { return subsectorNum; }
 
 }

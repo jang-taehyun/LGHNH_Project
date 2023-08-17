@@ -7,7 +7,7 @@ using UnityEngine;
 public class NPCManager : MonoBehaviour
 {
     public GameObject quest;                            //이 NPC가 전달해야 하는 퀘스트
-    private GameObject speechBubble;                    //NPC가 할 말이 있을 때 우측 상단에 떠야 하는 말풍선
+    private SpriteRenderer speechBubble;                 //NPC가 할 말이 있을 때 우측 상단에 떠야 하는 말풍선
     private DialogSystem dialogSystem;
     private bool isActive;                              //NPC 활성화 여부, 즉 대화하고 싶은 상태인지
     private int npcState;                               //NPC의 상태에 관한 변수, 0은 퀘스트 수락, 1은 퀘스트 완료
@@ -18,8 +18,8 @@ public class NPCManager : MonoBehaviour
 
     void Start()
     {
-        speechBubble = transform.Find("Speech Bubble").gameObject; speechBubble.SetActive(false);
-        Debug.Log("잘 꺼졌습니다");
+        speechBubble = transform.Find("Speech Bubble").gameObject.GetComponent<SpriteRenderer>();
+        speechBubble.color = Color.clear; 
         dialogSystem = GameObject.Find("DialogSystem").GetComponent<DialogSystem>();
 
         npcPositionX = transform.position.x;
@@ -39,12 +39,16 @@ public class NPCManager : MonoBehaviour
         {
             if (npcState == 0)
             {
-                speechBubble.SetActive(false);
+                Debug.Log("현재 NPC 상태 " + npcState);
+                speechBubble.color = Color.clear;
+                GameObject.Find("Touch Manager").GetComponent<TouchManager>().OffTouch();
                 dialogSystem.StartConversationSetting(npcPositionForCamera, gameObject.name);
             }
             else if (npcState == 1)
             {
-                speechBubble.SetActive(false);
+                Debug.Log("현재 NPC 상태 " + npcState);
+                speechBubble.color = Color.clear;
+                GameObject.Find("Touch Manager").GetComponent<TouchManager>().OffTouch();
                 dialogSystem.StartConversationSetting(npcPositionForCamera, gameObject.name);
             }
             
@@ -54,18 +58,20 @@ public class NPCManager : MonoBehaviour
             Debug.Log("활성화 되지 않은 상태입니다.");
         }
         
-    }
+    }  
      
     public void EndConversation( )
     {
         if (npcState == 0) 
         {
             quest.GetComponent<QuestManager>().ActivateThisQuest();
+            GameObject.Find("Touch Manager").GetComponent<TouchManager>().OnTouch();
             isActive = false;
         }
         else if (npcState == 1)
         {
             isActive = false;
+            GameObject.Find("Touch Manager").GetComponent<TouchManager>().OnTouch();
             GameObject.Find("Process Manager").GetComponent<ProcessManager>().DestroyOngoingObstacle();
         }
     }
@@ -73,13 +79,21 @@ public class NPCManager : MonoBehaviour
     public void QuestCleared( ) 
     {
         isActive = true; 
-        npcState = 1; 
-        speechBubble.SetActive(true); 
+        npcState = 1;
+        speechBubble.color = Color.white;
     }
 
     public void ActiveThisNPC( ) 
-    { 
+    {
         isActive = true; 
-        speechBubble.SetActive(true); 
+        if (speechBubble == null)
+        {
+            speechBubble.color = Color.white;
+        }
+        else
+        {
+            speechBubble.color = Color.white;
+        }
+        
     }
 }

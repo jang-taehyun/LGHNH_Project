@@ -9,7 +9,7 @@ public class QuestManager : MonoBehaviour
     public int requireNum;                  //채집 오브젝트의 요구 수량
 
     private int hasNum;                     //채집 오브젝트의 소유 수량, 이는 GameManager와 연계해서 재작성 예정
-    private bool isActive;                  //퀘스트의 활성화 여부
+    //private bool isActive;                  //퀘스트의 활성화 여부
     private UIManager uiManager;
 
     
@@ -32,7 +32,7 @@ public class QuestManager : MonoBehaviour
             Debug.Log("퀘스트 완료");
             GameObject.Find("Canvas").GetComponent<UIManager>().OffQuestUI();
             GameObject.Find("Process Manager").GetComponent<ProcessManager>().ClearOngoingQuest();
-            isActive = false;
+            //isActive = false;
         }
         else { Debug.Log("아직 퀘스트 조건을 충족하지 못했습니다."); }
     }
@@ -45,7 +45,7 @@ public class QuestManager : MonoBehaviour
             activeCollection[i].GetComponent<CollectionManager>().ActivateThisCollection();
         }
 
-        isActive = true;
+        //isActive = true;
         GameObject.Find("Canvas").GetComponent<UIManager>().OnQuestUI();
         uiManager.SetRequireNumText(requireNum - hasNum);
         GameObject.Find("Process Manager").GetComponent<ProcessManager>().SetOngoingQuest(gameObject);

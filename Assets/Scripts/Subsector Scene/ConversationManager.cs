@@ -42,15 +42,18 @@ public class ConversationManager : MonoBehaviour
         conversation = GameObject.Find("Conversation");             //conversation.SetActive(false);
         npcNameUI = GameObject.Find("NPC Name");                    //npcNameUI.SetActive(false);
         nextButton = GameObject.Find("Next Button");                nextButton.SetActive(false);
-        characterImage = GameObject.Find("Character Image");        characterImage.SetActive(false);
+        characterImage = GameObject.Find("Character Image");
+        characterImage_PosX = characterImage.GetComponent<RectTransform>().position.x;
+        characterImage_PosY = characterImage.GetComponent<RectTransform>().position.y; characterImage.SetActive(false);
+
+        Debug.Log("캐릭터 위치: " + characterImage_PosX + ", " + characterImage_PosY);
 
         trig_CamMoveToNPC = false;
 
         questUIWidth = conversationUI.GetComponent<RectTransform>().rect.width;
         questUIHeight = conversationUI.GetComponent<RectTransform>().rect.height;
 
-        characterImage_PosX = characterImage.GetComponent<RectTransform>().position.x;
-        characterImage_PosY = characterImage.GetComponent<RectTransform>().position.y;
+        
 
         forQuest = GameObject.Find("For Quest");    
     }
@@ -71,6 +74,7 @@ public class ConversationManager : MonoBehaviour
         calledNPCName = _npcName;
         trig_CamMoveToNPC = true;
         cam.GetComponent<CameraMover_Test>().FocusCamera();
+        GameObject.Find("DialogSystem").GetComponent<DialogSystem>().UpdateDialog();
 
         StartCoroutine(CameraZoomIn());
     }
@@ -210,14 +214,14 @@ public class ConversationManager : MonoBehaviour
     {
         for (int i = 0; i <= 140; i++)
         {
-            characterImage.GetComponent<RectTransform>().position = new Vector3(characterImage_PosX, 
-                                                                                characterImage_PosY + i, 0);
+            characterImage.GetComponent<RectTransform>().position = new Vector3(0, 
+                                                                                0 + i, 0);
 
             if (i == 140) 
             {
                 conversation.SetActive(true);
                 nextButton.SetActive(true);
-                GameObject.Find("DialogSystem").GetComponent<DialogSystem>().UpdateDialog();
+                
             }
             yield return new WaitForSeconds(0.001f);
         }

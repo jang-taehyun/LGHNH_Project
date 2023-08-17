@@ -10,6 +10,10 @@ public class UIManager : MonoBehaviour
     private GameObject clearUI;
     private GameObject requireNumUI;
     private TextMeshProUGUI requireNumUIText;
+
+    public GameObject[] collectionIllust;
+
+
     void Start()
     {
         questUI = GameObject.Find("Quest UI");    questUI.SetActive(false);
@@ -17,7 +21,11 @@ public class UIManager : MonoBehaviour
         requireNumUIText = GameObject.Find("RequireNum UI Text").GetComponent<TextMeshProUGUI>();
         requireNumUI = GameObject.Find("RequireNum UI"); requireNumUI.SetActive(false);
         collectionImage = GameObject.Find("Collection Image");  collectionImage.SetActive(false);
-        
+
+        for (int i = 0; i < collectionIllust.Length; i++)
+        {
+            collectionIllust[i].SetActive(false);
+        }        
         
     }
 
@@ -30,6 +38,7 @@ public class UIManager : MonoBehaviour
     {
         questUI.SetActive(false);
         requireNumUI.SetActive(false);
+        collectionIllust[GameObject.Find("Process Manager").GetComponent<ProcessManager>().ReadPhase()].SetActive(false);
         collectionImage.SetActive(false);
     }
 
@@ -37,16 +46,19 @@ public class UIManager : MonoBehaviour
     {
         questUI.SetActive(true);
         requireNumUI.SetActive(true);
+        collectionIllust[GameObject.Find("Process Manager").GetComponent<ProcessManager>().ReadPhase()].SetActive(true);
         collectionImage.SetActive(true);
     }
 
     public void OnClearUI()
     {
         clearUI.SetActive(true);
+        GameObject.Find("Main Camera").GetComponent<CameraMover>().FocusCamera();
     }
     public void OffClearUI()
     {
         clearUI.SetActive(false);
+        GameObject.Find("Main Camera").GetComponent<CameraMover>().FreeCamera();
     }
 
     public void SetRequireNumText(int num)

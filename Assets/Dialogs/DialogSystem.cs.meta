@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c14f3d1fb66077a40a7670358ab19baf
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - dialogDB_sky: {fileID: 11400000, guid: b930af3cef5d0404c9b7a0afd7482df8, type: 2}
+  - dialogDB_pumping: {fileID: 11400000, guid: 07050286e158e8a4a8a2b68f9f8d41f1, type: 2}
+  - dialogDB_ice: {fileID: 11400000, guid: 7bcb50908177c1f4f861df66e2454cc9, type: 2}
+  - dialogDB_lake: {fileID: 11400000, guid: f075d9adbb51bc547977e6ff616146cd, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

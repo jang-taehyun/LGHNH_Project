@@ -9,6 +9,7 @@ public class ObstacleManager : MonoBehaviour
 
     private GameObject cameraLimitRect;                  //카메라 제한 영역
     private GameObject cam;                              //카메라
+    
     private Vector3 vel;
 
     private float obsPositionX, obsPositionY;            //카메라한테 넘겨주어야 하는 NPC의 위치 정보
@@ -16,32 +17,38 @@ public class ObstacleManager : MonoBehaviour
     private Vector3 previousCamPosition;
     private bool trig_CameraMoveToObs;
 
-
+    private bool isDialogAuto;
 
     void Start()
     {
         trig_CameraMoveToObs = false;
-        cameraLimitRect = transform.Find("Camera Limit").gameObject;
+        cameraLimitRect = transform.Find("Camera Limit").gameObject; cameraLimitRect.SetActive(false);
+        Debug.Log(transform.Find("Camera Limit").gameObject);
         cam = GameObject.Find("Main Camera");
         vel = Vector3.zero;
 
-        obsPositionX = transform.position.x;
-        obsPositionY = transform.position.y;
+        obsPositionX = transform.Find("center").position.x;
+        obsPositionY = transform.Find("center").position.y; 
+        transform.Find("center").gameObject.SetActive(false);
 
         //장애물이 맵 경계와 붙어 있으면 카메라가 떨리는 문제를 해결하기 위함.
-        if (transform.position.y <= -5.5f || transform.position.y >= 5.5f)
+        if (obsPositionX <= -12.45f || obsPositionX >= 12.45f)
         {
-            if (transform.position.y < 0) { obsPositionY = -5.5f; }
-            else { obsPositionY = 5.5f; }
+            if (obsPositionX <= -12.45f) { obsPositionX = -12.45f; }
+            else { obsPositionX = 12.45f; }
+        }
 
-        }
-        if (transform.position.x <= -12.5f || transform.position.x >= 12.5f)
+        if (obsPositionY <= -5.45f || obsPositionY >= 5.45f)
         {
-            if (transform.position.x < 0) { obsPositionX = -12.5f; }
-            else { obsPositionX = -12.5f; }
+            if (obsPositionY <= -5.45f) { obsPositionY = -5.45f; }
+            else { obsPositionY = 5.45f;  }
         }
+
+        
+        
 
         obsPositionForCamera = new Vector3(obsPositionX, obsPositionY, -10);
+        Debug.Log("카메라를 위한 장애물 위치: " + obsPositionForCamera + " " + gameObject.name);
     }
 
     // Update is called once per frame
@@ -57,6 +64,7 @@ public class ObstacleManager : MonoBehaviour
 
     public void CameraMoveToObs()
     {
+        Debug.Log("카메라 이동중~");
         cam.transform.position = Vector3.SmoothDamp(cam.transform.position, obsPositionForCamera, ref vel, 0.5f);
     }
 
@@ -93,6 +101,7 @@ public class ObstacleManager : MonoBehaviour
         cameraLimitRect.SetActive(false);
         previousCamPosition = cam.transform.position;
         trig_CameraMoveToObs = true;
+        cam.GetComponent<CameraMover>().FocusCamera();
         StartCoroutine(AfterDestroyThisObs_Delay(3.0f));
     }
     
@@ -100,8 +109,17 @@ public class ObstacleManager : MonoBehaviour
     {
         yield return new WaitForSeconds(delayTime);
         trig_CameraMoveToObs = false;
+        cam.GetComponent<CameraMover>().FreeCamera();
         cam.transform.position = previousCamPosition;
         GameObject.Find("Process Manager").GetComponent<ProcessManager>().increaseOngoingIndex();
+        if (isDialogAuto)
+        {
+            GameObject.Find("DialogSystem").GetComponent<DialogSystem>().StartConversationSetting_Auto();
+            isDialogAuto = false;
+        }
+        
         gameObject.SetActive(false);
     }
+
+    public void SetDialogAuto() { isDialogAuto = true; }
 }
