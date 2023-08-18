@@ -295,6 +295,7 @@ public class DialogSystem : MonoBehaviour
                     }
                 }
                 break;
+
             case 1:
                 for (int i = 0; i < dialogDB_pumping.pumping.Count; ++i)
                 {
@@ -309,6 +310,7 @@ public class DialogSystem : MonoBehaviour
                     }
                 }
                 break;
+
             case 3:
                 for (int i = 0; i < dialogDB_ice.ice.Count; ++i)
                 {
@@ -323,6 +325,7 @@ public class DialogSystem : MonoBehaviour
                     }
                 }
                 break;
+
             case 4:
                 for (int i = 0; i < dialogDB_lake.lake.Count; ++i)
                 {
@@ -340,9 +343,7 @@ public class DialogSystem : MonoBehaviour
 
         }
 
-        
         Array.Resize(ref dialogs, dialogTotalNum);
-
     }
 
     private void Setup()
@@ -386,7 +387,7 @@ public class DialogSystem : MonoBehaviour
             if (dialogs[0].expression == "우울") { OffFeeling(); feeling_sad.SetActive(true); }
             if (dialogs[0].expression == "피곤") { OffFeeling(); feeling_tired.SetActive(true); }
 
-            if (autoStartBranch[branch-1]) 
+            if (branch <= autoStartBranch.Length &&autoStartBranch[branch-1]) 
             {
                 GameObject.Find("Process Manager").GetComponent<ProcessManager>().obstacles[
                     GameObject.Find("Process Manager").GetComponent<ProcessManager>().ReadPhase()].GetComponent<ObstacleManager>().SetDialogAuto(); }

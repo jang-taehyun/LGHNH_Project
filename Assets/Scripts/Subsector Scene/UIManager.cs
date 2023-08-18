@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -69,5 +70,10 @@ public class UIManager : MonoBehaviour
         else if (num == 2) { requireNumUIText.text = "x2"; }
         else if (num == 1) { requireNumUIText.text = "x1"; }
         else { requireNumUI.SetActive(false); }
+    }
+
+    public void GoSectorScene()
+    {
+        SceneManager.LoadScene("SectorScene");
     }
 }

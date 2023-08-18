@@ -214,7 +214,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 6
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -991,7 +991,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uD558\uB298\uD5A5 \uC218\uC6D0\uC9C0"
+  m_Text: "\uC54C\uB77C\uC57C \uB9C8\uC6B4\uD2F4"
 --- !u!222 &1770307572
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -70,7 +70,7 @@ public class ProcessManager : MonoBehaviour
 
     public void ClearOngoingQuest()
     {
-        // npcs[phase].QuestCleared();
+        npcs[phase].GetComponent<NPCManager>().QuestCleared();
         npcs[phase].GetComponent<NPCManager>().ActiveThisNPC();
     }
     public void DestroyOngoingObstacle()
@@ -82,9 +82,11 @@ public class ProcessManager : MonoBehaviour
     {
         if (phase < quests.Length - 1)
         {
+            
             phase++;
             if (dialogSystem.autoStartBranch[phase * 2] == false) { npcs[phase].GetComponent<NPCManager>().ActiveThisNPC(); }
             if (dialogSystem.autoStartBranch[phase * 2] == true) { SetOngoingQuest(quests[phase]); }
+            Debug.Log("여기까지는 실행이 된다");
         }
         else
         {

@@ -32,17 +32,37 @@ public class ObstacleManager : MonoBehaviour
         transform.Find("center").gameObject.SetActive(false);
 
         //장애물이 맵 경계와 붙어 있으면 카메라가 떨리는 문제를 해결하기 위함.
-        if (obsPositionX <= -12.45f || obsPositionX >= 12.45f)
+        //솔라 넥타르 호수(subsectorNum = 4)는 맵 크기가 달라서 특별한 조치가 필요하다.
+        if (GameObject.Find("Process Manager").GetComponent<ProcessManager>().ReadSubsectorNum() == 4)
         {
-            if (obsPositionX <= -12.45f) { obsPositionX = -12.45f; }
-            else { obsPositionX = 12.45f; }
-        }
+            if (obsPositionX <= -15f || obsPositionX >= 15f)
+            {
+                if (obsPositionX <= -15f) { obsPositionX = -15f; }
+                else { obsPositionX = 15f; }
+            }
 
-        if (obsPositionY <= -5.45f || obsPositionY >= 5.45f)
-        {
-            if (obsPositionY <= -5.45f) { obsPositionY = -5.45f; }
-            else { obsPositionY = 5.45f;  }
+            if (obsPositionY <= -30f || obsPositionY >= 30f)
+            {
+                if (obsPositionY <= -30f) { obsPositionY = -30f; }
+                else { obsPositionY = 30f; }
+            }
         }
+        else
+        {
+            if (obsPositionX <= -12.45f || obsPositionX >= 12.45f)
+            {
+                if (obsPositionX <= -12.45f) { obsPositionX = -12.45f; }
+                else { obsPositionX = 12.45f; }
+            }
+
+            if (obsPositionY <= -5.45f || obsPositionY >= 5.45f)
+            {
+                if (obsPositionY <= -5.45f) { obsPositionY = -5.45f; }
+                else { obsPositionY = 5.45f; }
+            }
+        }
+        
+        
 
         
         

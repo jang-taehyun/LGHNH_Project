@@ -483,7 +483,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5d5e81342d18f041aa9c3fc1d210055, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ClearNum: 1
+  ClearNum: 0
   SubSector: "\uD38C\uD551\uD3ED\uD3EC"
   SubSectorUI: {fileID: 1893990425}
   SubSectorTitle: 
@@ -3714,7 +3714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5d5e81342d18f041aa9c3fc1d210055, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ClearNum: 4
+  ClearNum: 0
   SubSector: "\uC194\uB77C \uB125\uD0C0\uB974 \uD638\uC218"
   SubSectorUI: {fileID: 1630098776}
   SubSectorTitle: 

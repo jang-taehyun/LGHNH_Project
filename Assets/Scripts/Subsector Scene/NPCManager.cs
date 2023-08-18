@@ -87,24 +87,12 @@ public class NPCManager : MonoBehaviour
     {
         isActive = true;
         npcState = 1;
-        // speechBubble.color = Color.white;
-
         speechBubble.SetActive(true);
     }
 
     public void ActiveThisNPC()
     {
         isActive = true;
-        //if (speechBubble == null)
-        //{
-        //    speechBubble.color = Color.white;
-        //}
-        //else
-        //{
-        //    speechBubble.color = Color.white;
-        //}
-
-        Debug.Log(this.name);
         speechBubble.SetActive(true);
     }
 }
