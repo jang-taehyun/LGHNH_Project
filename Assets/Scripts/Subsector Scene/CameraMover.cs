@@ -12,7 +12,7 @@ public class CameraMover : MonoBehaviour
     private GameObject cam;
     private Rigidbody2D camRb;
 
-    //NPC¿ÍÀÇ ´ëÈ­ µîÀ¸·Î »ç¿ëÀÚÀÇ Ä«¸Þ¶ó ¿òÁ÷ÀÓÀ» Á¦ÇÑÇØ¾ß ÇÒ ¶§
+    //NPCï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È­ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ø¾ï¿½ ï¿½ï¿½ ï¿½ï¿½
     private bool isFocus;
     private Vector2 clickPos;
 
@@ -44,18 +44,18 @@ public class CameraMover : MonoBehaviour
                 }
             }
         }
-        else { Debug.Log("ÇöÀç Ä«¸Þ¶ó Æ÷Ä¿½Ì ÁßÀÔ´Ï´Ù. ¸ø ¿òÁ÷ÀÔ´Ï´Ù."); }
+        else { Debug.Log("ï¿½ï¿½ï¿½ï¿½ Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½Ä¿ï¿½ï¿½ ï¿½ï¿½ï¿½Ô´Ï´ï¿½. ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ô´Ï´ï¿½."); }
     }
 
     public void FocusCamera()
     {
         isFocus = true;
-        Debug.Log("Æ÷Ä¿½Ì ÇÔ¼ö È£Ãâ");
+        //Debug.Log("ï¿½ï¿½Ä¿ï¿½ï¿½ ï¿½Ô¼ï¿½ È£ï¿½ï¿½");
     }
 
     public void FreeCamera()
     {
         isFocus = false;
-        Debug.Log("ÇÁ¸® ÇÔ¼ö È£Ãâ");
+        //Debug.Log("ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ È£ï¿½ï¿½");
     }
 }

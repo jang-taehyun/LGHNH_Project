@@ -11253,6 +11253,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4221643017878106655, guid: 1224007f26eed5348bf81eb775876cd0, type: 3}
+    - {fileID: 935061033992389500, guid: 1224007f26eed5348bf81eb775876cd0, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -11280,7 +11281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98cca7a9740521d4587bd23afdde54f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1.7
+  speed: 0.5
 --- !u!20 &1711323300 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 7957260895212538084, guid: 1224007f26eed5348bf81eb775876cd0, type: 3}

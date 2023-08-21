@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;   
 using UnityEngine;                  
 using UnityEngine.UI;               
-using TMPro;                        
+using TMPro;
+using Unity.VisualScripting;
 
 public class DialogSystem : MonoBehaviour
 {
@@ -99,6 +100,9 @@ public class DialogSystem : MonoBehaviour
         //branch가 1일 때
         if (autoStartBranch[0])
         { StartConversationSetting_Auto(); }
+        
+      
+
 
     }
 
@@ -107,6 +111,13 @@ public class DialogSystem : MonoBehaviour
     {
         if (trig_CamMoveToNPC) { CameraMoveToNPC(calledNPCPosition); }
         if (trig_CamMoveForCorrection) { CameraMoveForCorrection(); }
+
+        /* 테스트하려고 잠깐만든거
+        if (Input.GetMouseButtonDown(0))
+        {
+            UpdateDialog();
+        }
+        */
     }
     
     public void StartConversationSetting(Vector3 _npcPositionForCamera, string _npcName)
@@ -264,6 +275,7 @@ public class DialogSystem : MonoBehaviour
             {
                 conversation.SetActive(true);
                 UpdateDialog();
+                
             }
             yield return new WaitForSeconds(0.00001f);
         }
@@ -353,45 +365,83 @@ public class DialogSystem : MonoBehaviour
 
     public void UpdateDialog()
     {
-        Debug.Log("is Clicked!");
-        if (isTypingEffect)
-        {
-            isTypingEffect = false;
-            //타이핑 효과를 중지하고, 현재 대사를 출력한다.
-            StopCoroutine("OnTypingText");
+        
 
-        }
-
-        //대사가 남아있을경우 다음대사 진행
-        if (dialogs.Length > currentDialogIndex + 1)
-        {
-            SetNextDialog();
-
-        }
-        //대사가 더 이상 없을경우 모든 오브젝트를 비활성화하고 true 반환
-        else
-        {
-            SetActiveObjects(false);
-            if (isAuto) { EndConversationSetting_Auto(); }
-            else { EndConversationSetting(); }
-            
-            branch++;
-            refresh();
-            currentDialogIndex = -1;
-
-            npcNameUI.GetComponent<TextMeshProUGUI>().text = dialogs[0].name;
-            Debug.Log("이름 할당 : " + npcNameUI.GetComponent<TextMeshProUGUI>().text);
-
-            if (dialogs[0].expression == "기본") { OffFeeling(); feeling_default.SetActive(true); }
-            if (dialogs[0].expression == "기쁨") { OffFeeling(); feeling_joy.SetActive(true); }
-            if (dialogs[0].expression == "우울") { OffFeeling(); feeling_sad.SetActive(true); }
-            if (dialogs[0].expression == "피곤") { OffFeeling(); feeling_tired.SetActive(true); }
-
-            if (branch <= autoStartBranch.Length &&autoStartBranch[branch-1]) 
+            Debug.Log("is Clicked!");
+            if (isTypingEffect)
             {
-                GameObject.Find("Process Manager").GetComponent<ProcessManager>().obstacles[
-                    GameObject.Find("Process Manager").GetComponent<ProcessManager>().ReadPhase()].GetComponent<ObstacleManager>().SetDialogAuto(); }
-        }
+                isTypingEffect = false;
+                //타이핑 효과를 중지하고, 현재 대사를 출력한다.
+                StopCoroutine("OnTypingText");
+                conversation.GetComponent<TextMeshProUGUI>().text = dialogs[currentDialogIndex].dialogue;
+                
+
+            }
+            else if (!isTypingEffect)
+            {
+
+
+
+                //대사가 남아있을경우 다음대사 진행
+                if (dialogs.Length > currentDialogIndex + 1)
+                {
+                    SetNextDialog();
+
+                }
+                //대사가 더 이상 없을경우 모든 오브젝트를 비활성화하고 true 반환
+                else
+                {
+                    SetActiveObjects(false);
+                    if (isAuto)
+                    {
+                        EndConversationSetting_Auto();
+                    }
+                    else
+                    {
+                        EndConversationSetting();
+                    }
+
+                    branch++;
+                    refresh();
+                    currentDialogIndex = -1;
+
+                    npcNameUI.GetComponent<TextMeshProUGUI>().text = dialogs[0].name;
+                    Debug.Log("이름 할당 : " + npcNameUI.GetComponent<TextMeshProUGUI>().text);
+
+                    if (dialogs[0].expression == "기본")
+                    {
+                        OffFeeling();
+                        feeling_default.SetActive(true);
+                    }
+
+                    if (dialogs[0].expression == "기쁨")
+                    {
+                        OffFeeling();
+                        feeling_joy.SetActive(true);
+                    }
+
+                    if (dialogs[0].expression == "우울")
+                    {
+                        OffFeeling();
+                        feeling_sad.SetActive(true);
+                    }
+
+                    if (dialogs[0].expression == "피곤")
+                    {
+                        OffFeeling();
+                        feeling_tired.SetActive(true);
+                    }
+
+                    if (branch <= autoStartBranch.Length && autoStartBranch[branch - 1])
+                    {
+                        GameObject.Find("Process Manager").GetComponent<ProcessManager>().obstacles[
+                                GameObject.Find("Process Manager").GetComponent<ProcessManager>().ReadPhase()]
+                            .GetComponent<ObstacleManager>().SetDialogAuto();
+                    }
+                }
+            }
+
+
     }
 
     public void SetNextDialog()
@@ -434,7 +484,7 @@ public class DialogSystem : MonoBehaviour
     {
         int index = 0;
         arrow.SetActive(false);
-        nextButton.SetActive(false);
+        //nextButton.SetActive(false);
         isTypingEffect = true;
 
         //텍스트를 한글자씩 타이핑치듯 재생

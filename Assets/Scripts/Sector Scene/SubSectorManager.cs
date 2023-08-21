@@ -14,7 +14,7 @@ namespace SubSectorManager
         private GameObject camera;
         public int ClearNum;
         public string SubSector;
-        bool isActivateUI = false;
+        public bool isActivateUI = false;
 
         // inspector setting //
         public GameObject SubSectorUI;
@@ -80,18 +80,19 @@ namespace SubSectorManager
 
             if(!isActivateUI)
             {
-                // raycast¸¦ ÀÌ¿ëÇÑ ºÎºÐ
+                // raycastï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½ï¿½ ï¿½Îºï¿½
                 // start -----------------
                 if (Input.GetMouseButton(0))
                 {
-                    isActivateUI = true;
+                    
                     Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                     RaycastHit hit;
                     if (Physics.Raycast(ray, out hit))
                     {
-                        // ¿øÇÏ´Â code ³Ö´Â ºÎºÐ
+                        // ï¿½ï¿½ï¿½Ï´ï¿½ code ï¿½Ö´ï¿½ ï¿½Îºï¿½
                         // Debug.Log(hit.transform.gameObject.name);
                         hit.transform.gameObject.GetComponent<SubSectorManager>().ClickSubSector();
+                        isActivateUI = true;
                     }
                 }
                 // end -----------------------------------
