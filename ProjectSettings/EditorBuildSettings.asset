@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
@@ -24,7 +24,10 @@ EditorBuildSettings:
     path: "Assets/Scenes/\uD38C\uD551\uD3ED\uD3EC.unity"
     guid: 5148e2e88b2b2cb40ac427ed8c9552a9
   - enabled: 1
-    path: Assets/Scenes/InGame/SectorScene.unity
+    path: "Assets/Scenes/InGame/\uC77C\uB9AC\uC57C\uB9C8\uC6B4\uD2F4.unity"
     guid: f2ddae631f2678d4a8a6f6d9346fb7de
+  - enabled: 1
+    path: "Assets/Scenes/\uC6D4\uB4DC\uB9F5.unity"
+    guid: 3fc8acdd13e6c734bafef6554d6fdbcd
   m_configObjects:
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 741b118f3008c1b439291aeb363166fc, type: 2}

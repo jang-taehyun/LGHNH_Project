@@ -2297,6 +2297,19 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 7957260895212538084, guid: 1224007f26eed5348bf81eb775876cd0, type: 3}
   m_PrefabInstance: {fileID: 1504578053}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &667002865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 667002848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9efe0bb063a59ba41a74c8deaadcd6bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 100
 --- !u!1 &674694783
 GameObject:
   m_ObjectHideFlags: 0
@@ -2522,6 +2535,14 @@ PrefabInstance:
     - target: {fileID: 5173170685781221075, guid: feee0881f7a004d4399e055d7cbf60f4, type: 3}
       propertyPath: m_Name
       value: Camera Default Limit
+      objectReference: {fileID: 0}
+    - target: {fileID: 5263192072002109753, guid: feee0881f7a004d4399e055d7cbf60f4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -17
+      objectReference: {fileID: 0}
+    - target: {fileID: 7734841842956676759, guid: feee0881f7a004d4399e055d7cbf60f4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 8780411006639961686, guid: feee0881f7a004d4399e055d7cbf60f4, type: 3}
       propertyPath: m_RootOrder
@@ -4988,6 +5009,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8549160390577865470, guid: 1224007f26eed5348bf81eb775876cd0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 667002856}
+    - targetCorrespondingSourceObject: {fileID: 8549160390577865470, guid: 1224007f26eed5348bf81eb775876cd0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 667002865}
   m_SourcePrefab: {fileID: 100100000, guid: 1224007f26eed5348bf81eb775876cd0, type: 3}
 --- !u!1 &1519052837
 GameObject:

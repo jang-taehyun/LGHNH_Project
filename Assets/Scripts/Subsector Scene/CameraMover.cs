@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class CameraMover : MonoBehaviour
 {
-    [Range(0.1f, 5.3f)]
-    public float speed = 0.25f;
+    [Range(0.1f, 5.3f)] public float speed;
 
     private Vector2 nowPos, prePos;
     private Vector3 movePos;
@@ -21,6 +20,7 @@ public class CameraMover : MonoBehaviour
     {
         cam = GameObject.Find("Main Camera");
         camRb = cam.GetComponent<Rigidbody2D>();
+        speed = 0.4f;
     }
 
     // Update is called once per frame
