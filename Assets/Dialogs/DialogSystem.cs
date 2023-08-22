@@ -12,6 +12,7 @@ public class DialogSystem : MonoBehaviour
     private bool isAuto;                                
     public bool[] autoStartBranch;                      //자동으로 시작하는 Branch라면 체크해주세요.
 
+    [SerializeField] private ProcessManager processManager;
     [SerializeField] private DialogDB_Sky dialogDB_sky;
     [SerializeField] private DialogDB_Pumping dialogDB_pumping;
     [SerializeField] private DialogDB_Ice dialogDB_ice;
@@ -24,30 +25,29 @@ public class DialogSystem : MonoBehaviour
 
     private float typingSpeed = 0.02f;                   //텍스트 타이핑 효과의 재생속도
     private bool isTypingEffect = false;                //텍스트 타이핑 효과를 재생중인지
-    private GameObject arrow;                           //대화가 다 출력되었을 때 다음 대화로 넘어가도 된다는 화살표
+    [SerializeField] private GameObject arrow;                           //대화가 다 출력되었을 때 다음 대화로 넘어가도 된다는 화살표
 
     //-------------------------여기까지가 기존 DialogSystem.cs의 변수들-------------------------
 
-    private GameObject cam;                     //카메라
-
-    private GameObject conversationUI;          //대화 UI
-    private GameObject npcNameUI;               //NPC 이름의 UI
-    private GameObject characterImage;          //캐릭터 일러스트 이미지
-    private GameObject nextButton;              //다음 대화로 넘어가는 버튼, 투명한 것이 특징
+    [SerializeField] private GameObject cam;                     //카메라
+    [SerializeField] private GameObject conversationUI;          //대화 UI
+    [SerializeField] private GameObject npcNameUI;               //NPC 이름의 UI
+    [SerializeField] private GameObject characterImage;          //캐릭터 일러스트 이미지
+    [SerializeField] private GameObject nextButton;              //다음 대화로 넘어가는 버튼, 투명한 것이 특징
 
     //Test
-    private GameObject conversation;            //진짜 대화 내용, 엑셀로 구현해야 해
-    private GameObject forQuest;                //퀘스트 UI 모음집
+    [SerializeField] private GameObject conversation;            //진짜 대화 내용, 엑셀로 구현해야 해
+    [SerializeField] private GameObject forQuest;                //퀘스트 UI 모음집
 
     //캐릭터 일러스트 이미지의 좌표
     private float characterImage_PosX;
     private float characterImage_PosY;
 
     //감정 표현에 따른 캐릭터 일러스트 이미지
-    private GameObject feeling_default;
-    private GameObject feeling_joy;
-    private GameObject feeling_sad;
-    private GameObject feeling_tired;
+    [SerializeField] private GameObject feeling_default;
+    [SerializeField] private GameObject feeling_joy;
+    [SerializeField] private GameObject feeling_sad;
+    [SerializeField] private GameObject feeling_tired;
 
     private Vector3 calledNPCPosition;
     private Vector3 correctedPosition;
@@ -66,11 +66,10 @@ public class DialogSystem : MonoBehaviour
 
     void Start()
     {
-        cam = GameObject.Find("Main Camera");
-        conversationUI = GameObject.Find("Conversation UI");    conversationUI.SetActive(false);
-        conversation = GameObject.Find("Conversation");         conversation.SetActive(false);
-        npcNameUI = GameObject.Find("NPC Name");                npcNameUI.SetActive(false);
-        nextButton = GameObject.Find("Next Button");            nextButton.SetActive(false);
+        conversationUI.SetActive(false);
+        conversation.SetActive(false);
+        npcNameUI.SetActive(false);
+        nextButton.SetActive(false);
         
         trig_CamMoveToNPC = false;
 
@@ -79,19 +78,16 @@ public class DialogSystem : MonoBehaviour
         questUIWidth = conversationUI.GetComponent<RectTransform>().rect.width;
         questUIHeight = conversationUI.GetComponent<RectTransform>().rect.height;
 
-
-        
-
-        feeling_default = GameObject.Find("Default"); feeling_default.SetActive(false);
-        feeling_joy = GameObject.Find("Joy"); feeling_joy.SetActive(false);
-        feeling_sad = GameObject.Find("Sad"); feeling_sad.SetActive(false);
-        feeling_tired = GameObject.Find("Tired"); feeling_tired.SetActive(false);
-        characterImage = GameObject.Find("Character Image"); characterImage.SetActive(false);
+        feeling_default.SetActive(false);
+        feeling_joy.SetActive(false);
+        feeling_sad.SetActive(false);
+        feeling_tired.SetActive(false);
+        characterImage.SetActive(false);
         characterImage_PosX = characterImage.GetComponent<RectTransform>().localPosition.x;
         characterImage_PosY = characterImage.GetComponent<RectTransform>().localPosition.y;
 
-        forQuest = GameObject.Find("For Quest");
-        arrow = GameObject.Find("Arrow"); arrow.SetActive(false);
+        
+        arrow.SetActive(false);
         branch = 1;
         refresh();              //엑셀 값을 받아와서 넣어주기
         Setup();
@@ -122,7 +118,7 @@ public class DialogSystem : MonoBehaviour
     
     public void StartConversationSetting(Vector3 _npcPositionForCamera, string _npcName)
     {
-        if (GameObject.Find("Process Manager").GetComponent<ProcessManager>().IsActiveOngoingQuest())
+        if (processManager.IsActiveOngoingQuest())
         { forQuest.SetActive(false); }
 
         calledNPCPosition = _npcPositionForCamera;
@@ -137,7 +133,7 @@ public class DialogSystem : MonoBehaviour
     public void StartConversationSetting_Auto()
     {
         isAuto = true;
-        if (GameObject.Find("Process Manager").GetComponent<ProcessManager>().IsActiveOngoingQuest())
+        if (processManager.IsActiveOngoingQuest())
         { forQuest.SetActive(false); }
 
         
@@ -155,12 +151,14 @@ public class DialogSystem : MonoBehaviour
         conversation.SetActive(false);
         nextButton.SetActive(false);
 
-        if (GameObject.Find("Process Manager").GetComponent<ProcessManager>().IsActiveOngoingQuest()) { forQuest.SetActive(true); }
+        if (processManager.IsActiveOngoingQuest()) { forQuest.SetActive(true); }
 
         trig_CamMoveToNPC = false;
         cam.GetComponent<CameraMover>().FreeCamera();
         StartCoroutine(CameraZoomOut());
-        GameObject.Find(calledNPCName).GetComponent<NPCManager>().EndConversation();
+        //어쩔 수 없는 사항, 2023-08-22
+        if (null != calledNPCName)
+            GameObject.Find(calledNPCName).GetComponent<NPCManager>().EndConversation();
     }
 
     public void EndConversationSetting_Auto()    //Next Button을 통해서 호출되는 함수
@@ -171,11 +169,11 @@ public class DialogSystem : MonoBehaviour
         conversation.SetActive(false);
         nextButton.SetActive(false);
 
-        if (GameObject.Find("Process Manager").GetComponent<ProcessManager>().IsActiveOngoingQuest()) { forQuest.SetActive(true); }
+        if (processManager.IsActiveOngoingQuest()) { forQuest.SetActive(true); }
 
         //trig_CamMoveToNPC = false;
         cam.GetComponent<CameraMover>().FreeCamera();
-        GameObject.Find("Process Manager").GetComponent<ProcessManager>().ActivateQuest();
+        processManager.ActivateQuest();
         isAuto = false;
         //StartCoroutine(CameraZoomOut());
         //GameObject.Find(calledNPCName).GetComponent<NPCManager>().EndConversation();
@@ -275,7 +273,6 @@ public class DialogSystem : MonoBehaviour
             {
                 conversation.SetActive(true);
                 UpdateDialog();
-                
             }
             yield return new WaitForSeconds(0.00001f);
         }
@@ -288,7 +285,7 @@ public class DialogSystem : MonoBehaviour
 
         Array.Resize(ref dialogs, 100);
 
-        int subsectorNum = GameObject.Find("Process Manager").GetComponent<ProcessManager>().ReadSubsectorNum();
+        int subsectorNum = processManager.ReadSubsectorNum();
         Debug.Log("subsectorNum의 값: " + subsectorNum);
 
         switch (subsectorNum)
@@ -434,8 +431,8 @@ public class DialogSystem : MonoBehaviour
 
                     if (branch <= autoStartBranch.Length && autoStartBranch[branch - 1])
                     {
-                        GameObject.Find("Process Manager").GetComponent<ProcessManager>().obstacles[
-                                GameObject.Find("Process Manager").GetComponent<ProcessManager>().ReadPhase()]
+                        processManager.obstacles[
+                                processManager.ReadPhase()]
                             .GetComponent<ObstacleManager>().SetDialogAuto();
                     }
                 }

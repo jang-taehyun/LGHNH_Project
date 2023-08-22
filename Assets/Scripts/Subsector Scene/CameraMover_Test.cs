@@ -6,7 +6,7 @@ public class CameraMover_Test : MonoBehaviour
 {
     [Range(1f, 1000.0f)]
     public float speed = 100.0f;
-    private GameObject cam;
+    
     private Rigidbody2D camRb;
 
     //NPC와의 대화 등으로 사용자의 카메라 움직임을 제한해야 할 때
@@ -15,9 +15,11 @@ public class CameraMover_Test : MonoBehaviour
 
     private Vector2 clickPos;
 
+    public GameObject cam;
+
     void Start()
     {
-        cam = GameObject.Find("Main Camera");
+        // cam = GameObject.Find("Main Camera");
         camRb = cam.GetComponent<Rigidbody2D>();
 
         isFocus = false;

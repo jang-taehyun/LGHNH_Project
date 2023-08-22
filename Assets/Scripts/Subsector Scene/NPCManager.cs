@@ -8,7 +8,15 @@ public class NPCManager : MonoBehaviour
 {
     public GameObject quest;                            //이 NPC가 전달해야 하는 퀘스트
     private GameObject speechBubble;                 //NPC가 할 말이 있을 때 우측 상단에 떠야 하는 말풍선
+    [SerializeField] 
     private DialogSystem dialogSystem;
+
+    [SerializeField]
+    private TouchManager touchManger;
+
+    [SerializeField]
+    private ProcessManager processManager;
+
     private bool isActive;                              //NPC 활성화 여부, 즉 대화하고 싶은 상태인지
     private int npcState;                               //NPC의 상태에 관한 변수, 0은 퀘스트 수락, 1은 퀘스트 완료
 
@@ -24,7 +32,7 @@ public class NPCManager : MonoBehaviour
         speechBubble = transform.GetChild(0).gameObject;
         speechBubble.SetActive(false);
 
-        dialogSystem = GameObject.Find("DialogSystem").GetComponent<DialogSystem>();
+        //dialogSystem = GameObject.Find("DialogSystem").GetComponent<DialogSystem>();
 
         npcPositionX = transform.position.x;
         npcPositionY = transform.position.y;
@@ -47,7 +55,7 @@ public class NPCManager : MonoBehaviour
                 Debug.Log("현재 NPC 상태 " + npcState);
                 // speechBubble.color = Color.clear;
                 speechBubble.SetActive(false);
-                GameObject.Find("Touch Manager").GetComponent<TouchManager>().OffTouch();
+                touchManger.OffTouch();
                 dialogSystem.StartConversationSetting(npcPositionForCamera, gameObject.name);
             }
             else if (npcState == 1)
@@ -55,7 +63,7 @@ public class NPCManager : MonoBehaviour
                 Debug.Log("현재 NPC 상태 " + npcState);
                 // speechBubble.color = Color.clear;
                 speechBubble.SetActive(false);
-                GameObject.Find("Touch Manager").GetComponent<TouchManager>().OffTouch();
+                touchManger.OffTouch();
                 dialogSystem.StartConversationSetting(npcPositionForCamera, gameObject.name);
             }
 
@@ -69,17 +77,18 @@ public class NPCManager : MonoBehaviour
 
     public void EndConversation()
     {
+        Debug.Log("여기까지는 잘 됨");
         if (npcState == 0)
         {
             quest.GetComponent<QuestManager>().ActivateThisQuest();
-            GameObject.Find("Touch Manager").GetComponent<TouchManager>().OnTouch();
+            touchManger.OnTouch();
             isActive = false;
         }
         else if (npcState == 1)
         {
             isActive = false;
-            GameObject.Find("Touch Manager").GetComponent<TouchManager>().OnTouch();
-            GameObject.Find("Process Manager").GetComponent<ProcessManager>().DestroyOngoingObstacle();
+            touchManger.OnTouch();
+            processManager.DestroyOngoingObstacle();
         }
     }
 

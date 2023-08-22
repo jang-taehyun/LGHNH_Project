@@ -8,12 +8,15 @@ public class ProcessManager : MonoBehaviour
     private GameObject ongoingQuest;
     private int phase;
     // private bool isFirst;
-    private DialogSystem dialogSystem;
-
 
 
     [SerializeField] private int maxPhase;
     [SerializeField] private int subsectorNum;
+
+    [SerializeField] private DialogSystem dialogSystem;
+    [SerializeField] private GameObject collections_obj;
+    [SerializeField] private GameObject obstacles_obj;
+    [SerializeField] private UIManager uiManager;
 
     public GameObject[] npcs;
     public GameObject[] quests;
@@ -26,18 +29,16 @@ public class ProcessManager : MonoBehaviour
 
         if (GameManager.GameManager.Inst.ReadClearNum() >= maxPhase)
         {
-            GameObject.Find("DialogSystem").SetActive(false);
-            GameObject.Find("Collections").SetActive(false);
-            GameObject.Find("Obstacles").SetActive(false);
+            dialogSystem.gameObject.SetActive(false);
+            collections_obj.SetActive(false);
+            obstacles_obj.SetActive(false);
 
         }
         ongoingQuest = null;
         // isFirst = true;
         phase = 0;
 
-        dialogSystem = GameObject.Find("DialogSystem").GetComponent<DialogSystem>();
-
-        if (GameObject.Find("DialogSystem").GetComponent<DialogSystem>().autoStartBranch[0] == false)
+        if (dialogSystem.autoStartBranch[0] == false)
         {
             Debug.Log("나 실행됩니다!");
             npcs[phase].GetComponent<NPCManager>().ActiveThisNPC();
@@ -92,7 +93,7 @@ public class ProcessManager : MonoBehaviour
         {
             //서브 섹터 씬이 다 클리어된 상태!
             Debug.Log("서브 섹터 내의 모든 퀘스트를 완료했습니다.");
-            GameObject.Find("Canvas").GetComponent<UIManager>().OnClearUI();
+            uiManager.OnClearUI();
         }
     }
 

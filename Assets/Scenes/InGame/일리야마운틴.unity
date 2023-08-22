@@ -257,6 +257,7 @@ MonoBehaviour:
   CantEnterMessage: {fileID: 1973554328}
   DefaultMaterial: {fileID: 0}
   GlowEffectMaterial: {fileID: 2100000, guid: 18505103db7134a40a4e918e3cf08017, type: 2}
+  camera: {fileID: 8549160390547278446}
 --- !u!1 &378019481
 GameObject:
   m_ObjectHideFlags: 0
@@ -718,6 +719,7 @@ MonoBehaviour:
   CantEnterMessage: {fileID: 1973554328}
   DefaultMaterial: {fileID: 0}
   GlowEffectMaterial: {fileID: 2100000, guid: 18505103db7134a40a4e918e3cf08017, type: 2}
+  camera: {fileID: 8549160390547278446}
 --- !u!1 &1080859501
 GameObject:
   m_ObjectHideFlags: 0
@@ -926,6 +928,7 @@ MonoBehaviour:
   CantEnterMessage: {fileID: 1973554328}
   DefaultMaterial: {fileID: 0}
   GlowEffectMaterial: {fileID: 2100000, guid: 18505103db7134a40a4e918e3cf08017, type: 2}
+  camera: {fileID: 8549160390547278446}
 --- !u!212 &1231454215
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1358,6 +1361,7 @@ MonoBehaviour:
   CantEnterMessage: {fileID: 1973554328}
   DefaultMaterial: {fileID: 0}
   GlowEffectMaterial: {fileID: 2100000, guid: 18505103db7134a40a4e918e3cf08017, type: 2}
+  camera: {fileID: 8549160390547278446}
 --- !u!1 &1591991811
 GameObject:
   m_ObjectHideFlags: 0
@@ -1487,6 +1491,7 @@ MonoBehaviour:
   CantEnterMessage: {fileID: 1973554328}
   DefaultMaterial: {fileID: 0}
   GlowEffectMaterial: {fileID: 2100000, guid: 18505103db7134a40a4e918e3cf08017, type: 2}
+  camera: {fileID: 8549160390547278446}
 --- !u!1 &1630098776 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7911429573690477684, guid: a46858b4d6b0cb94aa79f31bb12e9697, type: 3}
@@ -1879,6 +1884,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 923
+  cam: {fileID: 8549160390547278446}
 --- !u!61 &4382643334664653626
 BoxCollider2D:
   m_ObjectHideFlags: 0

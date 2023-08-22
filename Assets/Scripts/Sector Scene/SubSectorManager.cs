@@ -11,7 +11,7 @@ namespace SubSectorManager
     {
         // member variable //
         bool IsClear;
-        private GameObject camera;
+        
         public int ClearNum;
         public string SubSector;
         public bool isActivateUI = false;
@@ -23,6 +23,7 @@ namespace SubSectorManager
         public GameObject CantEnterMessage;
         public Material DefaultMaterial;
         public Material GlowEffectMaterial;
+        public GameObject camera;
 
         // method //
         bool JudgeSectorActivation()
@@ -43,7 +44,7 @@ namespace SubSectorManager
         {
             IsClear = false;
             isActivateUI = false;
-            camera = GameObject.Find("Main Camera");
+            // camera = GameObject.Find("Main Camera");
 
             SubSectorUI.SetActive(false);
             SetCantEnterMessageDeactive();
@@ -94,6 +95,12 @@ namespace SubSectorManager
                         hit.transform.gameObject.GetComponent<SubSectorManager>().ClickSubSector();
                         isActivateUI = true;
                     }
+                }
+                else
+                {
+                    isActivateUI = false;
+                    SubSectorUI.SetActive(false);
+                    SetCantEnterMessageDeactive();
                 }
                 // end -----------------------------------
             }

@@ -8,17 +8,19 @@ public class CameraMover : MonoBehaviour
 
     private Vector2 nowPos, prePos;
     private Vector3 movePos;
-    private GameObject cam;
+    
     private Rigidbody2D camRb;
 
     //NPC���� ��ȭ ������ ������� ī�޶� �������� �����ؾ� �� ��
     private bool isFocus;
     private Vector2 clickPos;
 
+    public GameObject cam;
+
 
     void Start()
     {
-        cam = GameObject.Find("Main Camera");
+        // cam = GameObject.Find("Main Camera");
         camRb = cam.GetComponent<Rigidbody2D>();
         speed = 0.4f;
     }
@@ -44,7 +46,7 @@ public class CameraMover : MonoBehaviour
                 }
             }
         }
-        else { Debug.Log("���� ī�޶� ��Ŀ�� ���Դϴ�. �� �����Դϴ�."); }
+        else {  }
     }
 
     public void FocusCamera()

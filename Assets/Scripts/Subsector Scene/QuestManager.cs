@@ -7,16 +7,18 @@ public class QuestManager : MonoBehaviour
     public GameObject[] activeCollection;   //활성화시켜야 하는 채집 오브젝트들
     public int itemIndex;                   //퀘스트에서 채집을 요구하는 오브젝트들의 인덱스 값들
     public int requireNum;                  //채집 오브젝트의 요구 수량
+    public GameObject testing;
 
     private int hasNum;                     //채집 오브젝트의 소유 수량, 이는 GameManager와 연계해서 재작성 예정
     //private bool isActive;                  //퀘스트의 활성화 여부
-    private UIManager uiManager;
+    [SerializeField] private UIManager uiManager;
+    [SerializeField] private ProcessManager processManager;
 
-    
+
 
     void Start()
     {
-        uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+
     }
 
     
@@ -30,8 +32,8 @@ public class QuestManager : MonoBehaviour
         if (requireNum == hasNum) 
         {
             Debug.Log("퀘스트 완료");
-            GameObject.Find("Canvas").GetComponent<UIManager>().OffQuestUI();
-            GameObject.Find("Process Manager").GetComponent<ProcessManager>().ClearOngoingQuest();
+            uiManager.OffQuestUI();
+            processManager.ClearOngoingQuest();
             //isActive = false;
         }
         else { Debug.Log("아직 퀘스트 조건을 충족하지 못했습니다."); }
@@ -46,9 +48,10 @@ public class QuestManager : MonoBehaviour
         }
 
         //isActive = true;
-        GameObject.Find("Canvas").GetComponent<UIManager>().OnQuestUI();
+        // GameObject.Find("Canvas").GetComponent<UIManager>().OnQuestUI();
+        testing.GetComponent<UIManager>().OnQuestUI();
         uiManager.SetRequireNumText(requireNum - hasNum);
-        GameObject.Find("Process Manager").GetComponent<ProcessManager>().SetOngoingQuest(gameObject);
+        processManager.SetOngoingQuest(gameObject);
     }
 
     public void IncreaseHasNum() 

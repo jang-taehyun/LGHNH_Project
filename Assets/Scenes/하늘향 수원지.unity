@@ -1336,6 +1336,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obsEliminationAnimation: {fileID: 0}
   eliminationSound: {fileID: 0}
+  cameraLimitRect: {fileID: 1945342214}
+  cam: {fileID: 1711323298}
+  center: {fileID: 1957012022}
+  processManager: {fileID: 1677640871}
+  dialogSystem: {fileID: 210085768}
 --- !u!1 &231017516
 GameObject:
   m_ObjectHideFlags: 0
@@ -1504,6 +1509,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &245023233 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5223820434923929032, guid: d3e1a86a0e394304f8cc6aabe004445d, type: 3}
+  m_PrefabInstance: {fileID: 671131967}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &257136348
 GameObject:
   m_ObjectHideFlags: 0
@@ -1946,6 +1956,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &292094397 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7320392332193784183, guid: d3e1a86a0e394304f8cc6aabe004445d, type: 3}
+  m_PrefabInstance: {fileID: 671131967}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &346490320
 GameObject:
   m_ObjectHideFlags: 0
@@ -2030,6 +2045,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &351436291 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 797265458556939598, guid: 4795a127113b0b240a0b04ca1de1a123, type: 3}
+  m_PrefabInstance: {fileID: 685416363}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &377589310 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3772039616717401548, guid: 4795a127113b0b240a0b04ca1de1a123, type: 3}
+  m_PrefabInstance: {fileID: 685416363}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &412814065
 GameObject:
   m_ObjectHideFlags: 0
@@ -2852,6 +2877,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d5616b9bd23c5546afb745bd4ba87c2, type: 3}
+--- !u!1 &512394968 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1052350480016746139, guid: 4795a127113b0b240a0b04ca1de1a123, type: 3}
+  m_PrefabInstance: {fileID: 685416363}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &525966836
 GameObject:
   m_ObjectHideFlags: 0
@@ -2952,6 +2982,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quest: {fileID: 2039188403}
+  dialogSystem: {fileID: 210085768}
+  touchManger: {fileID: 1631444471}
+  processManager: {fileID: 1677640871}
 --- !u!135 &525966840
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3073,6 +3106,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quest: {fileID: 1349727201}
+  dialogSystem: {fileID: 210085768}
+  touchManger: {fileID: 1631444471}
+  processManager: {fileID: 1677640871}
 --- !u!135 &541792733
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3224,6 +3260,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &584493468 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6563965462278192293, guid: d3e1a86a0e394304f8cc6aabe004445d, type: 3}
+  m_PrefabInstance: {fileID: 671131967}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &599528498
 GameObject:
   m_ObjectHideFlags: 0
@@ -3615,6 +3656,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obsEliminationAnimation: {fileID: 0}
   eliminationSound: {fileID: 0}
+  cameraLimitRect: {fileID: 542992592}
+  cam: {fileID: 1711323298}
+  center: {fileID: 1778771224}
+  processManager: {fileID: 1677640871}
+  dialogSystem: {fileID: 210085768}
 --- !u!1 &645521167
 GameObject:
   m_ObjectHideFlags: 0
@@ -4355,6 +4401,34 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 25332499, guid: ca1156166b97c8f45b7cb64bf4d1f4ce, type: 3}
     - target: {fileID: 6192714051729956976, guid: 4795a127113b0b240a0b04ca1de1a123, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 1711323298}
+    - target: {fileID: 6192714051729956976, guid: 4795a127113b0b240a0b04ca1de1a123, type: 3}
+      propertyPath: clearUI
+      value: 
+      objectReference: {fileID: 2109651882}
+    - target: {fileID: 6192714051729956976, guid: 4795a127113b0b240a0b04ca1de1a123, type: 3}
+      propertyPath: questUI
+      value: 
+      objectReference: {fileID: 377589310}
+    - target: {fileID: 6192714051729956976, guid: 4795a127113b0b240a0b04ca1de1a123, type: 3}
+      propertyPath: requireNumUI
+      value: 
+      objectReference: {fileID: 1473075571}
+    - target: {fileID: 6192714051729956976, guid: 4795a127113b0b240a0b04ca1de1a123, type: 3}
+      propertyPath: processManager
+      value: 
+      objectReference: {fileID: 1677640871}
+    - target: {fileID: 6192714051729956976, guid: 4795a127113b0b240a0b04ca1de1a123, type: 3}
+      propertyPath: collectionImage
+      value: 
+      objectReference: {fileID: 1627794856}
+    - target: {fileID: 6192714051729956976, guid: 4795a127113b0b240a0b04ca1de1a123, type: 3}
+      propertyPath: requireNumUIText
+      value: 
+      objectReference: {fileID: 1111947495}
+    - target: {fileID: 6192714051729956976, guid: 4795a127113b0b240a0b04ca1de1a123, type: 3}
       propertyPath: collectionIllust.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -4864,6 +4938,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &736577775 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5758856186626113214, guid: 4795a127113b0b240a0b04ca1de1a123, type: 3}
+  m_PrefabInstance: {fileID: 685416363}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &753582507
 GameObject:
   m_ObjectHideFlags: 0
@@ -5289,7 +5368,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6192714051729956976, guid: 4795a127113b0b240a0b04ca1de1a123, type: 3}
   m_PrefabInstance: {fileID: 685416363}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 512394968}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb01decdacd0f0f44ac22a2bf44a769e, type: 3}
@@ -5547,6 +5626,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &839802996 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3898181255202248794, guid: 4795a127113b0b240a0b04ca1de1a123, type: 3}
+  m_PrefabInstance: {fileID: 685416363}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &873250163
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5560,6 +5644,38 @@ PrefabInstance:
       value: DialogSystem
       objectReference: {fileID: 0}
     - target: {fileID: 3852954721331335980, guid: 4b980799e1a41a5478a2c7478758ef16, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 1711323298}
+    - target: {fileID: 3852954721331335980, guid: 4b980799e1a41a5478a2c7478758ef16, type: 3}
+      propertyPath: arrow
+      value: 
+      objectReference: {fileID: 736577775}
+    - target: {fileID: 3852954721331335980, guid: 4b980799e1a41a5478a2c7478758ef16, type: 3}
+      propertyPath: forQuest
+      value: 
+      objectReference: {fileID: 351436291}
+    - target: {fileID: 3852954721331335980, guid: 4b980799e1a41a5478a2c7478758ef16, type: 3}
+      propertyPath: npcNameUI
+      value: 
+      objectReference: {fileID: 988151657}
+    - target: {fileID: 3852954721331335980, guid: 4b980799e1a41a5478a2c7478758ef16, type: 3}
+      propertyPath: nextButton
+      value: 
+      objectReference: {fileID: 1618274921}
+    - target: {fileID: 3852954721331335980, guid: 4b980799e1a41a5478a2c7478758ef16, type: 3}
+      propertyPath: feeling_joy
+      value: 
+      objectReference: {fileID: 584493468}
+    - target: {fileID: 3852954721331335980, guid: 4b980799e1a41a5478a2c7478758ef16, type: 3}
+      propertyPath: feeling_sad
+      value: 
+      objectReference: {fileID: 292094397}
+    - target: {fileID: 3852954721331335980, guid: 4b980799e1a41a5478a2c7478758ef16, type: 3}
+      propertyPath: conversation
+      value: 
+      objectReference: {fileID: 1623915196}
+    - target: {fileID: 3852954721331335980, guid: 4b980799e1a41a5478a2c7478758ef16, type: 3}
       propertyPath: dialogDB_ice
       value: 
       objectReference: {fileID: 11400000, guid: 7bcb50908177c1f4f861df66e2454cc9, type: 2}
@@ -5571,6 +5687,26 @@ PrefabInstance:
       propertyPath: dialogDB_lake
       value: 
       objectReference: {fileID: 11400000, guid: f075d9adbb51bc547977e6ff616146cd, type: 2}
+    - target: {fileID: 3852954721331335980, guid: 4b980799e1a41a5478a2c7478758ef16, type: 3}
+      propertyPath: feeling_tired
+      value: 
+      objectReference: {fileID: 1095901010}
+    - target: {fileID: 3852954721331335980, guid: 4b980799e1a41a5478a2c7478758ef16, type: 3}
+      propertyPath: characterImage
+      value: 
+      objectReference: {fileID: 245023233}
+    - target: {fileID: 3852954721331335980, guid: 4b980799e1a41a5478a2c7478758ef16, type: 3}
+      propertyPath: conversationUI
+      value: 
+      objectReference: {fileID: 839802996}
+    - target: {fileID: 3852954721331335980, guid: 4b980799e1a41a5478a2c7478758ef16, type: 3}
+      propertyPath: processManager
+      value: 
+      objectReference: {fileID: 1677640871}
+    - target: {fileID: 3852954721331335980, guid: 4b980799e1a41a5478a2c7478758ef16, type: 3}
+      propertyPath: feeling_default
+      value: 
+      objectReference: {fileID: 1600384560}
     - target: {fileID: 3852954721331335980, guid: 4b980799e1a41a5478a2c7478758ef16, type: 3}
       propertyPath: dialogDB_pumping
       value: 
@@ -5732,6 +5868,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quest: {fileID: 7178041}
+  dialogSystem: {fileID: 210085768}
+  touchManger: {fileID: 1631444471}
+  processManager: {fileID: 1677640871}
 --- !u!65 &889566418
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6100,6 +6239,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &988151657 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2013201157499038615, guid: 4795a127113b0b240a0b04ca1de1a123, type: 3}
+  m_PrefabInstance: {fileID: 685416363}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1002236778
 GameObject:
   m_ObjectHideFlags: 0
@@ -6757,6 +6901,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1095901010 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 488308912815313883, guid: d3e1a86a0e394304f8cc6aabe004445d, type: 3}
+  m_PrefabInstance: {fileID: 671131967}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1111947495 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2738051724867242558, guid: 4795a127113b0b240a0b04ca1de1a123, type: 3}
+  m_PrefabInstance: {fileID: 685416363}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1120369833
 GameObject:
   m_ObjectHideFlags: 0
@@ -7592,6 +7752,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4323660158525140798, guid: ed77c14678c699c40a7ef1fad7001ad1, type: 3}
+      propertyPath: testing
+      value: 
+      objectReference: {fileID: 512394968}
+    - target: {fileID: 4323660158525140798, guid: ed77c14678c699c40a7ef1fad7001ad1, type: 3}
+      propertyPath: uiManager
+      value: 
+      objectReference: {fileID: 788312734}
+    - target: {fileID: 4323660158525140798, guid: ed77c14678c699c40a7ef1fad7001ad1, type: 3}
+      propertyPath: processManager
+      value: 
+      objectReference: {fileID: 1677640871}
+    - target: {fileID: 4323660158525140798, guid: ed77c14678c699c40a7ef1fad7001ad1, type: 3}
       propertyPath: activeCollection.Array.data[0]
       value: 
       objectReference: {fileID: 2105442546}
@@ -7604,17 +7776,41 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1554381370}
     - target: {fileID: 8021888065348490369, guid: ed77c14678c699c40a7ef1fad7001ad1, type: 3}
+      propertyPath: testing
+      value: 
+      objectReference: {fileID: 512394968}
+    - target: {fileID: 8021888065348490369, guid: ed77c14678c699c40a7ef1fad7001ad1, type: 3}
       propertyPath: itemIndex
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8021888065348490369, guid: ed77c14678c699c40a7ef1fad7001ad1, type: 3}
+      propertyPath: uiManager
+      value: 
+      objectReference: {fileID: 788312734}
+    - target: {fileID: 8021888065348490369, guid: ed77c14678c699c40a7ef1fad7001ad1, type: 3}
+      propertyPath: processManager
+      value: 
+      objectReference: {fileID: 1677640871}
     - target: {fileID: 8021888065348490369, guid: ed77c14678c699c40a7ef1fad7001ad1, type: 3}
       propertyPath: activeCollection.Array.data[0]
       value: 
       objectReference: {fileID: 1502895904}
     - target: {fileID: 8714233172221041063, guid: ed77c14678c699c40a7ef1fad7001ad1, type: 3}
+      propertyPath: testing
+      value: 
+      objectReference: {fileID: 512394968}
+    - target: {fileID: 8714233172221041063, guid: ed77c14678c699c40a7ef1fad7001ad1, type: 3}
       propertyPath: itemIndex
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8714233172221041063, guid: ed77c14678c699c40a7ef1fad7001ad1, type: 3}
+      propertyPath: uiManager
+      value: 
+      objectReference: {fileID: 788312734}
+    - target: {fileID: 8714233172221041063, guid: ed77c14678c699c40a7ef1fad7001ad1, type: 3}
+      propertyPath: processManager
+      value: 
+      objectReference: {fileID: 1677640871}
     - target: {fileID: 8714233172221041063, guid: ed77c14678c699c40a7ef1fad7001ad1, type: 3}
       propertyPath: activeCollection.Array.data[0]
       value: 
@@ -7725,6 +7921,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   quest: {fileID: 1349727201}
+  playerCollectEffect: {fileID: 2134307995}
 --- !u!65 &1229079550
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8328,6 +8525,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 2
   quest: {fileID: 2039188403}
+  playerCollectEffect: {fileID: 2111377291}
 --- !u!65 &1310671606
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9264,6 +9462,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1473075571 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 834591816328439856, guid: 4795a127113b0b240a0b04ca1de1a123, type: 3}
+  m_PrefabInstance: {fileID: 685416363}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1495114108
 GameObject:
   m_ObjectHideFlags: 0
@@ -9551,6 +9754,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 1
   quest: {fileID: 7178041}
+  playerCollectEffect: {fileID: 1183865757}
 --- !u!65 &1502895908
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9925,6 +10129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   quest: {fileID: 1349727201}
+  playerCollectEffect: {fileID: 2050613416}
 --- !u!65 &1554381374
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10198,6 +10403,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1600384560 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4371279673772488464, guid: d3e1a86a0e394304f8cc6aabe004445d, type: 3}
+  m_PrefabInstance: {fileID: 671131967}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1609718964
 GameObject:
   m_ObjectHideFlags: 0
@@ -10366,6 +10576,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1618274921 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4247221814314469241, guid: 4795a127113b0b240a0b04ca1de1a123, type: 3}
+  m_PrefabInstance: {fileID: 685416363}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1623915196 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1882221256124501429, guid: 4795a127113b0b240a0b04ca1de1a123, type: 3}
+  m_PrefabInstance: {fileID: 685416363}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1624224070
 GameObject:
   m_ObjectHideFlags: 0
@@ -10484,6 +10704,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1627794856 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4402484353192254454, guid: 2d057e7c73a3cf642a5d1d8da437043a, type: 3}
+  m_PrefabInstance: {fileID: 273777909}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1631444471 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5198676118388719308, guid: 2d5616b9bd23c5546afb745bd4ba87c2, type: 3}
+  m_PrefabInstance: {fileID: 504007915}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b107305fdf593714e922c1a02d632f92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1639149156
 GameObject:
   m_ObjectHideFlags: 0
@@ -10904,6 +11140,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxPhase: 3
   subsectorNum: 0
+  dialogSystem: {fileID: 210085768}
+  collections_obj: {fileID: 908707574}
+  obstacles_obj: {fileID: 1626067993}
+  uiManager: {fileID: 788312734}
   npcs:
   - {fileID: 541792729}
   - {fileID: 889566414}
@@ -11207,6 +11447,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1724946751054451821, guid: 1224007f26eed5348bf81eb775876cd0, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 1711323298}
     - target: {fileID: 1781252745815845234, guid: 1224007f26eed5348bf81eb775876cd0, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -11260,8 +11504,9 @@ PrefabInstance:
       value: Main Camera
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 4221643017878106655, guid: 1224007f26eed5348bf81eb775876cd0, type: 3}
-    - {fileID: 935061033992389500, guid: 1224007f26eed5348bf81eb775876cd0, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 5284920355364508236, guid: 1224007f26eed5348bf81eb775876cd0, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -11307,6 +11552,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 100
+  cam: {fileID: 1711323298}
 --- !u!1 &1718015057
 GameObject:
   m_ObjectHideFlags: 0
@@ -13453,6 +13699,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obsEliminationAnimation: {fileID: 0}
   eliminationSound: {fileID: 0}
+  cameraLimitRect: {fileID: 1708923586}
+  cam: {fileID: 1711323298}
+  center: {fileID: 683412720}
+  processManager: {fileID: 1677640871}
+  dialogSystem: {fileID: 210085768}
 --- !u!1 &1978659823
 GameObject:
   m_ObjectHideFlags: 0
@@ -14305,6 +14556,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   quest: {fileID: 1349727201}
+  playerCollectEffect: {fileID: 1412998189}
 --- !u!65 &2105442550
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14326,6 +14578,11 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.64, y: 1.13, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &2109651882 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7495732424149456966, guid: 4795a127113b0b240a0b04ca1de1a123, type: 3}
+  m_PrefabInstance: {fileID: 685416363}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2111377291
 GameObject:
   m_ObjectHideFlags: 0

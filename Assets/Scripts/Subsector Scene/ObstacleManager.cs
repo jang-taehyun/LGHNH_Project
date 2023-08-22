@@ -7,9 +7,11 @@ public class ObstacleManager : MonoBehaviour
     public Animation obsEliminationAnimation;            //장애물을 제거하는 애니메이션
     public AudioSource eliminationSound;                 //장애물을 제거할 때 나는 경쾌한 소리
 
-    private GameObject cameraLimitRect;                  //카메라 제한 영역
-    private GameObject cam;                              //카메라
-    
+    [SerializeField] private GameObject cameraLimitRect;                  //카메라 제한 영역
+    [SerializeField] private GameObject cam;                              //카메라
+    [SerializeField] private Transform center;
+    [SerializeField] private ProcessManager processManager;
+    [SerializeField] private DialogSystem dialogSystem;
     private Vector3 vel;
 
     private float obsPositionX, obsPositionY;            //카메라한테 넘겨주어야 하는 NPC의 위치 정보
@@ -17,23 +19,23 @@ public class ObstacleManager : MonoBehaviour
     private Vector3 previousCamPosition;
     private bool trig_CameraMoveToObs;
 
+
     private bool isDialogAuto;
 
     void Start()
     {
         trig_CameraMoveToObs = false;
-        cameraLimitRect = transform.Find("Camera Limit").gameObject; cameraLimitRect.SetActive(false);
+        cameraLimitRect.SetActive(false);
         Debug.Log(transform.Find("Camera Limit").gameObject);
-        cam = GameObject.Find("Main Camera");
         vel = Vector3.zero;
 
-        obsPositionX = transform.Find("center").position.x;
-        obsPositionY = transform.Find("center").position.y; 
-        transform.Find("center").gameObject.SetActive(false);
+        obsPositionX = center.position.x;
+        obsPositionY = center.position.y; 
+        center.gameObject.SetActive(false);
 
         //장애물이 맵 경계와 붙어 있으면 카메라가 떨리는 문제를 해결하기 위함.
         //솔라 넥타르 호수(subsectorNum = 4)는 맵 크기가 달라서 특별한 조치가 필요하다.
-        if (GameObject.Find("Process Manager").GetComponent<ProcessManager>().ReadSubsectorNum() == 4)
+        if (processManager.ReadSubsectorNum() == 4)
         {
             if (obsPositionX <= -15f || obsPositionX >= 15f)
             {
@@ -131,10 +133,10 @@ public class ObstacleManager : MonoBehaviour
         trig_CameraMoveToObs = false;
         cam.GetComponent<CameraMover>().FreeCamera();
         cam.transform.position = previousCamPosition;
-        GameObject.Find("Process Manager").GetComponent<ProcessManager>().increaseOngoingIndex();
+        processManager.increaseOngoingIndex();
         if (isDialogAuto)
         {
-            GameObject.Find("DialogSystem").GetComponent<DialogSystem>().StartConversationSetting_Auto();
+            dialogSystem.StartConversationSetting_Auto();
             isDialogAuto = false;
         }
         

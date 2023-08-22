@@ -6,22 +6,24 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
-    private GameObject questUI;              //퀘스트 UI
-    private GameObject collectionImage;      //채집해야 하는 채집 오브젝트의 이미지
-    private GameObject clearUI;
-    private GameObject requireNumUI;
-    private TextMeshProUGUI requireNumUIText;
+    [SerializeField] private GameObject questUI;              //퀘스트 UI
+    [SerializeField] private GameObject collectionImage;      //채집해야 하는 채집 오브젝트의 이미지
+    [SerializeField] private GameObject clearUI;
+    [SerializeField] private GameObject requireNumUI;
+    [SerializeField] private TextMeshProUGUI requireNumUIText;
+    [SerializeField] private ProcessManager processManager;
+    [SerializeField] private GameObject cam;
 
     public GameObject[] collectionIllust;
 
 
     void Start()
     {
-        questUI = GameObject.Find("Quest UI");    questUI.SetActive(false);
-        clearUI = GameObject.Find("Clear UI");    clearUI.SetActive(false);
-        requireNumUIText = GameObject.Find("RequireNum UI Text").GetComponent<TextMeshProUGUI>();
-        requireNumUI = GameObject.Find("RequireNum UI"); requireNumUI.SetActive(false);
-        collectionImage = GameObject.Find("Collection Image");  collectionImage.SetActive(false);
+        questUI.SetActive(false);
+        clearUI.SetActive(false);
+
+        requireNumUI.SetActive(false);
+        collectionImage.SetActive(false);
 
         for (int i = 0; i < collectionIllust.Length; i++)
         {
@@ -39,7 +41,7 @@ public class UIManager : MonoBehaviour
     {
         questUI.SetActive(false);
         requireNumUI.SetActive(false);
-        collectionIllust[GameObject.Find("Process Manager").GetComponent<ProcessManager>().ReadPhase()].SetActive(false);
+        collectionIllust[processManager.ReadPhase()].SetActive(false);
         collectionImage.SetActive(false);
     }
 
@@ -47,19 +49,19 @@ public class UIManager : MonoBehaviour
     {
         questUI.SetActive(true);
         requireNumUI.SetActive(true);
-        collectionIllust[GameObject.Find("Process Manager").GetComponent<ProcessManager>().ReadPhase()].SetActive(true);
+        collectionIllust[processManager.ReadPhase()].SetActive(true);
         collectionImage.SetActive(true);
     }
 
     public void OnClearUI()
     {
         clearUI.SetActive(true);
-        GameObject.Find("Main Camera").GetComponent<CameraMover>().FocusCamera();
+        cam.GetComponent<CameraMover>().FocusCamera();
     }
     public void OffClearUI()
     {
         clearUI.SetActive(false);
-        GameObject.Find("Main Camera").GetComponent<CameraMover>().FreeCamera();
+        cam.GetComponent<CameraMover>().FreeCamera();
     }
 
     public void SetRequireNumText(int num)
@@ -74,6 +76,6 @@ public class UIManager : MonoBehaviour
 
     public void GoSectorScene()
     {
-        SceneManager.LoadScene("SectorScene");
+        SceneManager.LoadScene("일리야마운틴");
     }
 }

@@ -38,12 +38,12 @@ public class TouchManager : MonoBehaviour
 
                     if (click_obj.tag == "NPC" && canTouch)
                     {
-                        GameObject.Find(click_obj.name).GetComponent<NPCManager>().TouchNPC();
+                        click_obj.GetComponent<NPCManager>().TouchNPC();
                     }
 
                     else if (click_obj.tag == "Collection")
                     {
-                        GameObject.Find(click_obj.name).GetComponent<CollectionManager>().TouchThisCollection();
+                        click_obj.GetComponent<CollectionManager>().TouchThisCollection();
                     }
                 }
 
