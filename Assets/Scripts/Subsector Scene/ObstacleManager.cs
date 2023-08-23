@@ -22,6 +22,8 @@ public class ObstacleManager : MonoBehaviour
 
     private bool isDialogAuto;
 
+    public Vector3 NPCPosition;
+
     void Start()
     {
         trig_CameraMoveToObs = false;
@@ -85,6 +87,12 @@ public class ObstacleManager : MonoBehaviour
     }
 
     public void CameraMoveToObs()
+    {
+        Debug.Log("카메라 이동중~");
+        cam.transform.position = Vector3.SmoothDamp(cam.transform.position, obsPositionForCamera, ref vel, 0.5f);
+    }
+
+    public void CameraMoveToNPC()
     {
         Debug.Log("카메라 이동중~");
         cam.transform.position = Vector3.SmoothDamp(cam.transform.position, obsPositionForCamera, ref vel, 0.5f);
