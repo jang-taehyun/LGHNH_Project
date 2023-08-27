@@ -9,7 +9,8 @@ using Unity.VisualScripting;
 public class DialogSystem : MonoBehaviour
 {
     private int branch;
-    private bool isAuto;                                
+    private bool isAuto;
+    private bool isQuestClearedAuto;
     public bool[] autoStartBranch;                      //자동으로 시작하는 Branch라면 체크해주세요.
 
     [SerializeField] private ProcessManager processManager;
@@ -17,6 +18,7 @@ public class DialogSystem : MonoBehaviour
     [SerializeField] private DialogDB_Pumping dialogDB_pumping;
     [SerializeField] private DialogDB_Ice dialogDB_ice;
     [SerializeField] private DialogDB_Lake dialogDB_lake;
+    [SerializeField] private DialogDB_Pink dialogDB_pink;
 
     private int dialogTotalNum;                         //전체 대화 개수
     [SerializeField] private DialogData[] dialogs;      //현재 분기의 대사 목록 배열
@@ -30,9 +32,18 @@ public class DialogSystem : MonoBehaviour
     //-------------------------여기까지가 기존 DialogSystem.cs의 변수들-------------------------
 
     [SerializeField] private GameObject cam;                     //카메라
+    private Camera cam_Camera;
+    private BoxCollider2D cam_BoxCollider2D;
+
     [SerializeField] private GameObject conversationUI;          //대화 UI
+    private RectTransform conversationUI_Rect;
+
     [SerializeField] private GameObject npcNameUI;               //NPC 이름의 UI
+    private TextMeshProUGUI npcNameUI_TextMesh;
+    private TMP_Text npcNameUI_TMP_Text;
+
     [SerializeField] private GameObject characterImage;          //캐릭터 일러스트 이미지
+    private RectTransform characterImage_Rect;
     [SerializeField] private GameObject nextButton;              //다음 대화로 넘어가는 버튼, 투명한 것이 특징
 
     //Test
@@ -66,6 +77,14 @@ public class DialogSystem : MonoBehaviour
 
     void Start()
     {
+        cam_Camera = cam.GetComponent<Camera>();
+        cam_BoxCollider2D = cam.GetComponent<BoxCollider2D>(); 
+
+        npcNameUI_TextMesh = npcNameUI.GetComponent<TextMeshProUGUI>();
+        npcNameUI_TMP_Text = npcNameUI.GetComponent<TMP_Text>();
+        conversationUI_Rect = conversationUI.GetComponent<RectTransform>();
+        characterImage_Rect = characterImage.GetComponent<RectTransform>();
+
         conversationUI.SetActive(false);
         conversation.SetActive(false);
         npcNameUI.SetActive(false);
@@ -96,6 +115,7 @@ public class DialogSystem : MonoBehaviour
         //branch가 1일 때
         if (autoStartBranch[0])
         { StartConversationSetting_Auto(); }
+
         
       
 
@@ -129,13 +149,13 @@ public class DialogSystem : MonoBehaviour
         StartCoroutine(CameraZoomIn());
         
     }
-
-    public void StartConversationSetting_Auto()
+    public void StartConversationSetting_Auto(bool val = false)
     {
         isAuto = true;
+        if (val) { isQuestClearedAuto = true; }
         if (processManager.IsActiveOngoingQuest())
         { forQuest.SetActive(false); }
-
+        
         
         //StartCoroutine(CameraZoomIn());
         conversationUI.SetActive(true);
@@ -160,7 +180,6 @@ public class DialogSystem : MonoBehaviour
         if (null != calledNPCName)
             GameObject.Find(calledNPCName).GetComponent<NPCManager>().EndConversation();
     }
-
     public void EndConversationSetting_Auto()    //Next Button을 통해서 호출되는 함수
     {
         characterImage.SetActive(false);
@@ -170,11 +189,12 @@ public class DialogSystem : MonoBehaviour
         nextButton.SetActive(false);
 
         if (processManager.IsActiveOngoingQuest()) { forQuest.SetActive(true); }
-
+        if (isQuestClearedAuto) { processManager.DestroyOngoingObstacle(); }
+        else { processManager.ActivateQuest(); }
         //trig_CamMoveToNPC = false;
         cam.GetComponent<CameraMover>().FreeCamera();
-        processManager.ActivateQuest();
-        isAuto = false;
+        
+        isAuto = false; isQuestClearedAuto = false;
         //StartCoroutine(CameraZoomOut());
         //GameObject.Find(calledNPCName).GetComponent<NPCManager>().EndConversation();
 
@@ -201,11 +221,10 @@ public class DialogSystem : MonoBehaviour
 
     IEnumerator CameraZoomIn()
     {
-
         for (int i = 100; i >= 50; i--)
         {
-            cam.GetComponent<Camera>().orthographicSize = i * 0.1f;
-            cam.GetComponent<BoxCollider2D>().size = new Vector2(i * 0.1f, i * 0.2f);
+            cam_Camera.orthographicSize = i * 0.1f;
+            cam_BoxCollider2D.size = new Vector2(i * 0.1f, i * 0.2f);
 
             if (i == 70)
             {
@@ -214,31 +233,33 @@ public class DialogSystem : MonoBehaviour
             }
 
             yield return new WaitForSecondsRealtime(0.01f);
-
         }
     }
+
     IEnumerator CameraZoomOut()
     {
         for (int i = 50; i <= 100; i++)
         {
-            cam.GetComponent<Camera>().orthographicSize = i * 0.1f;
-            cam.GetComponent<BoxCollider2D>().size = new Vector2(i * 0.1f, i * 0.2f);
+            cam_Camera.orthographicSize = i * 0.1f;
+            cam_BoxCollider2D.size = new Vector2(i * 0.1f, i * 0.2f);
 
+            if (i == 100) { cam_BoxCollider2D.size = new Vector2(11.3f, 20f); }
             yield return new WaitForSeconds(0.01f);
         }
     }
+
     IEnumerator ConversWindowPop()
     {
         for (int i = 0; i <= 100; i++)
         {
-            conversationUI.GetComponent<RectTransform>().sizeDelta = new Vector2(questUIWidth + questUIWidth * i * 0.01f,
+            conversationUI_Rect.sizeDelta = new Vector2(questUIWidth + questUIWidth * i * 0.01f,
                                                                                  questUIHeight + questUIHeight * i * 0.01f);
             if (i == 100)
             {
                 npcNameUI.SetActive(true);
                 characterImage.SetActive(true);
 
-                npcNameUI.GetComponent<TextMeshProUGUI>().text = dialogs[0].name;
+                npcNameUI_TextMesh.text = dialogs[0].name;
                 OffFeeling();
                 if (dialogs[0].expression == "기본") { OffFeeling(); feeling_default.SetActive(true); }
                 if (dialogs[0].expression == "기쁨") { OffFeeling(); feeling_joy.SetActive(true); }
@@ -258,7 +279,7 @@ public class DialogSystem : MonoBehaviour
     {
         for (int i = 0; i <= 100; i++)
         {
-            npcNameUI.GetComponent<TMP_Text>().color = new Color(0, 0, 0, i * 0.01f);
+            npcNameUI_TMP_Text.color = new Color(0, 0, 0, i * 0.01f);
             yield return new WaitForSeconds(0.001f);
         }
     }
@@ -266,15 +287,15 @@ public class DialogSystem : MonoBehaviour
     {
         for (int i = 0; i <= 460; i++)
         {
-            characterImage.GetComponent<RectTransform>().localPosition = new Vector3(characterImage_PosX,
-                                                                                     characterImage_PosY + i, 0);
+            characterImage_Rect.localPosition = new Vector3(characterImage_PosX, characterImage_PosY + i, 0);
+
 
             if (i == 460)
             {
                 conversation.SetActive(true);
                 UpdateDialog();
             }
-            yield return new WaitForSeconds(0.00001f);
+            yield return new WaitForSeconds(0.001f);
         }
     }
 
@@ -286,7 +307,6 @@ public class DialogSystem : MonoBehaviour
         Array.Resize(ref dialogs, 100);
 
         int subsectorNum = processManager.ReadSubsectorNum();
-        Debug.Log("subsectorNum의 값: " + subsectorNum);
 
         switch (subsectorNum)
         {
@@ -320,6 +340,21 @@ public class DialogSystem : MonoBehaviour
                 }
                 break;
 
+            case 2:
+                for (int i = 0; i < dialogDB_pink.pink.Count; ++i)
+                {
+                    if (dialogDB_pink.pink[i].branch == branch)
+                    {
+                        dialogs[index].name = dialogDB_pink.pink[i].name;
+                        dialogs[index].expression = dialogDB_pink.pink[i].expression;
+                        dialogs[index].dialogue = dialogDB_pink.pink[i].dialog;
+
+                        index++;
+                        dialogTotalNum = index;
+                    }
+                }
+                break;
+                
             case 3:
                 for (int i = 0; i < dialogDB_ice.ice.Count; ++i)
                 {
@@ -349,7 +384,7 @@ public class DialogSystem : MonoBehaviour
                     }
                 }
                 break;
-
+                
         }
 
         Array.Resize(ref dialogs, dialogTotalNum);
@@ -362,9 +397,6 @@ public class DialogSystem : MonoBehaviour
 
     public void UpdateDialog()
     {
-        
-
-            Debug.Log("is Clicked!");
             if (isTypingEffect)
             {
                 isTypingEffect = false;
@@ -403,7 +435,6 @@ public class DialogSystem : MonoBehaviour
                     currentDialogIndex = -1;
 
                     npcNameUI.GetComponent<TextMeshProUGUI>().text = dialogs[0].name;
-                    Debug.Log("이름 할당 : " + npcNameUI.GetComponent<TextMeshProUGUI>().text);
 
                     if (dialogs[0].expression == "기본")
                     {
@@ -429,7 +460,7 @@ public class DialogSystem : MonoBehaviour
                         feeling_tired.SetActive(true);
                     }
 
-                    if (branch <= autoStartBranch.Length && autoStartBranch[branch - 1])
+                    if (branch <= autoStartBranch.Length && autoStartBranch[branch - 1] == true)
                     {
                         processManager.obstacles[
                                 processManager.ReadPhase()]

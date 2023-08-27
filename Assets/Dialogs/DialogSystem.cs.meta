@@ -4,10 +4,24 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
+  - processManager: {instanceID: 0}
   - dialogDB_sky: {fileID: 11400000, guid: b930af3cef5d0404c9b7a0afd7482df8, type: 2}
   - dialogDB_pumping: {fileID: 11400000, guid: 07050286e158e8a4a8a2b68f9f8d41f1, type: 2}
-  - dialogDB_ice: {fileID: 11400000, guid: 7bcb50908177c1f4f861df66e2454cc9, type: 2}
-  - dialogDB_lake: {fileID: 11400000, guid: f075d9adbb51bc547977e6ff616146cd, type: 2}
+  - dialogDB_ice: {fileID: 11400000, guid: d9ab0aa9b7018c043a298ad9aeca08e7, type: 2}
+  - dialogDB_lake: {fileID: 11400000, guid: 029921d3d6906e941b23f0926f90a3ac, type: 2}
+  - dialogDB_pink: {fileID: 11400000, guid: 5fb4a12b152c5a4408bc2cf7286f66aa, type: 2}
+  - arrow: {instanceID: 0}
+  - cam: {instanceID: 0}
+  - conversationUI: {instanceID: 0}
+  - npcNameUI: {instanceID: 0}
+  - characterImage: {instanceID: 0}
+  - nextButton: {instanceID: 0}
+  - conversation: {instanceID: 0}
+  - forQuest: {instanceID: 0}
+  - feeling_default: {instanceID: 0}
+  - feeling_joy: {instanceID: 0}
+  - feeling_sad: {instanceID: 0}
+  - feeling_tired: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

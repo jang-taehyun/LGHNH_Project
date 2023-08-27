@@ -60,7 +60,6 @@ public class NPCManager : MonoBehaviour
             }
             else if (npcState == 1)
             {
-                Debug.Log("현재 NPC 상태 " + npcState);
                 // speechBubble.color = Color.clear;
                 speechBubble.SetActive(false);
                 touchManger.OffTouch();
@@ -77,7 +76,6 @@ public class NPCManager : MonoBehaviour
 
     public void EndConversation()
     {
-        Debug.Log("여기까지는 잘 됨");
         if (npcState == 0)
         {
             quest.GetComponent<QuestManager>().ActivateThisQuest();

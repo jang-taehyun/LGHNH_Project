@@ -6,9 +6,11 @@ public class ObstacleManager : MonoBehaviour
 {
     public Animation obsEliminationAnimation;            //장애물을 제거하는 애니메이션
     public AudioSource eliminationSound;                 //장애물을 제거할 때 나는 경쾌한 소리
+    
 
     [SerializeField] private GameObject cameraLimitRect;                  //카메라 제한 영역
     [SerializeField] private GameObject cam;                              //카메라
+    private CameraMover cam_CameraMover;
     [SerializeField] private Transform center;
     [SerializeField] private ProcessManager processManager;
     [SerializeField] private DialogSystem dialogSystem;
@@ -18,6 +20,7 @@ public class ObstacleManager : MonoBehaviour
     private Vector3 obsPositionForCamera;
     private Vector3 previousCamPosition;
     private bool trig_CameraMoveToObs;
+    public bool isNotMovetoObs;
 
 
     private bool isDialogAuto;
@@ -27,9 +30,9 @@ public class ObstacleManager : MonoBehaviour
     void Start()
     {
         trig_CameraMoveToObs = false;
-        cameraLimitRect.SetActive(false);
-        Debug.Log(transform.Find("Camera Limit").gameObject);
+        //cameraLimitRect.SetActive(false); Debug.Log(transform.Find("Camera Limit").gameObject);
         vel = Vector3.zero;
+        cam_CameraMover = cam.GetComponent<CameraMover>();
 
         obsPositionX = center.position.x;
         obsPositionY = center.position.y; 
@@ -51,6 +54,34 @@ public class ObstacleManager : MonoBehaviour
                 else { obsPositionY = 30f; }
             }
         }
+        else if (processManager.ReadSubsectorNum() == 3)
+        {
+            if (obsPositionX <= -24.8f || obsPositionX >= 24.8f)
+            {
+                if (obsPositionX <= -24.8f) { obsPositionX = -24.8f; }
+                else { obsPositionX = 24.8f; }
+            }
+
+            if (obsPositionY <= -30f || obsPositionY >= 30f)
+            {
+                if (obsPositionY <= -30f) { obsPositionY = -30f; }
+                else { obsPositionY = 30f; }
+            }
+        }
+        else if (processManager.ReadSubsectorNum() == 2)
+        {
+            if (obsPositionX <= -12f || obsPositionX >= 12f)
+            {
+                if (obsPositionX <= -12f) { obsPositionX = -12f; }
+                else { obsPositionX = 12f; }
+            }
+
+            if (obsPositionY <= -8f || obsPositionY >= 8f)
+            {
+                if (obsPositionY <= -8f) { obsPositionY = -8f; }
+                else { obsPositionY = 8f; }
+            }
+        }
         else
         {
             if (obsPositionX <= -12.45f || obsPositionX >= 12.45f)
@@ -64,23 +95,17 @@ public class ObstacleManager : MonoBehaviour
                 if (obsPositionY <= -5.45f) { obsPositionY = -5.45f; }
                 else { obsPositionY = 5.45f; }
             }
-        }
-        
-        
-
-        
-        
+        } 
 
         obsPositionForCamera = new Vector3(obsPositionX, obsPositionY, -10);
-        Debug.Log("카메라를 위한 장애물 위치: " + obsPositionForCamera + " " + gameObject.name);
     }
 
     // Update is called once per frame
     void Update()
     {
         if (trig_CameraMoveToObs) { CameraMoveToObs(); }
-
     }
+
     public void DestroyThisObs( )
     {
         StartCoroutine(DestroyThisObs_Delay(1.0f));
@@ -88,10 +113,8 @@ public class ObstacleManager : MonoBehaviour
 
     public void CameraMoveToObs()
     {
-        Debug.Log("카메라 이동중~");
         cam.transform.position = Vector3.SmoothDamp(cam.transform.position, obsPositionForCamera, ref vel, 0.5f);
     }
-
     public void CameraMoveToNPC()
     {
         Debug.Log("카메라 이동중~");
@@ -127,7 +150,6 @@ public class ObstacleManager : MonoBehaviour
     {
         yield return new WaitForSeconds(delayTime);
 
-        Debug.Log("여기는 한 번만 실행됩니다."); 
         cameraLimitRect.SetActive(false);
         previousCamPosition = cam.transform.position;
         trig_CameraMoveToObs = true;
@@ -135,21 +157,72 @@ public class ObstacleManager : MonoBehaviour
         StartCoroutine(AfterDestroyThisObs_Delay(3.0f));
     }
     
-    IEnumerator AfterDestroyThisObs_Delay(float delayTime)
+    IEnumerator AfterDestroyThisObs_Delay(float delayTime) 
     {
-        yield return new WaitForSeconds(delayTime);
+        if (isNotMovetoObs == false)
+        {
+            yield return new WaitForSeconds(delayTime);
+            trig_CameraMoveToObs = false;
+            cam.GetComponent<CameraMover>().FreeCamera();
+            //cam.transform.position = previousCamPosition;
+
+            processManager.increasePhase();
+
+            //서브섹터가 끝나지 않았을 경우에만 실행
+            if (processManager.IsSubsectorEnded() == false)
+            {
+                Debug.Log("현재 ReadPhase의 값 : " + processManager.ReadPhase());
+
+                //카메라 줌 다음 진행 NPC한테 안 해도 된다는 뜻
+                if (cam_CameraMover.SetTrig_ShootAfterDestroy(true) == false)
+                {
+                    if (isDialogAuto)
+                    {
+                        dialogSystem.StartConversationSetting_Auto();
+                        isDialogAuto = false;
+                    }
+                }
+            }
+            else
+            {
+
+            }
+
+            gameObject.SetActive(false);
+        }
+        else
+        {
+            DontDestroyObsSetting();
+        }
+
+        
+    }
+
+    private void DontDestroyObsSetting()
+    {
         trig_CameraMoveToObs = false;
         cam.GetComponent<CameraMover>().FreeCamera();
-        cam.transform.position = previousCamPosition;
-        processManager.increaseOngoingIndex();
-        if (isDialogAuto)
+        //cam.transform.position = previousCamPosition;
+
+        processManager.increasePhase();
+
+        //서브섹터가 끝나지 않았을 경우에만 실행
+        if (processManager.IsSubsectorEnded() == false)
         {
-            dialogSystem.StartConversationSetting_Auto();
-            isDialogAuto = false;
+            Debug.Log("현재 ReadPhase의 값 : " + processManager.ReadPhase());
+
+            //카메라 줌 다음 진행 NPC한테 안 해도 된다는 뜻
+            if (cam_CameraMover.SetTrig_ShootAfterDestroy(true) == false)
+            {
+                if (isDialogAuto)
+                {
+                    dialogSystem.StartConversationSetting_Auto();
+                    isDialogAuto = false;
+                }
+            }
         }
-        
         gameObject.SetActive(false);
     }
 
-    public void SetDialogAuto() { isDialogAuto = true; }
+    public void SetDialogAuto(bool val = true) { isDialogAuto = val; }
 }

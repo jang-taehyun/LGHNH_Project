@@ -7,6 +7,7 @@ public class ProcessManager : MonoBehaviour
 {
     private GameObject ongoingQuest;
     private int phase;
+    private bool isSubsectorEnded;
     // private bool isFirst;
 
 
@@ -25,6 +26,8 @@ public class ProcessManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        isSubsectorEnded = false;
+
         Debug.Log("Process Manager start");
 
         if (GameManager.GameManager.Inst.ReadClearNum() >= maxPhase)
@@ -40,7 +43,6 @@ public class ProcessManager : MonoBehaviour
 
         if (dialogSystem.autoStartBranch[0] == false)
         {
-            Debug.Log("나 실행됩니다!");
             npcs[phase].GetComponent<NPCManager>().ActiveThisNPC();
             //npcs[phase].ActiveThisNPC();
         }
@@ -57,6 +59,7 @@ public class ProcessManager : MonoBehaviour
         //    npcs[phase].ActiveThisNPC();
 
         //}
+
     }
 
     public void SetOngoingQuest(GameObject _quest) { ongoingQuest = _quest; }
@@ -71,28 +74,36 @@ public class ProcessManager : MonoBehaviour
 
     public void ClearOngoingQuest()
     {
-        npcs[phase].GetComponent<NPCManager>().QuestCleared();
-        npcs[phase].GetComponent<NPCManager>().ActiveThisNPC();
+        if (dialogSystem.autoStartBranch[ReadPhase() * 2 + 1] == false)
+        {
+            npcs[phase].GetComponent<NPCManager>().QuestCleared();
+            //npcs[phase].GetComponent<NPCManager>().ActiveThisNPC();
+        }
+        else
+        {
+
+        }
+
+
     }
     public void DestroyOngoingObstacle()
     {
         obstacles[phase].GetComponent<ObstacleManager>().DestroyThisObs();
     }
 
-    public void increaseOngoingIndex()
+    public void increasePhase()
     {
         if (phase < quests.Length - 1)
         {
-            
             phase++;
             if (dialogSystem.autoStartBranch[phase * 2] == false) { npcs[phase].GetComponent<NPCManager>().ActiveThisNPC(); }
             if (dialogSystem.autoStartBranch[phase * 2] == true) { SetOngoingQuest(quests[phase]); }
-            Debug.Log("여기까지는 실행이 된다");
         }
         else
         {
             //서브 섹터 씬이 다 클리어된 상태!
             Debug.Log("서브 섹터 내의 모든 퀘스트를 완료했습니다.");
+            isSubsectorEnded = true;
             uiManager.OnClearUI();
         }
     }
@@ -105,5 +116,6 @@ public class ProcessManager : MonoBehaviour
 
     public int ReadPhase() { return phase; }
     public int ReadSubsectorNum() { return subsectorNum; }
+    public bool IsSubsectorEnded() {  return isSubsectorEnded; }
 
 }

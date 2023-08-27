@@ -7,4 +7,5 @@ using UnityEngine;
 public class DialogDB_Ice : ScriptableObject
 {
 	public List<DialogDBEntity> ice; // Replace 'EntityType' to an actual type that is serializable.
+
 }
