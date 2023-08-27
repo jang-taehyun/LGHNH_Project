@@ -46,7 +46,7 @@ public class CameraMover : MonoBehaviour
         camRb = cam.GetComponent<Rigidbody2D>();
         cam_BoxCollider2D = cam.GetComponent<BoxCollider2D>();
         vel = Vector3.zero;
-        speed = 50.0f;
+        speed = 30.0f;
 
         forShoot_AfterDestroy_CameraPos = new Vector3[forShoot_AfterDestroy.Length];
         for (int i = 0; i < forShoot_AfterDestroy.Length; i++) 

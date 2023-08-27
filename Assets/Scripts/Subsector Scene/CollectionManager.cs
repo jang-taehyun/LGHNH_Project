@@ -9,6 +9,9 @@ public class CollectionManager : MonoBehaviour
     public GameObject quest;                   //채집 오브젝트를 필요로 하는 퀘스트
     public GameObject playerCollectEffect;    //채집했을 때 나타나는 플레이어의 채집 애니메이션, 지금은 소스가 도착 안해서 GameObject로 선언.
 
+    public AudioSource CollectSoundPlayer;
+    public AudioClip CollectSound;
+
     void Start()
     {
         isActive = false;
@@ -27,6 +30,8 @@ public class CollectionManager : MonoBehaviour
     {
         if (isActive)
         {
+            CollectSoundPlayer.PlayOneShot(CollectSound);
+
             playerCollectEffect.SetActive(true);
             StartCoroutine(PlayerShow());
             quest.GetComponent<QuestManager>().IncreaseHasNum();

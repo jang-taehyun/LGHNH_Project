@@ -16,6 +16,9 @@ public class UIManager : MonoBehaviour
 
     public GameObject[] collectionIllust;
 
+    public AudioSource clickSoundPlayer;
+    public AudioClip clickSound;
+
 
     void Start()
     {
@@ -76,6 +79,7 @@ public class UIManager : MonoBehaviour
 
     public void GoSectorScene()
     {
+        clickSoundPlayer.PlayOneShot(clickSound);
         SceneManager.LoadScene("老府具付款凭");
     }
 }

@@ -3,7 +3,11 @@ guid: 07c872d569d15f848808f30df6e48abc
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - quest: {instanceID: 0}
+  - playerCollectEffect: {instanceID: 0}
+  - CollectSoundPlayer: {instanceID: 0}
+  - CollectSound: {fileID: 8300000, guid: 6e750c181ba1dd64ca7b82f210244752, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

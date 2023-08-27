@@ -5,7 +5,8 @@ using UnityEngine;
 public class ObstacleManager : MonoBehaviour
 {
     public Animation obsEliminationAnimation;            //장애물을 제거하는 애니메이션
-    public AudioSource eliminationSound;                 //장애물을 제거할 때 나는 경쾌한 소리
+    public AudioSource eliminationSound;                 //장애물을 제거할 때 나는 경쾌한 소리(player)
+    public AudioClip soundClip;                          // sound effect
     
 
     [SerializeField] private GameObject cameraLimitRect;                  //카메라 제한 영역
@@ -109,6 +110,7 @@ public class ObstacleManager : MonoBehaviour
     public void DestroyThisObs( )
     {
         StartCoroutine(DestroyThisObs_Delay(1.0f));
+        
     }
 
     public void CameraMoveToObs()
@@ -155,6 +157,9 @@ public class ObstacleManager : MonoBehaviour
         trig_CameraMoveToObs = true;
         cam.GetComponent<CameraMover>().FocusCamera();
         StartCoroutine(AfterDestroyThisObs_Delay(3.0f));
+
+        // sound effect play
+        eliminationSound.PlayOneShot(soundClip);
     }
     
     IEnumerator AfterDestroyThisObs_Delay(float delayTime) 

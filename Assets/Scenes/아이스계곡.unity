@@ -1173,7 +1173,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obsEliminationAnimation: {fileID: 0}
-  eliminationSound: {fileID: 0}
+  eliminationSound: {fileID: 1984247374}
+  soundClip: {fileID: 8300000, guid: 64cb6e2e23e5ee044aa1cf5ebdbc11c9, type: 3}
   cameraLimitRect: {fileID: 1308660053}
   cam: {fileID: 1871900318}
   center: {fileID: 1102454398}
@@ -1287,7 +1288,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 1487f45e090dde74d8c2e492c20c3943, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1314,6 +1315,8 @@ MonoBehaviour:
   index: 19
   quest: {fileID: 176637498}
   playerCollectEffect: {fileID: 130936431}
+  CollectSoundPlayer: {fileID: 1984247374}
+  CollectSound: {fileID: 8300000, guid: 6e750c181ba1dd64ca7b82f210244752, type: 3}
 --- !u!135 &350431916
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1841,6 +1844,8 @@ MonoBehaviour:
   index: 21
   quest: {fileID: 238803624}
   playerCollectEffect: {fileID: 396685088}
+  CollectSoundPlayer: {fileID: 1984247374}
+  CollectSound: {fileID: 8300000, guid: 6e750c181ba1dd64ca7b82f210244752, type: 3}
 --- !u!135 &618158597
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2087,7 +2092,7 @@ PrefabInstance:
     - target: {fileID: 3852954721331335980, guid: 4b980799e1a41a5478a2c7478758ef16, type: 3}
       propertyPath: characterImage
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 704073419}
     - target: {fileID: 3852954721331335980, guid: 4b980799e1a41a5478a2c7478758ef16, type: 3}
       propertyPath: conversationUI
       value: 
@@ -2220,6 +2225,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c14f3d1fb66077a40a7670358ab19baf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &704073419 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5598375840556631944, guid: 5a1bebed7cfd15f4787505c8ec8d1897, type: 3}
+  m_PrefabInstance: {fileID: 62758038}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &745770007
 GameObject:
   m_ObjectHideFlags: 0
@@ -2322,6 +2332,8 @@ MonoBehaviour:
   index: 21
   quest: {fileID: 238803624}
   playerCollectEffect: {fileID: 1965266170}
+  CollectSoundPlayer: {fileID: 1984247374}
+  CollectSound: {fileID: 8300000, guid: 6e750c181ba1dd64ca7b82f210244752, type: 3}
 --- !u!135 &745770011
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2450,6 +2462,8 @@ MonoBehaviour:
   index: 17
   quest: {fileID: 176637500}
   playerCollectEffect: {fileID: 2082519618}
+  CollectSoundPlayer: {fileID: 1984247374}
+  CollectSound: {fileID: 8300000, guid: 6e750c181ba1dd64ca7b82f210244752, type: 3}
 --- !u!135 &806011417
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2648,7 +2662,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obsEliminationAnimation: {fileID: 0}
-  eliminationSound: {fileID: 0}
+  eliminationSound: {fileID: 1984247374}
+  soundClip: {fileID: 8300000, guid: 64cb6e2e23e5ee044aa1cf5ebdbc11c9, type: 3}
   cameraLimitRect: {fileID: 4641108}
   cam: {fileID: 1871900318}
   center: {fileID: 1355833153}
@@ -3056,6 +3071,8 @@ MonoBehaviour:
   index: 21
   quest: {fileID: 238803624}
   playerCollectEffect: {fileID: 1855992581}
+  CollectSoundPlayer: {fileID: 1984247374}
+  CollectSound: {fileID: 8300000, guid: 6e750c181ba1dd64ca7b82f210244752, type: 3}
 --- !u!135 &1110331872
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3320,6 +3337,8 @@ MonoBehaviour:
   index: 16
   quest: {fileID: 176637499}
   playerCollectEffect: {fileID: 924900441}
+  CollectSoundPlayer: {fileID: 1984247374}
+  CollectSound: {fileID: 8300000, guid: 6e750c181ba1dd64ca7b82f210244752, type: 3}
 --- !u!135 &1197240537
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3441,7 +3460,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obsEliminationAnimation: {fileID: 0}
-  eliminationSound: {fileID: 0}
+  eliminationSound: {fileID: 1984247374}
+  soundClip: {fileID: 8300000, guid: 64cb6e2e23e5ee044aa1cf5ebdbc11c9, type: 3}
   cameraLimitRect: {fileID: 1602186392}
   cam: {fileID: 1871900318}
   center: {fileID: 1182901151}
@@ -3677,6 +3697,8 @@ MonoBehaviour:
   index: 17
   quest: {fileID: 176637500}
   playerCollectEffect: {fileID: 1267438515}
+  CollectSoundPlayer: {fileID: 1984247374}
+  CollectSound: {fileID: 8300000, guid: 6e750c181ba1dd64ca7b82f210244752, type: 3}
 --- !u!135 &1352996403
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3865,6 +3887,8 @@ MonoBehaviour:
   index: 16
   quest: {fileID: 176637499}
   playerCollectEffect: {fileID: 313417757}
+  CollectSoundPlayer: {fileID: 1984247374}
+  CollectSound: {fileID: 8300000, guid: 6e750c181ba1dd64ca7b82f210244752, type: 3}
 --- !u!135 &1392933171
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3986,7 +4010,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obsEliminationAnimation: {fileID: 0}
-  eliminationSound: {fileID: 0}
+  eliminationSound: {fileID: 1984247374}
+  soundClip: {fileID: 8300000, guid: 64cb6e2e23e5ee044aa1cf5ebdbc11c9, type: 3}
   cameraLimitRect: {fileID: 623579377}
   cam: {fileID: 1871900318}
   center: {fileID: 1865396680}
@@ -4271,6 +4296,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1588007876}
     - target: {fileID: 6192714051729956976, guid: 4795a127113b0b240a0b04ca1de1a123, type: 3}
+      propertyPath: clickSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 3fc8b07502dd562469b38000f14980c8, type: 3}
+    - target: {fileID: 6192714051729956976, guid: 4795a127113b0b240a0b04ca1de1a123, type: 3}
       propertyPath: requireNumUI
       value: 
       objectReference: {fileID: 1588007874}
@@ -4282,6 +4311,10 @@ PrefabInstance:
       propertyPath: collectionImage
       value: 
       objectReference: {fileID: 2117402106}
+    - target: {fileID: 6192714051729956976, guid: 4795a127113b0b240a0b04ca1de1a123, type: 3}
+      propertyPath: clickSoundPlayer
+      value: 
+      objectReference: {fileID: 1984247374}
     - target: {fileID: 6192714051729956976, guid: 4795a127113b0b240a0b04ca1de1a123, type: 3}
       propertyPath: requireNumUIText
       value: 
@@ -4700,6 +4733,8 @@ MonoBehaviour:
   index: 16
   quest: {fileID: 176637499}
   playerCollectEffect: {fileID: 2105101484}
+  CollectSoundPlayer: {fileID: 1984247374}
+  CollectSound: {fileID: 8300000, guid: 6e750c181ba1dd64ca7b82f210244752, type: 3}
 --- !u!135 &1589489214
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -4854,6 +4889,8 @@ MonoBehaviour:
   index: 17
   quest: {fileID: 176637500}
   playerCollectEffect: {fileID: 2054707889}
+  CollectSoundPlayer: {fileID: 1984247374}
+  CollectSound: {fileID: 8300000, guid: 6e750c181ba1dd64ca7b82f210244752, type: 3}
 --- !u!135 &1675274260
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5669,6 +5706,8 @@ MonoBehaviour:
   index: 22
   quest: {fileID: 146233826}
   playerCollectEffect: {fileID: 493851475}
+  CollectSoundPlayer: {fileID: 1984247374}
+  CollectSound: {fileID: 8300000, guid: 6e750c181ba1dd64ca7b82f210244752, type: 3}
 --- !u!135 &1965401798
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5790,7 +5829,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obsEliminationAnimation: {fileID: 0}
-  eliminationSound: {fileID: 0}
+  eliminationSound: {fileID: 1984247374}
+  soundClip: {fileID: 8300000, guid: 64cb6e2e23e5ee044aa1cf5ebdbc11c9, type: 3}
   cameraLimitRect: {fileID: 1048573983}
   cam: {fileID: 1871900318}
   center: {fileID: 1259343762}
@@ -5798,6 +5838,134 @@ MonoBehaviour:
   dialogSystem: {fileID: 695425786}
   isNotMovetoObs: 0
   NPCPosition: {x: 0, y: 0, z: 0}
+--- !u!1 &1984247373
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1984247375}
+  - component: {fileID: 1984247374}
+  m_Layer: 0
+  m_Name: SoundEffect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &1984247374
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1984247373}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &1984247375
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1984247373}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10.037614, y: 8.623474, z: -9.743588}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2001497937
 GameObject:
   m_ObjectHideFlags: 0
@@ -6078,6 +6246,8 @@ MonoBehaviour:
   index: 21
   quest: {fileID: 238803624}
   playerCollectEffect: {fileID: 859776404}
+  CollectSoundPlayer: {fileID: 1984247374}
+  CollectSound: {fileID: 8300000, guid: 6e750c181ba1dd64ca7b82f210244752, type: 3}
 --- !u!135 &2081684466
 SphereCollider:
   m_ObjectHideFlags: 0

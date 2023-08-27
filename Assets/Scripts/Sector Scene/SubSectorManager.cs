@@ -25,6 +25,9 @@ namespace SubSectorManager
         public Material GlowEffectMaterial;
         public GameObject camera;
 
+        public AudioSource EnterSoundPlayer;
+        public AudioClip EnterSound;
+
         // method //
         bool JudgeSectorActivation()
         {
@@ -121,6 +124,8 @@ namespace SubSectorManager
         {
             if (!JudgeSectorActivation())
                 return;
+
+            EnterSoundPlayer.PlayOneShot(EnterSound);
 
             SubSectorUI.SetActive(false);
             GetComponentInParent<SpriteRenderer>().material = DefaultMaterial;
