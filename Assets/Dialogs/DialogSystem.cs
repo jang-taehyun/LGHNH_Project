@@ -60,6 +60,10 @@ public class DialogSystem : MonoBehaviour
     [SerializeField] private GameObject feeling_sad;
     [SerializeField] private GameObject feeling_tired;
 
+    [SerializeField] private GameObject feeling_default_NPC;
+    [SerializeField] private GameObject feeling_sad_NPC;
+    [SerializeField] private GameObject feeling_tired_NPC;
+
     private Vector3 calledNPCPosition;
     private Vector3 correctedPosition;
     private string calledNPCName;
@@ -250,11 +254,11 @@ public class DialogSystem : MonoBehaviour
 
     IEnumerator ConversWindowPop()
     {
-        for (int i = 0; i <= 100; i++)
+        for (int i = 0; i <= 10; i++)
         {
-            conversationUI_Rect.sizeDelta = new Vector2(questUIWidth + questUIWidth * i * 0.01f,
-                                                                                 questUIHeight + questUIHeight * i * 0.01f);
-            if (i == 100)
+            conversationUI_Rect.sizeDelta = new Vector2(questUIWidth + questUIWidth * i * 0.1f,
+                                                                                 questUIHeight + questUIHeight * i * 0.1f);
+            if (i == 10)
             {
                 npcNameUI.SetActive(true);
                 characterImage.SetActive(true);
@@ -277,25 +281,25 @@ public class DialogSystem : MonoBehaviour
     }
     IEnumerator NameFadeIn()
     {
-        for (int i = 0; i <= 100; i++)
+        for (int i = 0; i <= 10; i++)
         {
-            npcNameUI_TMP_Text.color = new Color(0, 0, 0, i * 0.01f);
-            yield return new WaitForSeconds(0.001f);
+            npcNameUI_TMP_Text.color = new Color(0, 0, 0, i * 0.1f);
+            yield return new WaitForSeconds(0.01f);
         }
     }
     IEnumerator CharacterImageUp()
     {
-        for (int i = 0; i <= 460; i++)
+        for (int i = 0; i <= 20; i++)
         {
-            characterImage_Rect.localPosition = new Vector3(characterImage_PosX, characterImage_PosY + i, 0);
+            characterImage_Rect.localPosition = new Vector3(characterImage_PosX, characterImage_PosY + i*23, 0);
 
 
-            if (i == 460)
+            if (i == 20)
             {
                 conversation.SetActive(true);
                 UpdateDialog();
             }
-            yield return new WaitForSeconds(0.001f);
+            yield return new WaitForSeconds(0.01f);
         }
     }
 
@@ -435,32 +439,63 @@ public class DialogSystem : MonoBehaviour
                     currentDialogIndex = -1;
 
                     npcNameUI.GetComponent<TextMeshProUGUI>().text = dialogs[0].name;
-
-                    if (dialogs[0].expression == "기본")
+                    
+                    if (dialogs[0].name != "여행아이" && dialogs[0].name != "리비")
                     {
-                        OffFeeling();
-                        feeling_default.SetActive(true);
-                    }
+                        if (dialogs[0].expression == "기본")
+                        {
+                            OffFeeling();
+                            feeling_default_NPC.SetActive(true);
+                        }
 
-                    if (dialogs[0].expression == "기쁨")
+                        if (dialogs[0].expression == "기쁨")
+                        {
+                            OffFeeling();
+                            feeling_joy.SetActive(true);
+                        }
+
+                        if (dialogs[0].expression == "우울")
+                        {
+                            OffFeeling();
+                            feeling_sad_NPC.SetActive(true);
+                        }
+
+                        if (dialogs[0].expression == "피곤")
+                        {
+                            OffFeeling();
+                            feeling_tired_NPC.SetActive(true);
+                        }
+                    }
+                    else
                     {
-                        OffFeeling();
-                        feeling_joy.SetActive(true);
-                    }
+                        if (dialogs[0].expression == "기본")
+                        {
+                            OffFeeling();
+                            feeling_default.SetActive(true);
+                        }
 
-                    if (dialogs[0].expression == "우울")
-                    {
-                        OffFeeling();
-                        feeling_sad.SetActive(true);
-                    }
+                        if (dialogs[0].expression == "기쁨")
+                        {
+                            OffFeeling();
+                            feeling_joy.SetActive(true);
+                        }
 
-                    if (dialogs[0].expression == "피곤")
-                    {
-                        OffFeeling();
-                        feeling_tired.SetActive(true);
-                    }
+                        if (dialogs[0].expression == "우울")
+                        {
+                            OffFeeling();
+                            feeling_sad.SetActive(true);
+                        }
 
-                    if (branch <= autoStartBranch.Length && autoStartBranch[branch - 1] == true)
+                        if (dialogs[0].expression == "피곤")
+                        {
+                            OffFeeling();
+                            feeling_tired.SetActive(true);
+                        }
+
+                    }   
+
+
+                if (branch <= autoStartBranch.Length && autoStartBranch[branch - 1] == true)
                     {
                         processManager.obstacles[
                                 processManager.ReadPhase()]
@@ -483,10 +518,40 @@ public class DialogSystem : MonoBehaviour
 
         if (currentDialogIndex != 0)
         {
-            if (dialogs[currentDialogIndex].expression == "기본") { OffFeeling(); feeling_default.SetActive(true); }
-            if (dialogs[currentDialogIndex].expression == "기쁨") { OffFeeling(); feeling_joy.SetActive(true); }
-            if (dialogs[currentDialogIndex].expression == "우울") { OffFeeling(); feeling_sad.SetActive(true); }
-            if (dialogs[currentDialogIndex].expression == "피곤") { OffFeeling(); feeling_tired.SetActive(true); }
+            if (dialogs[currentDialogIndex].name != "여행아이" && dialogs[currentDialogIndex].name != "리비")
+            {
+                if (dialogs[currentDialogIndex].expression == "기본")
+                {
+                    OffFeeling();
+                    feeling_default_NPC.SetActive(true);
+                }
+
+                if (dialogs[currentDialogIndex].expression == "기쁨")
+                {
+                    OffFeeling();
+                    feeling_joy.SetActive(true);
+                }
+
+                if (dialogs[currentDialogIndex].expression == "우울")
+                {
+                    OffFeeling();
+                    feeling_sad_NPC.SetActive(true);
+                }
+
+                if (dialogs[currentDialogIndex].expression == "피곤")
+                {
+                    OffFeeling();
+                    feeling_tired_NPC.SetActive(true);
+                }
+            }
+            else
+            {
+                if (dialogs[currentDialogIndex].expression == "기본") { OffFeeling(); feeling_default.SetActive(true); }
+                if (dialogs[currentDialogIndex].expression == "기쁨") { OffFeeling(); feeling_joy.SetActive(true); }
+                if (dialogs[currentDialogIndex].expression == "우울") { OffFeeling(); feeling_sad.SetActive(true); }
+                if (dialogs[currentDialogIndex].expression == "피곤") { OffFeeling(); feeling_tired.SetActive(true); }
+            }
+            
         }
         
 
