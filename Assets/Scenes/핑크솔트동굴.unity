@@ -585,7 +585,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5346551832128498742, guid: 0bd55953438e26349b263e8c69e2b873, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 620
+      value: 730
       objectReference: {fileID: 0}
     - target: {fileID: 5346551832128498742, guid: 0bd55953438e26349b263e8c69e2b873, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -3047,7 +3047,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8640645849226164285, guid: 4795a127113b0b240a0b04ca1de1a123, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 11.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8640645849226164285, guid: 4795a127113b0b240a0b04ca1de1a123, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -4385,7 +4385,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6902655415262667168, guid: a34a7ba24cb5261478edfac52e803736, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -620
+      value: -730
       objectReference: {fileID: 0}
     - target: {fileID: 6902655415262667168, guid: a34a7ba24cb5261478edfac52e803736, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -4408,7 +4408,8 @@ PrefabInstance:
       value: Go_Sector Button
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8321997987904733091, guid: a34a7ba24cb5261478edfac52e803736, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a34a7ba24cb5261478edfac52e803736, type: 3}

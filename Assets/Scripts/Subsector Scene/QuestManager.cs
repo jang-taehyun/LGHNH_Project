@@ -74,6 +74,7 @@ public class QuestManager : MonoBehaviour
         testing.GetComponent<UIManager>().OnQuestUI();
         uiManager.SetRequireNumText(requireNum - hasNum);
         processManager.SetOngoingQuest(gameObject);
+        CheckQuestCondition();
     }
 
     public void IncreaseHasNum() 

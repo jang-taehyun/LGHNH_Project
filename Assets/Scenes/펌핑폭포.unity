@@ -5019,6 +5019,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 72e48d9a614c5f64ca0189c50d235559, type: 3}
+    - target: {fileID: 900120554944652059, guid: 20472ac5eb3f8bc429d9ba0d3a6df6b2, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1943850267075678356, guid: 20472ac5eb3f8bc429d9ba0d3a6df6b2, type: 3}
       propertyPath: m_SizeDelta.x
       value: 52.82
@@ -5113,7 +5117,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3251898691839959845, guid: 20472ac5eb3f8bc429d9ba0d3a6df6b2, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 620
+      value: 730
       objectReference: {fileID: 0}
     - target: {fileID: 3251898691839959845, guid: 20472ac5eb3f8bc429d9ba0d3a6df6b2, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -7076,7 +7080,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6902655415262667168, guid: a34a7ba24cb5261478edfac52e803736, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -620
+      value: -730
       objectReference: {fileID: 0}
     - target: {fileID: 6902655415262667168, guid: a34a7ba24cb5261478edfac52e803736, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -7099,7 +7103,8 @@ PrefabInstance:
       value: Go_Sector Button
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 8321997987904733091, guid: a34a7ba24cb5261478edfac52e803736, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a34a7ba24cb5261478edfac52e803736, type: 3}
