@@ -4700,6 +4700,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 7297545016087609213, guid: 4795a127113b0b240a0b04ca1de1a123, type: 3}
+      propertyPath: m_PlaneDistance
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7583902374563942299, guid: 4795a127113b0b240a0b04ca1de1a123, type: 3}
       propertyPath: m_SizeDelta.x
       value: 775.02

@@ -1934,10 +1934,14 @@ PrefabInstance:
     - target: {fileID: 1247213385948644176, guid: a46858b4d6b0cb94aa79f31bb12e9697, type: 3}
       propertyPath: m_Camera
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 7957260895041798260}
     - target: {fileID: 1247213385948644176, guid: a46858b4d6b0cb94aa79f31bb12e9697, type: 3}
       propertyPath: m_RenderMode
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1247213385948644176, guid: a46858b4d6b0cb94aa79f31bb12e9697, type: 3}
+      propertyPath: m_PlaneDistance
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1710366322230707889, guid: a46858b4d6b0cb94aa79f31bb12e9697, type: 3}
       propertyPath: m_Text
