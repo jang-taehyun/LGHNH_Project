@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] private GameObject questUI;              //Äù½ºÆ® UI
-    [SerializeField] private GameObject collectionImage;      //Ã¤ÁıÇØ¾ß ÇÏ´Â Ã¤Áı ¿ÀºêÁ§Æ®ÀÇ ÀÌ¹ÌÁö
+    [SerializeField] private GameObject questUI;              //ï¿½ï¿½ï¿½ï¿½Æ® UI
+    [SerializeField] private GameObject collectionImage;      //Ã¤ï¿½ï¿½ï¿½Ø¾ï¿½ ï¿½Ï´ï¿½ Ã¤ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½
     [SerializeField] private GameObject clearUI;
     [SerializeField] private GameObject requireNumUI;
     [SerializeField] private TextMeshProUGUI requireNumUIText;
@@ -80,6 +80,6 @@ public class UIManager : MonoBehaviour
     public void GoSectorScene()
     {
         clickSoundPlayer.PlayOneShot(clickSound);
-        SceneManager.LoadScene("ÀÏ¸®¾ß¸¶¿îÆ¾");
+        SceneManager.LoadScene("ì¼ë¦¬ì•¼ë§ˆìš´í‹´");
     }
 }

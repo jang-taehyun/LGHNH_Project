@@ -69,7 +69,7 @@ public class SectorManager : MonoBehaviour
         public void ClickSector()
         {
             SectorUI.SetActive(true);
-            camera.GetComponent<CameraMover>().FocusCamera();
+            camera.GetComponent<CameraMover_Test>().FocusCamera();
             
 
             GetComponentInParent<SpriteRenderer>().material = GlowEffectMaterial;
