@@ -356,7 +356,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f422863a3cfb8ca4db06dd61c5887735, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5dc11555c1e6a9b4b90beaa6ca7c9e67, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -932,7 +932,9 @@ MonoBehaviour:
   collectionIllust:
   - {fileID: 1428284669962197099}
   - {fileID: 1384781122970478359}
-  - {fileID: 859963570616074464}
+  - {fileID: 0}
+  clickSoundPlayer: {fileID: 0}
+  clickSound: {fileID: 0}
 --- !u!1 &5262705819853608300
 GameObject:
   m_ObjectHideFlags: 0
@@ -1900,11 +1902,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d057e7c73a3cf642a5d1d8da437043a, type: 3}
---- !u!1 &859963570616074464 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2772065814761654870, guid: 2d057e7c73a3cf642a5d1d8da437043a, type: 3}
-  m_PrefabInstance: {fileID: 3285216929761348278}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1384781122970478359 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4512840457324342689, guid: 2d057e7c73a3cf642a5d1d8da437043a, type: 3}
