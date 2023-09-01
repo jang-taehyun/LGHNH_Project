@@ -64,6 +64,18 @@ public class DialogSystem : MonoBehaviour
     [SerializeField] private GameObject feeling_sad_NPC;
     [SerializeField] private GameObject feeling_tired_NPC;
 
+    [SerializeField] private GameObject complete;
+
+    [Header("대화하는 NPC (branch 개수와 동일)")]
+    public Transform[] npcs;
+    private Vector3[] correctNPCs;
+    private bool trig_CamMoveToNPC_Auto;
+
+    [Header("NPC 확대 여부 (branch 개수와 동일)")]
+    public bool[] isReallyZoom;
+
+
+
     private Vector3 calledNPCPosition;
     private Vector3 correctedPosition;
     private string calledNPCName;
@@ -105,31 +117,103 @@ public class DialogSystem : MonoBehaviour
         feeling_joy.SetActive(false);
         feeling_sad.SetActive(false);
         feeling_tired.SetActive(false);
+        complete.SetActive(false);
+
         characterImage.SetActive(false);
         characterImage_PosX = characterImage.GetComponent<RectTransform>().localPosition.x;
         characterImage_PosY = characterImage.GetComponent<RectTransform>().localPosition.y;
-
-        
         arrow.SetActive(false);
-        branch = 1;
-        refresh();              //엑셀 값을 받아와서 넣어주기
-        Setup();
 
+        correctNPCs = new Vector3[npcs.Length];
+        for (int i = 0; i < npcs.Length; i++)
+        {
+
+            correctNPCs[i] = new Vector3(npcs[i].position.x, npcs[i].position.y, -10f);
+
+            {
+                /* 
+                if (processManager.ReadSubsectorNum() == 4)
+                {
+                    if (correctNPCs[i].x <= -15f || correctNPCs[i].x >= 15f)
+                    {
+                        if (correctNPCs[i].x <= -15f) { correctNPCs[i].x = -15f; }
+                        else { correctNPCs[i].x = 15f; }
+                    }
+
+                    if (correctNPCs[i].y <= -30f || correctNPCs[i].y >= 30f)
+                    {
+                        if (correctNPCs[i].y <= -30f) { correctNPCs[i].y = -30f; }
+                        else { correctNPCs[i].y = 30f; }
+                    }
+                }
+                else if (processManager.ReadSubsectorNum() == 3)
+                {
+                    if (correctNPCs[i].x <= -22.95f || correctNPCs[i].x >= 22.95f)
+                    {
+                        if (correctNPCs[i].x <= -22.95f) { correctNPCs[i].x = -22.95f; }
+                        else { correctNPCs[i].x = 22.95f; }
+                    }
+
+                    if (correctNPCs[i].y <= -24.5f || correctNPCs[i].y >= 24.5f)
+                    {
+                        if (correctNPCs[i].y <= -24.5f) { correctNPCs[i].y = -24.5f; }
+                        else { correctNPCs[i].y = 24.5f; }
+                    }
+                }
+                else if (processManager.ReadSubsectorNum() == 2)
+                {
+                    if (correctNPCs[i].x <= -12f || correctNPCs[i].x >= 12f)
+                    {
+                        if (correctNPCs[i].x <= -12f) { correctNPCs[i].x = -12f; }
+                        else { correctNPCs[i].x = 12f; }
+                    }
+
+                    if (correctNPCs[i].y <= -8f || correctNPCs[i].y >= 8f)
+                    {
+                        if (correctNPCs[i].y <= -8f) { correctNPCs[i].y = -8f; }
+                        else { correctNPCs[i].y = 8f; }
+                    }
+                }
+                else
+                {
+                    if (correctNPCs[i].x <= -12.45f || correctNPCs[i].x >= 12.45f)
+                    {
+                        if (correctNPCs[i].x <= -12.45f) { correctNPCs[i].x = -12.45f; }
+                        else { correctNPCs[i].x = 12.45f; }
+                    }
+
+                    if (correctNPCs[i].y <= -5.45f || correctNPCs[i].y >= 5.45f)
+                    {
+                        if (correctNPCs[i].y <= -5.45f) { correctNPCs[i].y = -5.45f; }
+                        else { correctNPCs[i].y = 5.45f; }
+                    }
+                }
+                */
+            }
+        }
+
+        if (processManager.IsSubsectorEnded() == false)
+        {
+            branch = 1;
+            refresh();              //엑셀 값을 받아와서 넣어주기
+            Setup();
+
+
+            //branch가 1일 때
+            if (autoStartBranch[0])
+            { StartConversationSetting_Auto(); }
+        }
         
-        //branch가 1일 때
-        if (autoStartBranch[0])
-        { StartConversationSetting_Auto(); }
-
-        
-      
-
 
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(branch);
         if (trig_CamMoveToNPC) { CameraMoveToNPC(calledNPCPosition); }
+        if (trig_CamMoveToNPC_Auto) { CameraMoveToNPC(correctNPCs[branch-1]); }
+
         if (trig_CamMoveForCorrection) { CameraMoveForCorrection(); }
 
         /* 테스트하려고 잠깐만든거
@@ -156,12 +240,19 @@ public class DialogSystem : MonoBehaviour
     public void StartConversationSetting_Auto(bool val = false)
     {
         isAuto = true;
+
+        if (isReallyZoom[branch-1] == true)
+        {
+            trig_CamMoveToNPC_Auto = true;
+            StartCoroutine(CameraZoomIn(false));
+        }
+
         if (val) { isQuestClearedAuto = true; }
         if (processManager.IsActiveOngoingQuest())
         { forQuest.SetActive(false); }
         
         
-        //StartCoroutine(CameraZoomIn());
+        
         conversationUI.SetActive(true);
         StartCoroutine(ConversWindowPop());
         cam.GetComponent<CameraMover>().FocusCamera();
@@ -180,6 +271,7 @@ public class DialogSystem : MonoBehaviour
         trig_CamMoveToNPC = false;
         cam.GetComponent<CameraMover>().FreeCamera();
         StartCoroutine(CameraZoomOut());
+
         //어쩔 수 없는 사항, 2023-08-22
         if (null != calledNPCName)
             GameObject.Find(calledNPCName).GetComponent<NPCManager>().EndConversation();
@@ -199,7 +291,11 @@ public class DialogSystem : MonoBehaviour
         cam.GetComponent<CameraMover>().FreeCamera();
         
         isAuto = false; isQuestClearedAuto = false;
-        //StartCoroutine(CameraZoomOut());
+        if (isReallyZoom[branch - 1] == true)
+        {
+            StartCoroutine(CameraZoomOut());
+        }
+        
         //GameObject.Find(calledNPCName).GetComponent<NPCManager>().EndConversation();
 
     }
@@ -207,9 +303,11 @@ public class DialogSystem : MonoBehaviour
     public void CameraMoveToNPC(Vector3 _npcPosition_Camera)
     {
         cam.transform.position = Vector3.SmoothDamp(cam.transform.position, _npcPosition_Camera, ref vel, 0.5f);
+        
         if (Vector2.Distance(cam.transform.position, _npcPosition_Camera) <= 0.1f)
         {
             trig_CamMoveToNPC = false;
+            trig_CamMoveToNPC_Auto = false;
         }
     }
 
@@ -223,33 +321,68 @@ public class DialogSystem : MonoBehaviour
         }
     }
 
-    IEnumerator CameraZoomIn()
+    IEnumerator CameraZoomIn(bool val = true)
     {
-        for (int i = 100; i >= 50; i--)
+        if (processManager.ReadSubsectorNum() == 3)
         {
-            cam_Camera.orthographicSize = i * 0.1f;
-            cam_BoxCollider2D.size = new Vector2(i * 0.1f, i * 0.2f);
-
-            if (i == 70)
+            for (int i = 150; i >= 100; i--)
             {
-                conversationUI.SetActive(true);
-                StartCoroutine(ConversWindowPop());
-            }
+                cam_Camera.orthographicSize = i * 0.1f;
+                cam_BoxCollider2D.size = new Vector2(i * 0.1f, i * 0.2f);
 
-            yield return new WaitForSecondsRealtime(0.01f);
+                if (i == 120 && val == true)
+                {
+                    conversationUI.SetActive(true);
+                    StartCoroutine(ConversWindowPop());
+                }
+
+                yield return new WaitForSecondsRealtime(0.01f);
+            }
         }
+        else
+        {
+            for (int i = 100; i >= 50; i--)
+            {
+                cam_Camera.orthographicSize = i * 0.1f;
+                cam_BoxCollider2D.size = new Vector2(i * 0.1f, i * 0.2f);
+
+                if (i == 70 && val == true)
+                {
+                    conversationUI.SetActive(true);
+                    StartCoroutine(ConversWindowPop());
+                }
+
+                yield return new WaitForSecondsRealtime(0.01f);
+            }
+        }
+        
     }
 
     IEnumerator CameraZoomOut()
     {
-        for (int i = 50; i <= 100; i++)
+        if (processManager.ReadSubsectorNum() == 3)
         {
-            cam_Camera.orthographicSize = i * 0.1f;
-            cam_BoxCollider2D.size = new Vector2(i * 0.1f, i * 0.2f);
+            for (int i = 100; i <= 150; i++)
+            {
+                cam_Camera.orthographicSize = i * 0.1f;
+                cam_BoxCollider2D.size = new Vector2(i * 0.1f, i * 0.2f);
 
-            if (i == 100) { cam_BoxCollider2D.size = new Vector2(11.3f, 20f); }
-            yield return new WaitForSeconds(0.01f);
+                if (i == 150) { cam_BoxCollider2D.size = new Vector2(14f, 30f); }
+                yield return new WaitForSeconds(0.01f);
+            }
         }
+        else
+        {
+            for (int i = 50; i <= 100; i++)
+            {
+                cam_Camera.orthographicSize = i * 0.1f;
+                cam_BoxCollider2D.size = new Vector2(i * 0.1f, i * 0.2f);
+
+                if (i == 100) { cam_BoxCollider2D.size = new Vector2(9.5f, 20f); }
+                yield return new WaitForSeconds(0.01f);
+            }
+        }
+        
     }
 
     IEnumerator ConversWindowPop()
@@ -269,6 +402,7 @@ public class DialogSystem : MonoBehaviour
                 if (dialogs[0].expression == "기쁨") { OffFeeling(); feeling_joy.SetActive(true); }
                 if (dialogs[0].expression == "우울") { OffFeeling(); feeling_sad.SetActive(true); }
                 if (dialogs[0].expression == "피곤") { OffFeeling(); feeling_tired.SetActive(true); }
+                if (dialogs[0].expression == "완성물") { OffFeeling(); complete.SetActive(true); }
 
 
                 StartCoroutine(NameFadeIn());
@@ -465,7 +599,12 @@ public class DialogSystem : MonoBehaviour
                             OffFeeling();
                             feeling_tired_NPC.SetActive(true);
                         }
-                    }
+                        if (dialogs[0].expression == "완성물")
+                        {
+                            OffFeeling();
+                            complete.SetActive(true);
+                        }
+                }
                     else
                     {
                         if (dialogs[0].expression == "기본")
@@ -491,8 +630,13 @@ public class DialogSystem : MonoBehaviour
                             OffFeeling();
                             feeling_tired.SetActive(true);
                         }
+                        if (dialogs[0].expression == "완성물")
+                        {
+                            OffFeeling();
+                            complete.SetActive(true);
+                        }
 
-                    }   
+                }   
 
 
                 if (branch <= autoStartBranch.Length && autoStartBranch[branch - 1] == true)
@@ -543,6 +687,11 @@ public class DialogSystem : MonoBehaviour
                     OffFeeling();
                     feeling_tired_NPC.SetActive(true);
                 }
+                if (dialogs[currentDialogIndex].expression == "완성물")
+                {
+                    OffFeeling();
+                    complete.SetActive(true);
+                }
             }
             else
             {
@@ -550,11 +699,10 @@ public class DialogSystem : MonoBehaviour
                 if (dialogs[currentDialogIndex].expression == "기쁨") { OffFeeling(); feeling_joy.SetActive(true); }
                 if (dialogs[currentDialogIndex].expression == "우울") { OffFeeling(); feeling_sad.SetActive(true); }
                 if (dialogs[currentDialogIndex].expression == "피곤") { OffFeeling(); feeling_tired.SetActive(true); }
+                if (dialogs[currentDialogIndex].expression == "완성물") { OffFeeling(); complete.SetActive(true); }
             }
             
         }
-        
-
 
         conversation.GetComponent<TextMeshProUGUI>().text = dialogs[currentDialogIndex].dialogue;
 

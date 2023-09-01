@@ -248,7 +248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5d5e81342d18f041aa9c3fc1d210055, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ClearNum: 0
+  ClearNum: 1
   SubSector: "\uD38C\uD551\uD3ED\uD3EC"
   isActivateUI: 0
   SubSectorUI: {fileID: 1893990425}
@@ -840,7 +840,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5d5e81342d18f041aa9c3fc1d210055, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ClearNum: 0
+  ClearNum: 2
   SubSector: "\uD551\uD06C\uC194\uD2B8\uB3D9\uAD74"
   isActivateUI: 0
   SubSectorUI: {fileID: 1526199799}
@@ -1570,7 +1570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5d5e81342d18f041aa9c3fc1d210055, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ClearNum: 0
+  ClearNum: 4
   SubSector: "\uC194\uB77C \uB125\uD0C0\uB974 \uD638\uC218"
   isActivateUI: 0
   SubSectorUI: {fileID: 1630098776}
@@ -1702,7 +1702,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5d5e81342d18f041aa9c3fc1d210055, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ClearNum: 0
+  ClearNum: 3
   SubSector: "\uC544\uC774\uC2A4\uACC4\uACE1"
   isActivateUI: 0
   SubSectorUI: {fileID: 104338621}
@@ -1832,6 +1832,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22d9bfc42f9ca144da3903e5a20df8e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bgmonoff: 0
+  seonoff: 0
 --- !u!4 &1797019120
 Transform:
   m_ObjectHideFlags: 0

@@ -212,7 +212,7 @@ MonoBehaviour:
   - branch: 5
     name: "\uB9AC\uBE44"
     expression: "\uAE30\uC068"
-    dialog: "\uC774\uAC74...! \uC544\uC774\uC2A4\uCE74\uBC0D \uBBFC\uD2B8\uC57C! "
+    dialog: "\uC774\uAC74...! \uC544\uC774\uC2A4\uCE74\uBC0D \uBBFC\uD2B8\uC57C!"
   - branch: 5
     name: "\uC5EC\uD589\uC544\uC774"
     expression: "\uAE30\uBCF8"
@@ -270,7 +270,7 @@ MonoBehaviour:
       \uD50C\uB77C\uACE0\uC2A4\uD2B8 \uBB34\uB9AC\uAC00 \uC788\uC5B4."
   - branch: 7
     name: "\uC5EC\uD589\uC544\uC774"
-    expression: "\uAE30\uBCF8"
+    expression: "\uC644\uC131\uBB3C"
     dialog: "\uBD84\uBA85 \uC544\uC774\uC2A4\uCE74\uBC0D \uD3EC\uC158\uC73C\uB85C
       \uC815\uD654\uD560 \uC218 \uC788\uC744\uAC70\uC57C"
   - branch: 7
@@ -367,7 +367,7 @@ MonoBehaviour:
   - branch: 10
     name: "\uB9AC\uBE44"
     expression: "\uAE30\uC068"
-    dialog: "\uC58F\uD638! \uC774\uC81C \uC815\uB9D0 \uC815\uC0C1\uC774 \uCF54\uC55E\uC774\uC57C. "
+    dialog: "\uC58F\uD638! \uC774\uC81C \uC815\uB9D0 \uC815\uC0C1\uC774 \uCF54\uC55E\uC774\uC57C."
   - branch: 10
     name: "\uC5EC\uD589\uC544\uC774"
     expression: "\uAE30\uC068"

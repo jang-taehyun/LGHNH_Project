@@ -136,16 +136,16 @@ public class CameraMover : MonoBehaviour
             }
             else if (processManager.ReadSubsectorNum() == 3)
             {
-                if (forShoot_BeforeDestroy_CameraPos[i].x <= -24.8f || forShoot_BeforeDestroy_CameraPos[i].x >= 24.8f)
+                if (forShoot_BeforeDestroy_CameraPos[i].x <= -22.95f || forShoot_BeforeDestroy_CameraPos[i].x >= 22.95f)
                 {
-                    if (forShoot_BeforeDestroy_CameraPos[i].x <= -24.8f) { forShoot_BeforeDestroy_CameraPos[i].x = -24.8f; }
-                    else { forShoot_BeforeDestroy_CameraPos[i].x = 24.8f; }
+                    if (forShoot_BeforeDestroy_CameraPos[i].x <= -22.95f) { forShoot_BeforeDestroy_CameraPos[i].x = -22.95f; }
+                    else { forShoot_BeforeDestroy_CameraPos[i].x = 22.95f; }
                 }
 
-                if (forShoot_BeforeDestroy_CameraPos[i].y <= -30f || forShoot_BeforeDestroy_CameraPos[i].y >= 30f)
+                if (forShoot_BeforeDestroy_CameraPos[i].y <= -24.5f || forShoot_BeforeDestroy_CameraPos[i].y >= 24.5f)
                 {
-                    if (forShoot_BeforeDestroy_CameraPos[i].y <= -30f) { forShoot_BeforeDestroy_CameraPos[i].y = -30f; }
-                    else { forShoot_BeforeDestroy_CameraPos[i].y = 30f; }
+                    if (forShoot_BeforeDestroy_CameraPos[i].y <= -24.5f) { forShoot_BeforeDestroy_CameraPos[i].y = -24.5f; }
+                    else { forShoot_BeforeDestroy_CameraPos[i].y = 24.5f; }
                 }
             }
             else if (processManager.ReadSubsectorNum() == 2)

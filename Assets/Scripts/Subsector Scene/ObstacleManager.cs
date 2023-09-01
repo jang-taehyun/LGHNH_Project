@@ -24,9 +24,13 @@ public class ObstacleManager : MonoBehaviour
     public bool isNotMovetoObs;
 
 
+
     private bool isDialogAuto;
 
     public Vector3 NPCPosition;
+
+    [Header("장애물 파괴를 위한 SpriteRenders")]
+    public SpriteRenderer[] obsChildSpriteRenderers;
 
     void Start()
     {
@@ -57,16 +61,16 @@ public class ObstacleManager : MonoBehaviour
         }
         else if (processManager.ReadSubsectorNum() == 3)
         {
-            if (obsPositionX <= -24.8f || obsPositionX >= 24.8f)
+            if (obsPositionX <= -22.95f || obsPositionX >= 22.95f)
             {
-                if (obsPositionX <= -24.8f) { obsPositionX = -24.8f; }
-                else { obsPositionX = 24.8f; }
+                if (obsPositionX <= -22.95f) { obsPositionX = -22.95f; }
+                else { obsPositionX = 22.95f; }
             }
 
-            if (obsPositionY <= -30f || obsPositionY >= 30f)
+            if (obsPositionY <= -24.5f || obsPositionY >= 24.5f)
             {
-                if (obsPositionY <= -30f) { obsPositionY = -30f; }
-                else { obsPositionY = 30f; }
+                if (obsPositionY <= -24.5f) { obsPositionY = -24.5f; }
+                else { obsPositionY = 24.5f; }
             }
         }
         else if (processManager.ReadSubsectorNum() == 2)
@@ -116,6 +120,11 @@ public class ObstacleManager : MonoBehaviour
     public void CameraMoveToObs()
     {
         cam.transform.position = Vector3.SmoothDamp(cam.transform.position, obsPositionForCamera, ref vel, 0.5f);
+        if (Vector3.Distance(cam.transform.position, obsPositionForCamera) <= 0.1f)
+        {
+            StartCoroutine(ObsFadeOut());
+            trig_CameraMoveToObs = false;
+        }
     }
     public void CameraMoveToNPC()
     {
@@ -156,10 +165,11 @@ public class ObstacleManager : MonoBehaviour
         previousCamPosition = cam.transform.position;
         trig_CameraMoveToObs = true;
         cam.GetComponent<CameraMover>().FocusCamera();
-        StartCoroutine(AfterDestroyThisObs_Delay(3.0f));
 
+        
         // sound effect play
         eliminationSound.PlayOneShot(soundClip);
+        
     }
     
     IEnumerator AfterDestroyThisObs_Delay(float delayTime) 
@@ -188,15 +198,12 @@ public class ObstacleManager : MonoBehaviour
                     }
                 }
             }
-            else
-            {
-
-            }
 
             gameObject.SetActive(false);
         }
         else
         {
+            Debug.Log("파괴되지 말아야 할 장애물");
             DontDestroyObsSetting();
         }
 
@@ -228,6 +235,24 @@ public class ObstacleManager : MonoBehaviour
         }
         gameObject.SetActive(false);
     }
+
+   IEnumerator ObsFadeOut()
+    {
+        for (int k = 50; k >= 0; k--)
+        {
+            for (int i = 0; i < obsChildSpriteRenderers.Length; i++)
+            {
+                obsChildSpriteRenderers[i].color = new Color(1, 1, 1, k * 0.02f);
+            }
+
+            if (k == 0)
+            {
+                StartCoroutine(AfterDestroyThisObs_Delay(1.0f));
+            }
+            yield return new WaitForSeconds(0.01f);
+        }
+    }
+
 
     public void SetDialogAuto(bool val = true) { isDialogAuto = val; }
 }

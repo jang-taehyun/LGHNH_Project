@@ -22,7 +22,7 @@ MonoImporter:
   - feeling_joy: {instanceID: 0}
   - feeling_sad: {instanceID: 0}
   - feeling_tired: {instanceID: 0}
-  executionOrder: 0
+  executionOrder: 300
   icon: {instanceID: 0}
   userData: 
   assetBundleName: 

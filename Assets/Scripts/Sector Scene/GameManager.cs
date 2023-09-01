@@ -11,6 +11,9 @@ namespace GameManager
         private const uint ItemVariableNum = 30;
         private bool[] CurrentHaveItemNum;
 
+        public bool bgmonoff;
+        public bool seonoff;
+
         // interface //
         public int ReadClearNum() { return ClearNum; }
         public void IncreaseClearNum() { ClearNum++; }
@@ -45,6 +48,8 @@ namespace GameManager
             for (int index = 0; index < ItemVariableNum; index++)
                 CurrentHaveItemNum[index] = false;
 
+            bgmonoff = true;
+            seonoff = true;    
             //if (null == inst)
             //{
             //    inst = this;

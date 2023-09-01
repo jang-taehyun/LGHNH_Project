@@ -26,28 +26,28 @@ public class ProcessManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        isSubsectorEnded = false;
 
-        Debug.Log("Process Manager start");
-
-        if (GameManager.GameManager.Inst.ReadClearNum() >= maxPhase)
+        if (GameManager.GameManager.Inst.ReadClearNum() > subsectorNum)
         {
-            dialogSystem.gameObject.SetActive(false);
+            isSubsectorEnded = true;
             collections_obj.SetActive(false);
             obstacles_obj.SetActive(false);
 
         }
-        ongoingQuest = null;
-        // isFirst = true;
-        phase = 0;
-
-        if (dialogSystem.autoStartBranch[0] == false)
+        else
         {
-            npcs[phase].GetComponent<NPCManager>().ActiveThisNPC();
-            //npcs[phase].ActiveThisNPC();
-        }
+            isSubsectorEnded = false;
 
-        Debug.Log("Process Manager end");
+            ongoingQuest = null;
+            // isFirst = true;
+            phase = 0;
+
+            if (dialogSystem.autoStartBranch[0] == false)
+            {
+                npcs[phase].GetComponent<NPCManager>().ActiveThisNPC();
+                //npcs[phase].ActiveThisNPC();
+            }
+        }
     }
 
     // Update is called once per frame
@@ -105,6 +105,7 @@ public class ProcessManager : MonoBehaviour
             Debug.Log("서브 섹터 내의 모든 퀘스트를 완료했습니다.");
             isSubsectorEnded = true;
             uiManager.OnClearUI();
+            GameManager.GameManager.Inst.IncreaseClearNum();
         }
     }
 
