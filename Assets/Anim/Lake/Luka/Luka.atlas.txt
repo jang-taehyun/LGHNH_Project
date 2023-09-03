@@ -1,0 +1,7 @@
+Luka.png
+size:1060,1083
+filter:Linear,Linear
+pma:true
+SB_Body
+bounds:2,2,1056,1079
+offsets:1,1,1058,1081

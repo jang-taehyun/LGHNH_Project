@@ -1026,6 +1026,10 @@ PrefabInstance:
       propertyPath: m_PlaneDistance
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 3677962362190597710, guid: 790af23883339eb4d8f0cd5ef2a8f1b2, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 6dd47126e141f2748a7c7159f65c092c, type: 3}
     - target: {fileID: 3770578725417028328, guid: 790af23883339eb4d8f0cd5ef2a8f1b2, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -1185,11 +1189,71 @@ PrefabInstance:
     - target: {fileID: 8441398451032757590, guid: 790af23883339eb4d8f0cd5ef2a8f1b2, type: 3}
       propertyPath: m_Text
       value: "\uD788\uB4E0 \uD5E4\uC774\uBE10\uC5D0\uC11C \uAC00\uC7A5 \uB192\uC740
-        \uC0B0.\r\n\uC218\uC6D0\uC9C0, \uD3ED\uD3EC, \uB3D9\uAD74 \uADF8\uB9AC\uACE0
-        \uACC4\uACE1\uC73C\uB85C \uC774\uB8E8\uC5B4\uC84C\uB2E4.\r\n\uC815\uC0C1\uC758
-        \uD669\uAE08\uBE5B \uAE30\uC6B4\uC774 \uC740\uC740\uD558\uAC8C \uD37C\uC838\uC788\uB2E4.\r\n\uC194\uD2F0,
-        \uD504\uB9AC\uBBF8, \uACE8\uB4DC\uBE44 \uC885\uC871\uC774 \uC11C\uC2DD\uD558\uACE0
+        \uC0B0.\r \n\uC218\uC6D0\uC9C0, \uD3ED\uD3EC, \uB3D9\uAD74 \uADF8\uB9AC\uACE0
+        \uACC4\uACE1\uC73C\uB85C \uC774\uB8E8\uC5B4\uC84C\uB2E4.\r \uC815\uC0C1\uC758
+        \uD669\uAE08\uBE5B \uAE30\uC6B4\uC774 \uC740\uC740\uD558\uAC8C \uD37C\uC838\uC788\uB2E4.\r
+        \uC194\uD2F0, \uD504\uB9AC\uBBF8, \uACE8\uB4DC\uBE44 \uC885\uC871\uC774 \uC11C\uC2DD\uD558\uACE0
         \uC788\uB2E4.\r"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8441398451032757590, guid: 790af23883339eb4d8f0cd5ef2a8f1b2, type: 3}
+      propertyPath: m_Color.g
+      value: 0.3019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 8441398451032757590, guid: 790af23883339eb4d8f0cd5ef2a8f1b2, type: 3}
+      propertyPath: m_Color.r
+      value: 0.78431374
+      objectReference: {fileID: 0}
+    - target: {fileID: 8441398451032757590, guid: 790af23883339eb4d8f0cd5ef2a8f1b2, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 6dd47126e141f2748a7c7159f65c092c, type: 3}
+    - target: {fileID: 8441398451032757590, guid: 790af23883339eb4d8f0cd5ef2a8f1b2, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 68
+      objectReference: {fileID: 0}
+    - target: {fileID: 8441398451032757590, guid: 790af23883339eb4d8f0cd5ef2a8f1b2, type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8441398451032757590, guid: 790af23883339eb4d8f0cd5ef2a8f1b2, type: 3}
+      propertyPath: m_FontData.m_LineSpacing
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8669833057628924573, guid: 790af23883339eb4d8f0cd5ef2a8f1b2, type: 3}
+      propertyPath: m_Text
+      value: "\uC54C\uB77C\uC57C\uB9C8\uC6B4\uD2F4"
+      objectReference: {fileID: 0}
+    - target: {fileID: 8669833057628924573, guid: 790af23883339eb4d8f0cd5ef2a8f1b2, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8669833057628924573, guid: 790af23883339eb4d8f0cd5ef2a8f1b2, type: 3}
+      propertyPath: m_Color.g
+      value: 0.30274886
+      objectReference: {fileID: 0}
+    - target: {fileID: 8669833057628924573, guid: 790af23883339eb4d8f0cd5ef2a8f1b2, type: 3}
+      propertyPath: m_Color.r
+      value: 0.7830189
+      objectReference: {fileID: 0}
+    - target: {fileID: 8669833057628924573, guid: 790af23883339eb4d8f0cd5ef2a8f1b2, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 6dd47126e141f2748a7c7159f65c092c, type: 3}
+    - target: {fileID: 8949740846189900558, guid: 790af23883339eb4d8f0cd5ef2a8f1b2, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 851.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 8949740846189900558, guid: 790af23883339eb4d8f0cd5ef2a8f1b2, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 742.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 8949740846189900558, guid: 790af23883339eb4d8f0cd5ef2a8f1b2, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8949740846189900558, guid: 790af23883339eb4d8f0cd5ef2a8f1b2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -88.33
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

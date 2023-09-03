@@ -1,0 +1,7 @@
+Heavenly source of water_spine.png
+size:193,176
+filter:Linear,Linear
+pma:true
+Collection9
+bounds:2,2,189,172
+offsets:3313,690,3502,3102

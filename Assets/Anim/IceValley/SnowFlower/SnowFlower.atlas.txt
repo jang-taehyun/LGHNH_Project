@@ -1,0 +1,7 @@
+SnowFlower.png
+size:260,344
+filter:Linear,Linear
+pma:true
+SnowFlower
+bounds:2,2,256,340
+offsets:1029,3089,6002,8002

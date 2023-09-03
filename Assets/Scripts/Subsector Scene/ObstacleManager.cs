@@ -1,3 +1,4 @@
+using Spine.Unity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,6 +23,7 @@ public class ObstacleManager : MonoBehaviour
     private Vector3 previousCamPosition;
     private bool trig_CameraMoveToObs;
     public bool isNotMovetoObs;
+    public bool needToNotFadeOut;
 
 
 
@@ -31,6 +33,16 @@ public class ObstacleManager : MonoBehaviour
 
     [Header("장애물 파괴를 위한 SpriteRenders")]
     public SpriteRenderer[] obsChildSpriteRenderers;
+
+    private ObstacleAnimation obstacleAnimation;
+
+
+    [Header ("애니메이션 부분")]
+    SkeletonAnimation skeletonAnimation;
+    public Spine.AnimationState spineAnimationState;
+    public Spine.Skeleton skeleton;
+    private float Duration;                         // 재생 시간
+    public string AnimationName;                    // 재생할 애니메이션
 
     void Start()
     {
@@ -103,6 +115,25 @@ public class ObstacleManager : MonoBehaviour
         } 
 
         obsPositionForCamera = new Vector3(obsPositionX, obsPositionY, -10);
+
+        
+        if (needToNotFadeOut == true)
+        {
+            skeletonAnimation = GetComponent<SkeletonAnimation>();
+            spineAnimationState = skeletonAnimation.AnimationState;
+            skeleton = skeletonAnimation.Skeleton;
+
+            // 재생 시간 backUp
+            Duration = skeletonAnimation.timeScale;
+
+            // 애니메이션 일시 정지
+            spineAnimationState.TimeScale = 0.0f;
+
+            StartCoroutine(PlayAnim_First());
+        }
+
+        
+        
     }
 
     // Update is called once per frame
@@ -122,7 +153,15 @@ public class ObstacleManager : MonoBehaviour
         cam.transform.position = Vector3.SmoothDamp(cam.transform.position, obsPositionForCamera, ref vel, 0.5f);
         if (Vector3.Distance(cam.transform.position, obsPositionForCamera) <= 0.1f)
         {
-            StartCoroutine(ObsFadeOut());
+            if (needToNotFadeOut == false)
+            {
+                StartCoroutine(ObsFadeOut());
+            }
+            else
+            {
+                StartCoroutine(PlayAnim());
+                StartCoroutine(AfterDestroyThisObs_Delay(1.0f));
+            }
             trig_CameraMoveToObs = false;
         }
     }
@@ -251,6 +290,52 @@ public class ObstacleManager : MonoBehaviour
             }
             yield return new WaitForSeconds(0.01f);
         }
+    }
+    IEnumerator PlayAnim()
+    {
+        // 애니메이션의 재생 시간을 백업한 시간으로 되돌리기
+        spineAnimationState.TimeScale = Duration;
+
+        try
+        {
+            // 애니메이션 재생(코루틴 이용)
+            spineAnimationState.SetAnimation(0, "Disappear", false);
+        }
+        catch
+        {
+            try
+            {
+                spineAnimationState.SetAnimation(0, "disappear", false);
+            }
+            catch
+            {
+                spineAnimationState.SetAnimation(0, "desappear", false);
+            }
+            
+        }
+        
+        /*
+         * 1 parameter : 트랙
+         * 2 parameter : 재생할 애니메이션
+         * 3 parameter : loop 여부
+        **/
+        yield return new WaitForSeconds(Duration);
+    }
+
+    IEnumerator PlayAnim_First()
+    {
+        // 애니메이션의 재생 시간을 백업한 시간으로 되돌리기
+        spineAnimationState.TimeScale = Duration;
+
+        // 애니메이션 재생(코루틴 이용)
+        spineAnimationState.SetAnimation(0, "idle", true);
+
+        /*
+         * 1 parameter : 트랙
+         * 2 parameter : 재생할 애니메이션
+         * 3 parameter : loop 여부
+        **/
+        yield return new WaitForSeconds(Duration);
     }
 
 

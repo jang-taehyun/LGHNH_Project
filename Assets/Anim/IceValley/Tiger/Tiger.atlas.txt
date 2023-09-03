@@ -1,0 +1,15 @@
+Tiger.png
+size:1945,1084
+filter:Linear,Linear
+pma:true
+L_TigerWing
+bounds:1615,597,485,320
+offsets:2704,705,6002,8002
+rotate:90
+R_TigerWing
+bounds:1615,254,341,328
+offsets:3249,795,6002,8002
+rotate:90
+Tiger
+bounds:2,2,1611,1080
+offsets:2432,0,6002,8002

@@ -1,0 +1,14 @@
+microbiome solution.png
+size:882,481
+filter:Linear,Linear
+pma:true
+F.M
+bounds:770,364,110,115
+offsets:2929,828,3530,3602
+F.M_Shadow
+bounds:770,278,99,84
+offsets:2936,797,3530,3602
+F.M_Waterwave
+bounds:2,2,477,766
+offsets:2642,134,3530,3602
+rotate:90

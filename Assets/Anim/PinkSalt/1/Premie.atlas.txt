@@ -1,0 +1,14 @@
+Premie.png
+size:3881,3534
+filter:Linear,Linear
+pma:true
+Premie_A_Body
+bounds:2,2,3530,3602
+rotate:90
+Premie_A_Foot
+bounds:3606,3059,166,68
+offsets:1685,2695,3530,3602
+Premie_Shadow
+bounds:3606,3129,403,273
+offsets:1455,2508,3530,3602
+rotate:90

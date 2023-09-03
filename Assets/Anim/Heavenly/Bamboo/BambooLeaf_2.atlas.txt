@@ -1,0 +1,7 @@
+BambooLeaf_2.png
+size:81,104
+filter:Linear,Linear
+pma:true
+Collection5
+bounds:2,2,77,100
+offsets:698,1568,3502,3102

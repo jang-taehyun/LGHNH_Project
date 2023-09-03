@@ -1,0 +1,8 @@
+LemonHunny_2.png
+size:231,102
+filter:Linear,Linear
+pma:true
+LakeObject_10
+bounds:127,2,102,98
+LakeObject_10_waterwave
+bounds:2,14,123,86

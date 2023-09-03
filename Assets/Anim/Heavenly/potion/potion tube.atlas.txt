@@ -1,0 +1,7 @@
+potion tube.png
+size:98,131
+filter:Linear,Linear
+pma:true
+Collection8
+bounds:2,2,94,127
+offsets:2662,2112,3502,3102

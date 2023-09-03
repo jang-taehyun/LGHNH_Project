@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1b3b4b945939a54ea0b23d3396115fb, type: 3}
+  m_Name: LG_M3_SkeletonData
+  m_EditorClassIdentifier: 
+  atlasAssets:
+  - {fileID: 11400000, guid: eeded63a564908a458af4dbfec42fd4f, type: 2}
+  scale: 0.01
+  skeletonJSON: {fileID: 4900000, guid: 0220310a03cb6294ebc3c7f5b11cd89f, type: 3}
+  isUpgradingBlendModeMaterials: 0
+  blendModeMaterials:
+    requiresBlendModeMaterials: 1
+    applyAdditiveMaterial: 1
+    additiveMaterials: []
+    multiplyMaterials: []
+    screenMaterials:
+    - pageName: LG_M3_12.png
+      material: {fileID: 2100000, guid: c6c39a33c6d6f844fb569b4e25b8e3cf, type: 2}
+    - pageName: LG_M3_11.png
+      material: {fileID: 2100000, guid: 191887e914d57b64da96eea410c7198f, type: 2}
+    - pageName: LG_M3_10.png
+      material: {fileID: 2100000, guid: 4c83b6ad8ed153742bbf20f8f3ee6467, type: 2}
+  skeletonDataModifiers: []
+  fromAnimation: []
+  toAnimation: []
+  duration: []
+  defaultMix: 0.2
+  controller: {fileID: 0}

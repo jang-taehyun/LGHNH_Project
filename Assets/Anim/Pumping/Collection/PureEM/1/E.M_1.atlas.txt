@@ -1,0 +1,11 @@
+E.M_1.png
+size:315,162
+filter:Linear,Linear
+pma:true
+NPC_C
+bounds:194,2,158,119
+rotate:90
+NPC_C_Shadow
+bounds:2,97,161,63
+NPC_C_Waterwave
+bounds:2,22,190,73

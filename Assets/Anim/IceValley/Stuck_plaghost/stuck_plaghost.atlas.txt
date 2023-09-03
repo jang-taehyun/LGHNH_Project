@@ -1,0 +1,7 @@
+stuck_plaghost.png
+size:3746,2035
+filter:Linear,Linear
+pma:true
+EmbeddedPlague
+bounds:2,2,3742,2031
+offsets:960,5971,6002,8002

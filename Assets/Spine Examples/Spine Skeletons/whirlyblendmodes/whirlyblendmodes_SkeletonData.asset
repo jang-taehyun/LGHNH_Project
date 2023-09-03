@@ -3,9 +3,8 @@
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -22,13 +21,13 @@ MonoBehaviour:
     applyAdditiveMaterial: 1
     additiveMaterials:
     - pageName: whirlyblendmodes.png
-      material: {fileID: 2100000, guid: 0e505f1c136ce16479ee2e63c6ed1c2e, type: 2}
+      material: {fileID: 2100000, guid: 867b647cef55dcb43928a83908d96007, type: 2}
     multiplyMaterials:
     - pageName: whirlyblendmodes.png
-      material: {fileID: 2100000, guid: 8e187434e676e904d9e0f206c7d5629e, type: 2}
+      material: {fileID: 2100000, guid: aa8b3fb015cd7eb438453da5e475ad54, type: 2}
     screenMaterials:
     - pageName: whirlyblendmodes.png
-      material: {fileID: 2100000, guid: f39833a21d59a3f46b318e27d109dccb, type: 2}
+      material: {fileID: 2100000, guid: 1489a5bef834c9743bab2d5bd43168f1, type: 2}
   skeletonDataModifiers: []
   fromAnimation: []
   toAnimation: []

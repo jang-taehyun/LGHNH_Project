@@ -1,0 +1,7 @@
+M_Plaghost.png
+size:2692,2577
+filter:Linear,Linear
+pma:true
+Plaghost
+bounds:2,2,2688,2573
+offsets:3314,2247,6002,8002

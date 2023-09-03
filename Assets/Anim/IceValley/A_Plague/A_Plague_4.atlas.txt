@@ -1,0 +1,7 @@
+A_Plague_4.png
+size:506,527
+filter:Linear,Linear
+pma:true
+Plague1
+bounds:2,2,502,523
+offsets:1185,5130,6002,8002

@@ -1,0 +1,6 @@
+LG_M4.png
+size:6006,8006
+filter:Linear,Linear
+pma:true
+B.G
+bounds:2,2,6002,8002

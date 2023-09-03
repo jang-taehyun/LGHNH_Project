@@ -1,0 +1,7 @@
+Lamp.png
+size:34,53
+filter:Linear,Linear
+pma:true
+Lamp
+bounds:2,2,30,49
+offsets:11,1,53,51

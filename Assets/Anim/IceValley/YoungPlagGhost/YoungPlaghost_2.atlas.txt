@@ -1,0 +1,7 @@
+YoungPlaghost_2.png
+size:144,157
+filter:Linear,Linear
+pma:true
+YoungPlague
+bounds:2,2,140,153
+offsets:696,2544,6002,8002
