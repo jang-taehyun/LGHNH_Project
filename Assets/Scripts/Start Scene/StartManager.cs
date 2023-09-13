@@ -15,13 +15,13 @@ public class StartManager : MonoBehaviour
     {
         if (Input.GetMouseButtonUp(0))
         {
-            SceneManager.LoadScene("월드맵");
+            SceneManager.LoadScene("World");
         }
 
         if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
         {
             
-            SceneManager.LoadScene("월드맵"); 
+            SceneManager.LoadScene("World"); 
         }
         
 

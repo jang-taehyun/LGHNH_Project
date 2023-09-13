@@ -2,6 +2,7 @@ using GameManager;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SoundManager : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class SoundManager : MonoBehaviour
 
     public void SettingChanged()
     {
+        
         if (GameManager.GameManager.Inst.bgmonoff == false)
         {
             audioSources[0].mute = true;

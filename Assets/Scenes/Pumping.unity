@@ -1657,7 +1657,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 6
-  m_Sprite: {fileID: 21300000, guid: d04bb2be23ab1c845ab4019a692d37bc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c7c0adc1e8628c84f88c5a2fe7982af1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -6644,7 +6644,7 @@ PrefabInstance:
     - target: {fileID: 3852954721331335980, guid: 4b980799e1a41a5478a2c7478758ef16, type: 3}
       propertyPath: dialogDB_ice
       value: 
-      objectReference: {fileID: 11400000, guid: 7bcb50908177c1f4f861df66e2454cc9, type: 2}
+      objectReference: {fileID: 11400000, guid: d9ab0aa9b7018c043a298ad9aeca08e7, type: 2}
     - target: {fileID: 3852954721331335980, guid: 4b980799e1a41a5478a2c7478758ef16, type: 3}
       propertyPath: dialogDB_sky
       value: 
@@ -6652,7 +6652,11 @@ PrefabInstance:
     - target: {fileID: 3852954721331335980, guid: 4b980799e1a41a5478a2c7478758ef16, type: 3}
       propertyPath: dialogDB_lake
       value: 
-      objectReference: {fileID: 11400000, guid: f075d9adbb51bc547977e6ff616146cd, type: 2}
+      objectReference: {fileID: 11400000, guid: 029921d3d6906e941b23f0926f90a3ac, type: 2}
+    - target: {fileID: 3852954721331335980, guid: 4b980799e1a41a5478a2c7478758ef16, type: 3}
+      propertyPath: dialogDB_pink
+      value: 
+      objectReference: {fileID: 11400000, guid: 5fb4a12b152c5a4408bc2cf7286f66aa, type: 2}
     - target: {fileID: 3852954721331335980, guid: 4b980799e1a41a5478a2c7478758ef16, type: 3}
       propertyPath: feeling_tired
       value: 

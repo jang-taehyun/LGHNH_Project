@@ -127,11 +127,12 @@ namespace SubSectorManager
 
             EnterSoundPlayer.PlayOneShot(EnterSound);
 
+            GameManager.GameManager.Inst.MusicStop();
             SubSectorUI.SetActive(false);
             GetComponentInParent<SpriteRenderer>().material = DefaultMaterial;
             camera.GetComponent<CameraMover_Test>().FreeCamera();
             SceneManager.LoadScene(SubSector);
-            SceneManager.UnloadScene("일리야마운틴");
+            SceneManager.UnloadScene("Mountain");
         }
         public void SetIsClear(bool _param) { IsClear = _param; }
         public void SetCantEnterMessageDeactive() { CantEnterMessage.SetActive(false); }

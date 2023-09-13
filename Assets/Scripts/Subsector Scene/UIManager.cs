@@ -93,7 +93,8 @@ public class UIManager : MonoBehaviour
     public void GoSectorScene()
     {
         clickSoundPlayer.PlayOneShot(clickSound);
-        SceneManager.LoadScene("일리야마운틴");
+        GameManager.GameManager.Inst.MusicPlay();
+        SceneManager.LoadScene("Mountain");
     }
 
     public void ClickSetting()

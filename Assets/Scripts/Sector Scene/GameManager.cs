@@ -13,6 +13,7 @@ namespace GameManager
 
         public bool bgmonoff;
         public bool seonoff;
+        private AudioSource audioSource;
 
         // interface //
         public int ReadClearNum() { return ClearNum; }
@@ -57,6 +58,16 @@ namespace GameManager
             //}
             //else
             //    Destroy(this.gameObject);
+
+            audioSource = gameObject.GetComponent<AudioSource>();
+        }
+
+        public void MusicStop() { audioSource.Stop(); }
+        public void MusicPlay() 
+        { 
+            audioSource.Play(); 
+            if (bgmonoff == true) { audioSource.mute = false; }
+            else { audioSource.mute = true; }
         }
     }
 }

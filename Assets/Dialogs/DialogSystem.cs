@@ -2,7 +2,8 @@ using System;
 using System.Collections;            
 using System.Collections.Generic;   
 using UnityEngine;                  
-using UnityEngine.UI;               
+using UnityEngine.UI; 
+
 using TMPro;
 using Unity.VisualScripting;
 
@@ -398,11 +399,11 @@ public class DialogSystem : MonoBehaviour
 
                 npcNameUI_TextMesh.text = dialogs[0].name;
                 OffFeeling();
-                if (dialogs[0].expression == "기본") { OffFeeling(); feeling_default.SetActive(true); }
-                if (dialogs[0].expression == "기쁨") { OffFeeling(); feeling_joy.SetActive(true); }
-                if (dialogs[0].expression == "우울") { OffFeeling(); feeling_sad.SetActive(true); }
-                if (dialogs[0].expression == "피곤") { OffFeeling(); feeling_tired.SetActive(true); }
-                if (dialogs[0].expression == "완성물") { OffFeeling(); complete.SetActive(true); }
+                if (dialogs[0].expression == "Default") { OffFeeling(); feeling_default.SetActive(true); }
+                if (dialogs[0].expression == "Joy") { OffFeeling(); feeling_joy.SetActive(true); }
+                if (dialogs[0].expression == "Sad") { OffFeeling(); feeling_sad.SetActive(true); }
+                if (dialogs[0].expression == "Tired") { OffFeeling(); feeling_tired.SetActive(true); }
+                if (dialogs[0].expression == "Perfect") { OffFeeling(); complete.SetActive(true); }
 
 
                 StartCoroutine(NameFadeIn());
@@ -576,30 +577,30 @@ public class DialogSystem : MonoBehaviour
                     
                     if (dialogs[0].name != "여행아이" && dialogs[0].name != "리비")
                     {
-                        if (dialogs[0].expression == "기본")
+                        if (dialogs[0].expression == "Default")
                         {
                             OffFeeling();
                             feeling_default_NPC.SetActive(true);
                         }
 
-                        if (dialogs[0].expression == "기쁨")
+                        if (dialogs[0].expression == "Joy")
                         {
                             OffFeeling();
                             feeling_joy.SetActive(true);
                         }
 
-                        if (dialogs[0].expression == "우울")
+                        if (dialogs[0].expression == "Sad")
                         {
                             OffFeeling();
                             feeling_sad_NPC.SetActive(true);
                         }
 
-                        if (dialogs[0].expression == "피곤")
+                        if (dialogs[0].expression == "Tired")
                         {
                             OffFeeling();
                             feeling_tired_NPC.SetActive(true);
                         }
-                        if (dialogs[0].expression == "완성물")
+                        if (dialogs[0].expression == "Perfect")
                         {
                             OffFeeling();
                             complete.SetActive(true);
@@ -607,30 +608,30 @@ public class DialogSystem : MonoBehaviour
                 }
                     else
                     {
-                        if (dialogs[0].expression == "기본")
+                        if (dialogs[0].expression == "Default")
                         {
                             OffFeeling();
                             feeling_default.SetActive(true);
                         }
 
-                        if (dialogs[0].expression == "기쁨")
+                        if (dialogs[0].expression == "Joy")
                         {
                             OffFeeling();
                             feeling_joy.SetActive(true);
                         }
 
-                        if (dialogs[0].expression == "우울")
+                        if (dialogs[0].expression == "Sad")
                         {
                             OffFeeling();
                             feeling_sad.SetActive(true);
                         }
 
-                        if (dialogs[0].expression == "피곤")
+                        if (dialogs[0].expression == "Tired")
                         {
                             OffFeeling();
                             feeling_tired.SetActive(true);
                         }
-                        if (dialogs[0].expression == "완성물")
+                        if (dialogs[0].expression == "Perfect")
                         {
                             OffFeeling();
                             complete.SetActive(true);
@@ -664,30 +665,30 @@ public class DialogSystem : MonoBehaviour
         {
             if (dialogs[currentDialogIndex].name != "여행아이" && dialogs[currentDialogIndex].name != "리비")
             {
-                if (dialogs[currentDialogIndex].expression == "기본")
+                if (dialogs[currentDialogIndex].expression == "Default")
                 {
                     OffFeeling();
                     feeling_default_NPC.SetActive(true);
                 }
 
-                if (dialogs[currentDialogIndex].expression == "기쁨")
+                if (dialogs[currentDialogIndex].expression == "Joy")
                 {
                     OffFeeling();
                     feeling_joy.SetActive(true);
                 }
 
-                if (dialogs[currentDialogIndex].expression == "우울")
+                if (dialogs[currentDialogIndex].expression == "Sad")
                 {
                     OffFeeling();
                     feeling_sad_NPC.SetActive(true);
                 }
 
-                if (dialogs[currentDialogIndex].expression == "피곤")
+                if (dialogs[currentDialogIndex].expression == "Tired")
                 {
                     OffFeeling();
                     feeling_tired_NPC.SetActive(true);
                 }
-                if (dialogs[currentDialogIndex].expression == "완성물")
+                if (dialogs[currentDialogIndex].expression == "Perfect")
                 {
                     OffFeeling();
                     complete.SetActive(true);
@@ -695,11 +696,11 @@ public class DialogSystem : MonoBehaviour
             }
             else
             {
-                if (dialogs[currentDialogIndex].expression == "기본") { OffFeeling(); feeling_default.SetActive(true); }
-                if (dialogs[currentDialogIndex].expression == "기쁨") { OffFeeling(); feeling_joy.SetActive(true); }
-                if (dialogs[currentDialogIndex].expression == "우울") { OffFeeling(); feeling_sad.SetActive(true); }
-                if (dialogs[currentDialogIndex].expression == "피곤") { OffFeeling(); feeling_tired.SetActive(true); }
-                if (dialogs[currentDialogIndex].expression == "완성물") { OffFeeling(); complete.SetActive(true); }
+                if (dialogs[currentDialogIndex].expression == "Default") { OffFeeling(); feeling_default.SetActive(true); }
+                if (dialogs[currentDialogIndex].expression == "Joy") { OffFeeling(); feeling_joy.SetActive(true); }
+                if (dialogs[currentDialogIndex].expression == "Sad") { OffFeeling(); feeling_sad.SetActive(true); }
+                if (dialogs[currentDialogIndex].expression == "Tired") { OffFeeling(); feeling_tired.SetActive(true); }
+                if (dialogs[currentDialogIndex].expression == "Perfect") { OffFeeling(); complete.SetActive(true); }
             }
             
         }

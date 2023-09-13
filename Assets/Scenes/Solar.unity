@@ -2084,6 +2084,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 029921d3d6906e941b23f0926f90a3ac, type: 2}
     - target: {fileID: 3852954721331335980, guid: 4b980799e1a41a5478a2c7478758ef16, type: 3}
+      propertyPath: dialogDB_pink
+      value: 
+      objectReference: {fileID: 11400000, guid: 5fb4a12b152c5a4408bc2cf7286f66aa, type: 2}
+    - target: {fileID: 3852954721331335980, guid: 4b980799e1a41a5478a2c7478758ef16, type: 3}
       propertyPath: feeling_tired
       value: 
       objectReference: {fileID: 1036461084}
